@@ -5,26 +5,30 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnythingLLM | Your personal LLM trained on anything</title>
+  <title>TeamplGPT | Chat with AI in real-time with your team</title>
 
-  <meta name="title" content="AnythingLLM | Your personal LLM trained on anything">
-  <meta name="description" content="AnythingLLM | Your personal LLM trained on anything">
+  <meta name="title" content="TeamplGPT | Chat with AI in real-time with your team">
+  <meta name="description" content="TeamplGPT | Chat with AI in real-time with your team">
 
   <!-- Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://useanything.com">
-  <meta property="og:title" content="AnythingLLM | Your personal LLM trained on anything">
-  <meta property="og:description" content="AnythingLLM | Your personal LLM trained on anything">
+  <meta property="og:title" content="TeamplGPT | Chat with AI in real-time with your team">
+  <meta property="og:description" content="TeamplGPT | Chat with AI in real-time with your team">
   <meta property="og:image"
     content="https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/master/images/promo.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://useanything.com">
-  <meta property="twitter:title" content="AnythingLLM | Your personal LLM trained on anything">
-  <meta property="twitter:description" content="AnythingLLM | Your personal LLM trained on anything">
+  <meta property="twitter:title" content="TeamplGPT | Chat with AI in real-time with your team">
+  <meta property="twitter:description" content="TeamplGPT | Chat with AI in real-time with your team">
   <meta property="twitter:image"
     content="https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/master/images/promo.png">
+
+  <!-- hreflang Tags for SEO -->
+  <link rel="alternate" hreflang="en" href="https://useanything.com/en" />
+  <link rel="alternate" hreflang="ko" href="https://useanything.com/ko" />
 
   <link rel="icon" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
@@ -33,6 +37,38 @@
 <body>
   <div id="root" class="h-screen"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userLang = navigator.language || navigator.userLanguage;
+
+      const metaTitle = document.querySelector('meta[name="title"]');
+      const metaDescription = document.querySelector('meta[name="description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+      const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+
+      if (userLang.includes("ko")) {
+        document.documentElement.lang = "ko";
+        document.title = "TeamplGPT | 팀원들과 함께 AI와 실시간으로 대화해보세요";
+        if (metaTitle) metaTitle.setAttribute("content", "TeamplGPT | 팀원들과 함께 AI와 실시간으로 대화해보세요");
+        if (metaDescription) metaDescription.setAttribute("content", "TeamplGPT | 팀원들과 함께 AI와 실시간으로 대화해보세요");
+        if (ogTitle) ogTitle.setAttribute("content", "TeamplGPT | 팀원들과 함께 AI와 실시간으로 대화해보세요");
+        if (ogDescription) ogDescription.setAttribute("content", "TeamplGPT | 팀원들과 함께 AI와 실시간으로 대화해보세요");
+        if (twitterTitle) twitterTitle.setAttribute("content", "TeamplGPT | 팀원들과 함께 AI와 실시간으로 대화해보세요");
+        if (twitterDescription) twitterDescription.setAttribute("content", "TeamplGPT | 팀원들과 함께 AI와 실시간으로 대화해보세요");
+      } else {
+        document.documentElement.lang = "en";
+        document.title = "TeamplGPT | Chat with AI in real-time with your team";
+        if (metaTitle) metaTitle.setAttribute("content", "TeamplGPT | Chat with AI in real-time with your team");
+        if (metaDescription) metaDescription.setAttribute("content", "TeamplGPT | Chat with AI in real-time with your team");
+        if (ogTitle) ogTitle.setAttribute("content", "TeamplGPT | Chat with AI in real-time with your team");
+        if (ogDescription) ogDescription.setAttribute("content", "TeamplGPT | Chat with AI in real-time with your team");
+        if (twitterTitle) twitterTitle.setAttribute("content", "TeamplGPT | Chat with AI in real-time with your team");
+        if (twitterDescription) twitterDescription.setAttribute("content", "TeamplGPT | Chat with AI in real-time with your team");
+      }
+    });
+  </script>
 </body>
 
 </html>

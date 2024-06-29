@@ -284,11 +284,14 @@ export default function MultiUserAuth() {
                   {t("login.multi-user.welcome")}
                 </h3>
                 <p className="text-4xl md:text-2xl font-bold bg-gradient-to-r from-[#75D6FF] via-[#FFFFFF] to-[#FFFFFF] bg-clip-text text-transparent">
-                  {customAppName || "AnythingLLM"}
+                  {customAppName || "TeamplGPT"}
                 </p>
+                <h3 className="text-md md:text-2xl font-bold text-white text-center white-space-nowrap hidden md:block">
+                  {t("login.multi-user.welcome2")}
+                </h3>
               </div>
               <p className="text-sm text-white/90 text-center">
-                {t("login.sign-in.start")} {customAppName || "AnythingLLM"}{" "}
+                {t("login.sign-in.start")} {customAppName || "TeamplGPT"}{" "}
                 {t("login.sign-in.end")}
               </p>
             </div>

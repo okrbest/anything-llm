@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "AnythingLLM Developer API",
-    "description": "API endpoints that enable programmatic reading, writing, and updating of your AnythingLLM instance. UI supplied by Swagger.io."
+    "title": "TeamplGPT Developer API",
+    "description": "API endpoints that enable programmatic reading, writing, and updating of your TeamplGPT instance. UI supplied by Swagger.io."
   },
   "servers": [
     {
@@ -804,7 +804,7 @@
         "tags": [
           "Documents"
         ],
-        "description": "Upload a new file to AnythingLLM to be parsed and prepared for embedding.",
+        "description": "Upload a new file to TeamplGPT to be parsed and prepared for embedding.",
         "parameters": [],
         "responses": {
           "200": {
@@ -880,7 +880,7 @@
         "tags": [
           "Documents"
         ],
-        "description": "Upload a valid URL for AnythingLLM to scrape and prepare for embedding.",
+        "description": "Upload a valid URL for TeamplGPT to scrape and prepare for embedding.",
         "parameters": [],
         "responses": {
           "200": {
@@ -903,7 +903,7 @@
                         "chunkSource": "https:useanything.com.html",
                         "published": "1/16/2024, 3:46:33 PM",
                         "wordCount": 252,
-                        "pageContent": "AnythingLLM is the best....",
+                        "pageContent": "TeamplGPT is the best....",
                         "token_count_estimate": 447,
                         "location": "custom-documents/url-useanything_com-c530dbe6-bff1-4b9e-b87f-710d539d20bc.json"
                       }
@@ -977,7 +977,7 @@
                         "chunkSource": "no chunk source specified",
                         "published": "1/16/2024, 3:46:33 PM",
                         "wordCount": 252,
-                        "pageContent": "AnythingLLM is the best....",
+                        "pageContent": "TeamplGPT is the best....",
                         "token_count_estimate": 447,
                         "location": "custom-documents/raw-my-doc-text-c530dbe6-bff1-4b9e-b87f-710d539d20bc.json"
                       }
@@ -1018,7 +1018,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "textContent": "This is the raw text that will be saved as a document in AnythingLLM.",
+                  "textContent": "This is the raw text that will be saved as a document in TeamplGPT.",
                   "metadata": {
                     "keyOne": "valueOne",
                     "keyTwo": "valueTwo",
@@ -1200,7 +1200,7 @@
         "tags": [
           "Documents"
         ],
-        "description": "Get a single document by its unique AnythingLLM document name",
+        "description": "Get a single document by its unique TeamplGPT document name",
         "parameters": [
           {
             "name": "docName",
@@ -1715,12 +1715,12 @@
                     "history": [
                       {
                         "role": "user",
-                        "content": "What is AnythingLLM?",
+                        "content": "What is TeamplGPT?",
                         "sentAt": 1692851630
                       },
                       {
                         "role": "assistant",
-                        "content": "AnythingLLM is a platform that allows you to convert notes, PDFs, and other source materials into a chatbot. It ensures privacy, cites its answers, and allows multiple people to interact with the same documents simultaneously. It is particularly useful for businesses to enhance the visibility and readability of various written communications such as SOPs, contracts, and sales calls. You can try it out with a free trial to see if it meets your business needs.",
+                        "content": "TeamplGPT is a platform that allows you to convert notes, PDFs, and other source materials into a chatbot. It ensures privacy, cites its answers, and allows multiple people to interact with the same documents simultaneously. It is particularly useful for businesses to enhance the visibility and readability of various written communications such as SOPs, contracts, and sales calls. You can try it out with a free trial to see if it meets your business needs.",
                         "sources": [
                           {
                             "source": "object about source document and snippets used"
@@ -1965,7 +1965,7 @@
           "content": {
             "application/json": {
               "example": {
-                "message": "What is AnythingLLM?",
+                "message": "What is TeamplGPT?",
                 "mode": "query | chat"
               }
             }
@@ -2057,7 +2057,7 @@
           "content": {
             "application/json": {
               "example": {
-                "message": "What is AnythingLLM?",
+                "message": "What is TeamplGPT?",
                 "mode": "query | chat"
               }
             }
@@ -2276,7 +2276,7 @@
                     },
                     {
                       "role": "assistant",
-                      "content": "AnythingLLM is a knowledge graph and vector database management system built using NodeJS express server. It provides an interface for handling all interactions, including vectorDB management and LLM (Language Model) interactions."
+                      "content": "TeamplGPT is a knowledge graph and vector database management system built using NodeJS express server. It provides an interface for handling all interactions, including vectorDB management and LLM (Language Model) interactions."
                     }
                   ]
                 }
@@ -2617,12 +2617,12 @@
                     "history": [
                       {
                         "role": "user",
-                        "content": "What is AnythingLLM?",
+                        "content": "What is TeamplGPT?",
                         "sentAt": 1692851630
                       },
                       {
                         "role": "assistant",
-                        "content": "AnythingLLM is a platform that allows you to convert notes, PDFs, and other source materials into a chatbot. It ensures privacy, cites its answers, and allows multiple people to interact with the same documents simultaneously. It is particularly useful for businesses to enhance the visibility and readability of various written communications such as SOPs, contracts, and sales calls. You can try it out with a free trial to see if it meets your business needs.",
+                        "content": "TeamplGPT is a platform that allows you to convert notes, PDFs, and other source materials into a chatbot. It ensures privacy, cites its answers, and allows multiple people to interact with the same documents simultaneously. It is particularly useful for businesses to enhance the visibility and readability of various written communications such as SOPs, contracts, and sales calls. You can try it out with a free trial to see if it meets your business needs.",
                         "sources": [
                           {
                             "source": "object about source document and snippets used"
@@ -2738,7 +2738,7 @@
           "content": {
             "application/json": {
               "example": {
-                "message": "What is AnythingLLM?",
+                "message": "What is TeamplGPT?",
                 "mode": "query | chat",
                 "userId": 1
               }
@@ -2841,7 +2841,7 @@
           "content": {
             "application/json": {
               "example": {
-                "message": "What is AnythingLLM?",
+                "message": "What is TeamplGPT?",
                 "mode": "query | chat",
                 "userId": 1
               }
@@ -3002,7 +3002,7 @@
           }
         },
         "requestBody": {
-          "description": "Send a prompt to the workspace with full use of documents as if sending a chat in AnythingLLM. Only supports some values of OpenAI API. See example below.",
+          "description": "Send a prompt to the workspace with full use of documents as if sending a chat in TeamplGPT. Only supports some values of OpenAI API. See example below.",
           "required": true,
           "type": "object",
           "content": {
@@ -3015,11 +3015,11 @@
                   },
                   {
                     "role": "user",
-                    "content": "What is AnythingLLM?"
+                    "content": "What is TeamplGPT?"
                   },
                   {
                     "role": "assistant",
-                    "content": "AnythingLLM is...."
+                    "content": "TeamplGPT is...."
                   },
                   {
                     "role": "user",
@@ -3088,7 +3088,7 @@
         "tags": [
           "OpenAI Compatible Endpoints"
         ],
-        "description": "List all the vector database collections connected to AnythingLLM. These are essentially workspaces but return their unique vector db identifier - this is the same as the workspace slug.",
+        "description": "List all the vector database collections connected to TeamplGPT. These are essentially workspaces but return their unique vector db identifier - this is the same as the workspace slug.",
         "parameters": [],
         "responses": {
           "200": {

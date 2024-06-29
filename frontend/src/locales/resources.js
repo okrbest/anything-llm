@@ -1,4 +1,4 @@
-// Looking for a language to translate AnythingLLM to?
+// Looking for a language to translate TeamplGPT to?
 // Create a `common.js` file in the language's ISO code https://www.w3.org/International/O-charset-lang.html
 // eg: Spanish => es/common.js
 // eg: French => fr/common.js
@@ -15,6 +15,7 @@
 // from the primary dictionary.
 
 import English from "./en/common.js";
+import Korean from "./ko/common.js";
 import Spanish from "./es/common.js";
 import French from "./fr/common.js";
 import Mandarin from "./zh/common.js";
@@ -24,6 +25,9 @@ export const defaultNS = "common";
 export const resources = {
   en: {
     common: English,
+  },
+  ko: {
+    common: Korean,
   },
   zh: {
     common: Mandarin,

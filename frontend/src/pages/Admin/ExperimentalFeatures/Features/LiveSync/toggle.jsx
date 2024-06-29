@@ -51,7 +51,7 @@ export default function LiveSyncToggle({ enabled = false, onToggle }) {
           <p className="text-white/90 text-sm">
             Enable the ability to specify a document to be "watched". Watched
             document's content will be regularly fetched and updated in
-            AnythingLLM.
+            TeamplGPT.
           </p>
           <p className="text-white/90 text-sm">
             Watched documents will automatically update in all workspaces they

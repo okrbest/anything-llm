@@ -1,11 +1,11 @@
 <a name="readme-top"></a>
 
 <p align="center">
-  <a href="https://useanything.com"><img src="https://github.com/Mintplex-Labs/anything-llm/blob/master/images/wordmark.png?raw=true" alt="AnythingLLM logo"></a>
+  <a href="https://useanything.com"><img src="https://github.com/Mintplex-Labs/anything-llm/blob/master/images/wordmark.png?raw=true" alt="TeamplGPT logo"></a>
 </p>
 
 <p align="center">
-    <b>AnythingLLM：</b> 您一直在寻找的全方位AI应用程序。<br />
+    <b>TeamplGPT：</b> 您一直在寻找的全方位AI应用程序。<br />
     与您的文档聊天，使用AI代理，高度可配置，多用户，无需繁琐的设置。
 </p>
 
@@ -32,7 +32,7 @@
 👉 适用于桌面（Mac、Windows和Linux）的AnythingLLM！<a href="https://useanything.com/download" target="_blank">立即下载</a>
 </p>
 
-这是一个全栈应用程序，可以将任何文档、资源（如网址链接、音频、视频）或内容片段转换为上下文，以便任何大语言模型（LLM）在聊天期间作为参考使用。此应用程序允许您选择使用哪个LLM或向量数据库，同时支持多用户管理并设置不同权限。
+这是一个全栈应用程序，可以将任何文档、资源（如网址链接、音频、视频）或内容片段转换为上下文，以便任何大语言模型（LLM）在聊天期间作为参考使用。此应用程序允许您选择使用哪个 LLM 或向量数据库，同时支持多用户管理并设置不同权限。
 
 ![聊天](https://github.com/Mintplex-Labs/anything-llm/assets/16845892/cfc5f47c-bd91-4067-986c-f3f49621a859)
 
@@ -45,29 +45,29 @@
 
 ### 产品概览
 
-AnythingLLM是一个全栈应用程序，您可以使用现成的商业大语言模型或流行的开源大语言模型，再结合向量数据库解决方案构建一个私有ChatGPT，不再受制于人：您可以本地运行，也可以远程托管，并能够与您提供的任何文档智能聊天。
+TeamplGPT 是一个全栈应用程序，您可以使用现成的商业大语言模型或流行的开源大语言模型，再结合向量数据库解决方案构建一个私有 ChatGPT，不再受制于人：您可以本地运行，也可以远程托管，并能够与您提供的任何文档智能聊天。
 
-AnythingLLM将您的文档划分为称为`workspaces` (工作区)的对象。工作区的功能类似于线程，同时增加了文档的容器化，。工作区可以共享文档，但工作区之间的内容不会互相干扰或污染，因此您可以保持每个工作区的上下文清晰。
+TeamplGPT 将您的文档划分为称为`workspaces` (工作区)的对象。工作区的功能类似于线程，同时增加了文档的容器化，。工作区可以共享文档，但工作区之间的内容不会互相干扰或污染，因此您可以保持每个工作区的上下文清晰。
 
-AnythingLLM的一些酷炫特性
+TeamplGPT 的一些酷炫特性
 
 - **多用户实例支持和权限管理**
-- 工作区内的智能体Agent（浏览网页、运行代码等）
+- 工作区内的智能体 Agent（浏览网页、运行代码等）
 - [为您的网站定制的可嵌入聊天窗口](./embed/README.md)
-- 支持多种文档类型（PDF、TXT、DOCX等）
+- 支持多种文档类型（PDF、TXT、DOCX 等）
 - 通过简单的用户界面管理向量数据库中的文档
 - 两种对话模式：`聊天`和`查询`。聊天模式保留先前的对话记录。查询模式则是是针对您的文档做简单问答
 - 聊天中会提供所引用的相应文档内容
 - 100%云部署就绪。
-- “部署你自己的LLM模型”。
-- 管理超大文档时高效、低耗。只需要一次就可以嵌入（Embedding)一个庞大的文档或文字记录。比其他文档聊天机器人解决方案节省90%的成本。
-- 全套的开发人员API，用于自定义集成！
+- “部署你自己的 LLM 模型”。
+- 管理超大文档时高效、低耗。只需要一次就可以嵌入（Embedding)一个庞大的文档或文字记录。比其他文档聊天机器人解决方案节省 90%的成本。
+- 全套的开发人员 API，用于自定义集成！
 
-### 支持的LLM、嵌入模型、转录模型和向量数据库
+### 支持的 LLM、嵌入模型、转录模型和向量数据库
 
-**支持的LLM：**
+**支持的 LLM：**
 
-- [任何与llama.cpp兼容的开源模型](/server/storage/models/README.md#text-generation-llm-selection)
+- [任何与 llama.cpp 兼容的开源模型](/server/storage/models/README.md#text-generation-llm-selection)
 - [OpenAI](https://openai.com)
 - [OpenAI (通用)](https://openai.com)
 - [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
@@ -87,7 +87,7 @@ AnythingLLM的一些酷炫特性
 
 **支持的嵌入模型：**
 
-- [AnythingLLM原生嵌入器](/server/storage/models/README.md)（默认）
+- [TeamplGPT 原生嵌入器](/server/storage/models/README.md)（默认）
 - [OpenAI](https://openai.com)
 - [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
 - [LocalAi (全部)](https://localai.io/)
@@ -97,7 +97,7 @@ AnythingLLM的一些酷炫特性
 
 **支持的转录模型：**
 
-- [AnythingLLM内置](https://github.com/Mintplex-Labs/anything-llm/tree/master/server/storage/models#audiovideo-transcription) （默认）
+- [TeamplGPT 内置](https://github.com/Mintplex-Labs/anything-llm/tree/master/server/storage/models#audiovideo-transcription) （默认）
 - [OpenAI](https://openai.com/)
 
 **支持的向量数据库：**
@@ -115,23 +115,23 @@ AnythingLLM的一些酷炫特性
 
 这个单库由三个主要部分组成：
 
-- `frontend`: 一个viteJS + React前端，您可以运行它来轻松创建和管理LLM可以使用的所有内容。
-- `server`: 一个NodeJS express服务器，用于处理所有交互并进行所有向量数据库管理和LLM交互。
-- `docker`: Docker指令和构建过程 + 从源代码构建的信息。
-- `collector`: NodeJS express服务器，用于从UI处理和解析文档。
+- `frontend`: 一个 viteJS + React 前端，您可以运行它来轻松创建和管理 LLM 可以使用的所有内容。
+- `server`: 一个 NodeJS express 服务器，用于处理所有交互并进行所有向量数据库管理和 LLM 交互。
+- `docker`: Docker 指令和构建过程 + 从源代码构建的信息。
+- `collector`: NodeJS express 服务器，用于从 UI 处理和解析文档。
 
 ## 🛳 自托管
 
-Mintplex Labs和社区维护了许多部署方法、脚本和模板，您可以使用它们在本地运行AnythingLLM。请参阅下面的表格，了解如何在您喜欢的环境上部署，或自动部署。
+OKR Best 和社区维护了许多部署方法、脚本和模板，您可以使用它们在本地运行 TeamplGPT。请参阅下面的表格，了解如何在您喜欢的环境上部署，或自动部署。
 | Docker | AWS | GCP | Digital Ocean | Render.com |
 |----------------------------------------|----:|-----|---------------|------------|
 | [![在Docker上部署][docker-btn]][docker-deploy] | [![在AWS上部署][aws-btn]][aws-deploy] | [![在GCP上部署][gcp-btn]][gcp-deploy] | [![在DigitalOcean上部署][do-btn]][do-deploy] | [![在Render.com上部署][render-btn]][render-deploy] |
 
-| Railway                                             |
-| --------------------------------------------------- |
+| Railway                                           |
+| ------------------------------------------------- |
 | [![在Railway上部署][railway-btn]][railway-deploy] |
 
-[其他方案：不使用Docker配置AnythingLLM实例 →](./BARE_METAL.md)
+[其他方案：不使用 Docker 配置 TeamplGPT 实例 →](./BARE_METAL.md)
 
 ## 如何设置开发环境
 
@@ -147,48 +147,45 @@ Mintplex Labs和社区维护了许多部署方法、脚本和模板，您可以�
 
 ## 如何贡献
 
-- 创建issue
-- 创建PR，分支名称格式为`<issue number>-<short name>`
+- 创建 issue
+- 创建 PR，分支名称格式为`<issue number>-<short name>`
 - 然后合并
 
 ## 远程信息收集与隐私保护
 
-由Mintplex Labs Inc开发的AnythingLLM包含一个收集匿名使用信息的Telemetry功能。
+由 OKR Best Inc 开发的 TeamplGPT 包含一个收集匿名使用信息的 Telemetry 功能。
 
 <details>
 <summary><kbd>有关AnythingLLM的远程信息收集与隐私保护更多信息</kbd></summary>
 
-
-
-
 ### 为什么收集信息？
 
-我们使用这些信息来帮助我们理解AnythingLLM的使用情况，帮助我们确定新功能和错误修复的优先级，并帮助我们提高AnythingLLM的性能和稳定性。
+我们使用这些信息来帮助我们理解 TeamplGPT 的使用情况，帮助我们确定新功能和错误修复的优先级，并帮助我们提高 TeamplGPT 的性能和稳定性。
 
 ### 怎样关闭
 
-通过在服务器或docker的.env设置中将`DISABLE_TELEMETRY`设置为“true”来选择退出Telemetry远程信息收集功能。您也可以进入AnythingLLM应用>>>侧边栏最下方 >>> `隐私和数据` （Privacy&Data)>>>找到最下方的Anonymous Telemetry Enabled，点击绿色按钮让它变灰色，从而禁用信息收集功能。
+通过在服务器或 docker 的.env 设置中将`DISABLE_TELEMETRY`设置为“true”来选择退出 Telemetry 远程信息收集功能。您也可以进入 TeamplGPT 应用>>>侧边栏最下方 >>> `隐私和数据` （Privacy&Data)>>>找到最下方的 Anonymous Telemetry Enabled，点击绿色按钮让它变灰色，从而禁用信息收集功能。
 
 ### 你们跟踪收集哪些信息？
 
 我们只会跟踪有助于我们做出产品和路线图决策的使用细节，具体包括：
 
-- 您的安装方式（Docker或桌面版）
+- 您的安装方式（Docker 或桌面版）
 - 文档被添加或移除的时间。但不包括文档内的具体内容。我们只关注添加或移除文档这个行为。这些信息能让我们了解到文档功能的使用情况。
 - 使用中的向量数据库类型。让我们知道哪个向量数据库最受欢迎，并在后续更新中优先考虑相应的数据库。
-- 使用中的LLM类型。让我们知道谁才是最受欢迎的LLM模型，并在后续更新中优先考虑相应模型。
+- 使用中的 LLM 类型。让我们知道谁才是最受欢迎的 LLM 模型，并在后续更新中优先考虑相应模型。
 - 信息被`发送`出去。这是最常规的“事件/行为/event”，并让我们了解到所有安装了这个项目的每日活动情况。同样，只收集`发送`这个行为的信息，我们不会收集关于聊天本身的性质或内容的任何信息。
 
-您可以通过查找所有调用`Telemetry.sendTelemetry`的位置来验证这些声明。此外，如果启用，这些事件也会被写入输出日志，因此您也可以看到发送了哪些具体数据。不收集IP或其他识别信息。Telemetry远程信息收集的方案来自[PostHog](https://posthog.com/) - 一个开源的远程信息收集服务。
+您可以通过查找所有调用`Telemetry.sendTelemetry`的位置来验证这些声明。此外，如果启用，这些事件也会被写入输出日志，因此您也可以看到发送了哪些具体数据。不收集 IP 或其他识别信息。Telemetry 远程信息收集的方案来自[PostHog](https://posthog.com/) - 一个开源的远程信息收集服务。
 
-[在源代码中查看所有信息收集活动](https://github.com/search?q=repo%3AMintplex-Labs%2Fanything-llm%20.sendTelemetry\(&type=code)
+[在源代码中查看所有信息收集活动](https://github.com/search?q=repo%3AMintplex-Labs%2Fanything-llm%20.sendTelemetry(&type=code)
 
 </details>
 
 ## 🔗 更多产品
 
-- **[VectorAdmin][vector-admin]**：一个用于管理向量数据库的全方位GUI和工具套件。
-- **[OpenAI Assistant Swarm][assistant-swarm]**：一个智能体Agent就可以管理您所有的OpenAI助手。
+- **[VectorAdmin][vector-admin]**：一个用于管理向量数据库的全方位 GUI 和工具套件。
+- **[OpenAI Assistant Swarm][assistant-swarm]**：一个智能体 Agent 就可以管理您所有的 OpenAI 助手。
 
 <div align="right">
 
@@ -198,7 +195,7 @@ Mintplex Labs和社区维护了许多部署方法、脚本和模板，您可以�
 
 ---
 
-版权所有 © 2024 [Mintplex Labs][profile-link]。<br />
+版权所有 © 2024 [OKR Best][profile-link]。<br />
 本项目采用[MIT](./LICENSE)许可证。
 
 <!-- LINK GROUP -->
