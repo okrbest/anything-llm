@@ -23,6 +23,9 @@ const { workspaceThreadEndpoints } = require("./endpoints/workspaceThreads");
 const { documentEndpoints } = require("./endpoints/document");
 const { agentWebsocket } = require("./endpoints/agentWebsocket");
 const { experimentalEndpoints } = require("./endpoints/experimental");
+const i18next = require("./i18n"); // Multilingual support added
+const i18nextMiddleware = require("i18next-http-middleware"); // Multilingual support added
+
 const app = express();
 const apiRouter = express.Router();
 const FILE_LIMIT = "3GB";
@@ -36,6 +39,8 @@ app.use(
     extended: true,
   })
 );
+
+app.use(i18nextMiddleware.handle(i18next)); // Multilingual support added
 
 if (!!process.env.ENABLE_HTTPS) {
   bootSSL(app, process.env.SERVER_PORT || 3001);

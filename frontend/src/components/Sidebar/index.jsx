@@ -11,6 +11,7 @@ import Footer from "../Footer";
 import SettingsButton from "../SettingsButton";
 import { Link } from "react-router-dom";
 import paths from "@/utils/paths";
+import { useTranslation } from 'react-i18next';
 
 export default function Sidebar() {
   const { user } = useUser();
@@ -21,13 +22,14 @@ export default function Sidebar() {
     showModal: showNewWsModal,
     hideModal: hideNewWsModal,
   } = useNewWorkspaceModal();
+  const { t } = useTranslation();
 
   return (
     <div>
       <Link
         to={paths.home()}
         className="flex shrink-0 max-w-[55%] items-center justify-start mx-[38px] my-[18px]"
-        aria-label="Home"
+        aria-label={t('sidebar.home')}
       >
         <img
           src={logo}
@@ -51,7 +53,7 @@ export default function Sidebar() {
                     >
                       <Plus size={18} weight="bold" />
                       <p className="text-sidebar text-sm font-semibold">
-                        New Workspace
+                        {t('sidebar.newWorkspace')}
                       </p>
                     </button>
                   )}
@@ -81,6 +83,7 @@ export function SidebarMobileHeader() {
     hideModal: hideNewWsModal,
   } = useNewWorkspaceModal();
   const { user } = useUser();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Darkens the rest of the screen
@@ -100,7 +103,7 @@ export function SidebarMobileHeader() {
   return (
     <>
       <div
-        aria-label="Show sidebar"
+        aria-label={t('sidebar.showSidebar')}
         className="fixed top-0 left-0 right-0 z-10 flex justify-between items-center px-4 py-2 bg-sidebar text-slate-200 shadow-lg h-16"
       >
         <button
@@ -167,7 +170,7 @@ export function SidebarMobileHeader() {
                       >
                         <Plus className="h-5 w-5" />
                         <p className="text-sidebar text-sm font-semibold">
-                          New Workspace
+                          {t('sidebar.newWorkspace')}
                         </p>
                       </button>
                     )}

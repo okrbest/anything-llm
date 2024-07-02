@@ -1,15 +1,22 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function GroqAiOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <div className="flex gap-x-4">
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          Groq API Key
+          {t("llm.providers.apiKeyLabel", { provider: "Groq" })}
         </label>
         <input
           type="password"
           name="GroqApiKey"
           className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-          placeholder="Groq API Key"
+          placeholder={t("llm.providers.apiKeyPlaceholder", {
+            provider: "Groq",
+          })}
           defaultValue={settings?.GroqApiKey ? "*".repeat(20) : ""}
           required={true}
           autoComplete="off"
@@ -20,7 +27,7 @@ export default function GroqAiOptions({ settings }) {
       {!settings?.credentialsOnly && (
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Chat Model Selection
+            {t("llm.providers.modelLabel")}
           </label>
           <select
             name="GroqModelPref"

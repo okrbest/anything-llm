@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Sidebar from "@/components/SettingsSidebar";
 import { isMobile } from "react-device-detect";
 import * as Skeleton from "react-loading-skeleton";
@@ -13,6 +14,7 @@ import ModalWrapper from "@/components/ModalWrapper";
 import CTAButton from "@/components/lib/CTAButton";
 
 export default function AdminUsers() {
+  const { t } = useTranslation();
   const { isOpen, openModal, closeModal } = useModal();
 
   return (
@@ -25,17 +27,18 @@ export default function AdminUsers() {
         <div className="flex flex-col w-full px-1 md:pl-6 md:pr-[50px] md:py-6 py-16">
           <div className="w-full flex flex-col gap-y-1 pb-6 border-white border-b-2 border-opacity-10">
             <div className="items-center flex gap-x-4">
-              <p className="text-lg leading-6 font-bold text-white">Users</p>
+              <p className="text-lg leading-6 font-bold text-white">
+                {t("adminUsers.title")}
+              </p>
             </div>
             <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
-              These are all the accounts which have an account on this instance.
-              Removing an account will instantly remove their access to this
-              instance.
+              {t("adminUsers.description")}
             </p>
           </div>
           <div className="w-full justify-end flex">
             <CTAButton onClick={openModal} className="mt-3 mr-0 -mb-6 z-10">
-              <UserPlus className="h-4 w-4" weight="bold" /> Add user
+              <UserPlus className="h-4 w-4" weight="bold" />{" "}
+              {t("adminUsers.addUser")}
             </CTAButton>
           </div>
           <UsersContainer />
@@ -49,6 +52,7 @@ export default function AdminUsers() {
 }
 
 function UsersContainer() {
+  const { t } = useTranslation();
   const { user: currUser } = useUser();
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
@@ -81,13 +85,13 @@ function UsersContainer() {
       <thead className="text-white text-opacity-80 text-xs leading-[18px] font-bold uppercase border-white border-b border-opacity-60">
         <tr>
           <th scope="col" className="px-6 py-3 rounded-tl-lg">
-            Username
+            {t("adminUsers.username")}
           </th>
           <th scope="col" className="px-6 py-3">
-            Role
+            {t("adminUsers.role")}
           </th>
           <th scope="col" className="px-6 py-3">
-            Date Added
+            {t("adminUsers.dateAdded")}
           </th>
           <th scope="col" className="px-6 py-3 rounded-tr-lg">
             {" "}
@@ -120,14 +124,17 @@ const ROLE_HINT = {
 };
 
 export function RoleHintDisplay({ role }) {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-y-1 py-1 pb-4">
-      <p className="text-sm font-medium text-white">Permissions</p>
+      <p className="text-sm font-medium text-white">
+        {t("roleHint.permissions")}
+      </p>
       <ul className="flex flex-col gap-y-1 list-disc px-4">
         {ROLE_HINT[role ?? "default"].map((hints, i) => {
           return (
             <li key={i} className="text-xs text-white/60">
-              {hints}
+              {t(`roleHint.${role}.${i}`, { defaultValue: hints })}
             </li>
           );
         })}

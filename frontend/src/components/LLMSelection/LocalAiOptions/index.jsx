@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Info } from "@phosphor-icons/react";
 import paths from "@/utils/paths";
 import System from "@/models/system";
+import { useTranslation } from "react-i18next"; // 추가된 부분
 
 export default function LocalAiOptions({ settings, showAlert = false }) {
+  const { t } = useTranslation(); // 추가된 부분
   const [basePathValue, setBasePathValue] = useState(settings?.LocalAiBasePath);
   const [basePath, setBasePath] = useState(settings?.LocalAiBasePath);
   const [apiKeyValue, setApiKeyValue] = useState(settings?.LocalAiApiKey);
@@ -15,28 +17,25 @@ export default function LocalAiOptions({ settings, showAlert = false }) {
         <div className="flex flex-col md:flex-row md:items-center gap-x-2 text-white mb-6 bg-blue-800/30 w-fit rounded-lg px-4 py-2">
           <div className="gap-x-2 flex items-center">
             <Info size={12} className="hidden md:visible" />
-            <p className="text-sm md:text-base">
-              LocalAI as your LLM requires you to set an embedding service to
-              use.
-            </p>
+            <p className="text-sm md:text-base">{t("llm.localAiAlert")}</p>
           </div>
           <a
             href={paths.settings.embedder.modelPreference()}
             className="text-sm md:text-base my-2 underline"
           >
-            Manage embedding &rarr;
+            {t("llm.manageEmbedding")} &rarr;
           </a>
         </div>
       )}
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Local AI Base URL
+            {t("llm.providers.baseUrl")}
           </label>
           <input
             type="url"
             name="LocalAiBasePath"
-            className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
+            className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:bg-zinc-900 focus:border-white block w-full p-2.5"
             placeholder="http://localhost:1234/v1"
             defaultValue={settings?.LocalAiBasePath}
             required={true}
@@ -55,12 +54,12 @@ export default function LocalAiOptions({ settings, showAlert = false }) {
             />
             <div className="flex flex-col w-60">
               <label className="text-white text-sm font-semibold block mb-4">
-                Token context window
+                {t("llm.providers.tokenContextWindow")}
               </label>
               <input
                 type="number"
                 name="LocalAiTokenLimit"
-                className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
+                className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:bg-zinc-900 focus:border-white block w-full p-2.5"
                 placeholder="4096"
                 min={1}
                 onScroll={(e) => e.target.blur()}
@@ -76,15 +75,15 @@ export default function LocalAiOptions({ settings, showAlert = false }) {
         <div className="flex flex-col w-60">
           <div className="flex flex-col gap-y-1 mb-4">
             <label className="text-white text-sm font-semibold flex items-center gap-x-2">
-              Local AI API Key{" "}
-              <p className="!text-xs !italic !font-thin">optional</p>
+              {t("llm.providers.apiKey")}{" "}
+              <p className="!text-xs !italic !font-thin">{t("llm.optional")}</p>
             </label>
           </div>
 
           <input
             type="password"
             name="LocalAiApiKey"
-            className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
+            className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:bg-zinc-900 focus:border-white block w-full p-2.5"
             placeholder="sk-mysecretkey"
             defaultValue={settings?.LocalAiApiKey ? "*".repeat(20) : ""}
             autoComplete="off"
@@ -101,6 +100,7 @@ export default function LocalAiOptions({ settings, showAlert = false }) {
 function LocalAIModelSelection({ settings, basePath = null, apiKey = null }) {
   const [customModels, setCustomModels] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation(); // 추가된 부분
 
   useEffect(() => {
     async function findCustomModels() {
@@ -125,7 +125,7 @@ function LocalAIModelSelection({ settings, basePath = null, apiKey = null }) {
     return (
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          Chat Model Selection
+          {t("llm.providers.modelLabel")}
         </label>
         <select
           name="LocalAiModelPref"
@@ -134,8 +134,8 @@ function LocalAIModelSelection({ settings, basePath = null, apiKey = null }) {
         >
           <option disabled={true} selected={true}>
             {basePath?.includes("/v1")
-              ? "-- loading available models --"
-              : "-- waiting for URL --"}
+              ? t("llm.providers.loadingModels")
+              : t("llm.providers.waitingForUrl")}
           </option>
         </select>
       </div>
@@ -145,22 +145,19 @@ function LocalAIModelSelection({ settings, basePath = null, apiKey = null }) {
   return (
     <div className="flex flex-col w-60">
       <label className="text-white text-sm font-semibold block mb-4">
-        Chat Model Selection
+        {t("llm.providers.modelLabel")}
       </label>
       <select
         name="LocalAiModelPref"
+        defaultValue={settings.LocalAiModelPref}
         required={true}
         className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
       >
         {customModels.length > 0 && (
-          <optgroup label="Your loaded models">
+          <optgroup label={t("llm.providers.loadedModels")}>
             {customModels.map((model) => {
               return (
-                <option
-                  key={model.id}
-                  value={model.id}
-                  selected={settings.LocalAiModelPref === model.id}
-                >
+                <option key={model.id} value={model.id}>
                   {model.id}
                 </option>
               );

@@ -266,7 +266,7 @@ const SidebarOptions = ({ user = null, t }) => (
 
     <Option
       href={paths.settings.agentSkills()}
-      btnText="Agent Skills"
+      btnText={t("settings.agents")}
       icon={<Robot className="h-5 w-5 flex-shrink-0" />}
       user={user}
       flex={true}
@@ -298,7 +298,7 @@ const SidebarOptions = ({ user = null, t }) => (
     />
     <Option
       href={paths.settings.audioPreference()}
-      btnText="Voice and Speech Support"
+      btnText={t("settings.voice")}
       icon={<Microphone className="h-5 w-5 flex-shrink-0" />}
       user={user}
       flex={true}
@@ -390,7 +390,7 @@ const SidebarOptions = ({ user = null, t }) => (
     <HoldToReveal key="exp_features">
       <Option
         href={paths.settings.experimental()}
-        btnText="Experimental Features"
+        btnText={t("settings.experimental")}
         icon={<Flask className="h-5 w-5 flex-shrink-0" />}
         user={user}
         flex={true}

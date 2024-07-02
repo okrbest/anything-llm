@@ -1,16 +1,22 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function CohereAiOptions({ settings }) {
+  const { t } = useTranslation();
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Cohere API Key
+            {t("llm.providers.apiKeyLabel", { provider: "Cohere" })}
           </label>
           <input
             type="password"
             name="CohereApiKey"
             className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Cohere API Key"
+            placeholder={t("llm.providers.apiKeyPlaceholder", {
+              provider: "Cohere",
+            })}
             defaultValue={settings?.CohereApiKey ? "*".repeat(20) : ""}
             required={true}
             autoComplete="off"
@@ -19,7 +25,7 @@ export default function CohereAiOptions({ settings }) {
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Chat Model Selection
+            {t("llm.providers.modelLabel")}
           </label>
           <select
             name="CohereModelPref"

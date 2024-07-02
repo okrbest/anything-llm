@@ -7,18 +7,19 @@ function inviteEndpoints(app) {
   if (!app) return;
 
   app.get("/invite/:code", async (request, response) => {
+    const { t } = request.i18n; // get translation function for current language
     try {
       const { code } = request.params;
       const invite = await Invite.get({ code });
       if (!invite) {
-        response.status(200).json({ invite: null, error: "Invite not found." });
+        response
+          .status(200)
+          .json({ invite: null, error: t("invite.notFound") });
         return;
       }
 
       if (invite.status !== "pending") {
-        response
-          .status(200)
-          .json({ invite: null, error: "Invite is no longer valid." });
+        response.status(200).json({ invite: null, error: t("invite.invalid") });
         return;
       }
 
@@ -32,6 +33,7 @@ function inviteEndpoints(app) {
   });
 
   app.post("/invite/:code", async (request, response) => {
+    const { t } = request.i18n; // get translation function for current language
     try {
       const { code } = request.params;
       const { username, password } = reqBody(request);
@@ -39,7 +41,7 @@ function inviteEndpoints(app) {
       if (!invite || invite.status !== "pending") {
         response
           .status(200)
-          .json({ success: false, error: "Invite not found or is invalid." });
+          .json({ success: false, error: t("invite.invalid") });
         return;
       }
 
@@ -52,7 +54,7 @@ function inviteEndpoints(app) {
         console.error("Accepting invite:", error);
         response
           .status(200)
-          .json({ success: false, error: "Could not create user." });
+          .json({ success: false, error: t("invite.userCreationFailed") });
         return;
       }
 

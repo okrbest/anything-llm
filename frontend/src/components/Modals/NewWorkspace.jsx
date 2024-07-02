@@ -2,11 +2,15 @@ import React, { useRef, useState } from "react";
 import { X } from "@phosphor-icons/react";
 import Workspace from "@/models/workspace";
 import paths from "@/utils/paths";
+import { useTranslation } from 'react-i18next';
 
 const noop = () => false;
+
 export default function NewWorkspaceModal({ hideModal = noop }) {
   const formEl = useRef(null);
   const [error, setError] = useState(null);
+  const { t } = useTranslation();
+
   const handleCreate = async (e) => {
     setError(null);
     e.preventDefault();
@@ -29,7 +33,9 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
       <div className="relative w-[500px] max-h-full">
         <div className="relative bg-modal-gradient rounded-lg shadow-md border-2 border-accent">
           <div className="flex items-start justify-between p-4 border-b rounded-t border-white/10">
-            <h3 className="text-xl font-semibold text-white">New Workspace</h3>
+            <h3 className="text-xl font-semibold text-white">
+              {t('newWorkspaceModal.title')}
+            </h3>
             <button
               onClick={hideModal}
               type="button"
@@ -46,20 +52,20 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                     htmlFor="name"
                     className="block mb-2 text-sm font-medium text-white"
                   >
-                    Workspace Name
+                    {t('newWorkspaceModal.workspaceName')}
                   </label>
                   <input
                     name="name"
                     type="text"
                     id="name"
                     className="bg-zinc-900 w-full text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-                    placeholder="My Workspace"
+                    placeholder={t('newWorkspaceModal.myWorkspace')}
                     required={true}
                     autoComplete="off"
                   />
                 </div>
                 {error && (
-                  <p className="text-red-400 text-sm">Error: {error}</p>
+                  <p className="text-red-400 text-sm">{t('common.error')} {error}</p>
                 )}
               </div>
             </div>
@@ -68,7 +74,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                 type="submit"
                 className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
               >
-                Save
+                {t('common.save')}
               </button>
             </div>
           </form>

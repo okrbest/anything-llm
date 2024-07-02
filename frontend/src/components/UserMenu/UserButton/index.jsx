@@ -8,6 +8,7 @@ import { Person } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import AccountModal from "../AccountModal";
 import { AUTH_TIMESTAMP, AUTH_TOKEN, AUTH_USER } from "@/utils/constants";
+import { useTranslation } from "react-i18next";
 
 export default function UserButton() {
   const mode = useLoginMode();
@@ -17,6 +18,7 @@ export default function UserButton() {
   const [showMenu, setShowMenu] = useState(false);
   const [showAccountSettings, setShowAccountSettings] = useState(false);
   const [supportEmail, setSupportEmail] = useState("");
+  const { t } = useTranslation();
 
   const handleClose = (event) => {
     if (
@@ -67,7 +69,7 @@ export default function UserButton() {
       {showMenu && (
         <div
           ref={menuRef}
-          className="w-fit rounded-lg absolute top-12 right-0 bg-sidebar p-4 flex items-center-justify-center"
+          className="min-w-[150px] rounded-lg absolute top-12 right-0 bg-sidebar p-4 flex items-center-justify-center"
         >
           <div className="flex flex-col gap-y-2">
             {mode === "multi" && !!user && (
@@ -75,14 +77,14 @@ export default function UserButton() {
                 onClick={handleOpenAccountModal}
                 className="text-white hover:bg-slate-200/20 w-full text-left px-4 py-1.5 rounded-md"
               >
-                Account
+                {t("userButton.account")}
               </button>
             )}
             <a
               href={supportEmail}
               className="text-white hover:bg-slate-200/20 w-full text-left px-4 py-1.5 rounded-md"
             >
-              Support
+              {t("userButton.support")}
             </a>
             <button
               onClick={() => {
@@ -94,7 +96,7 @@ export default function UserButton() {
               type="button"
               className="text-white hover:bg-slate-200/20 w-full text-left px-4 py-1.5 rounded-md"
             >
-              Sign out
+              {t("userButton.signOut")}
             </button>
           </div>
         </div>

@@ -14,11 +14,11 @@
 // please do not submit PR's without first verifying this test passes as it will tell you about missing keys or values
 // from the primary dictionary.
 
-import English from "./en/common.js";
-import Korean from "./ko/common.js";
+const English = require("./en/common.js");
+const Korean = require("./ko/common.js");
 
-export const defaultNS = "common";
-export const resources = {
+const defaultNS = "common";
+const resources = {
   en: {
     common: English,
   },
@@ -26,3 +26,5 @@ export const resources = {
     common: Korean,
   },
 };
+
+module.exports = { defaultNS, resources };

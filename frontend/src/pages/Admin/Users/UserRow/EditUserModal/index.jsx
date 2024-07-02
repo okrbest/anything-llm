@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useTranslation, Trans } from "react-i18next"; // 추가된 부분
 import { X } from "@phosphor-icons/react";
 import Admin from "@/models/admin";
 import { RoleHintDisplay } from "../..";
 
 export default function EditUserModal({ currentUser, user, closeModal }) {
+  const { t } = useTranslation(); // 추가된 부분
   const [role, setRole] = useState(user.role);
   const [error, setError] = useState(null);
 
@@ -26,7 +28,10 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
       <div className="relative bg-main-gradient rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
           <h3 className="text-xl font-semibold text-white">
-            Edit {user.username}
+            <Trans
+              i18nKey="editUser.title"
+              values={{ username: user.username }}
+            />
           </h3>
           <button
             onClick={closeModal}
@@ -45,13 +50,13 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                   htmlFor="username"
                   className="block mb-2 text-sm font-medium text-white"
                 >
-                  Username
+                  {t("editUser.username")}
                 </label>
                 <input
                   name="username"
                   type="text"
                   className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  placeholder="User's username"
+                  placeholder={t("editUser.usernamePlaceholder")}
                   minLength={2}
                   defaultValue={user.username}
                   required={true}
@@ -63,13 +68,15 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-white"
                 >
-                  New Password
+                  {t("editUser.password")}
                 </label>
                 <input
                   name="password"
                   type="text"
                   className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  placeholder={`${user.username}'s new password`}
+                  placeholder={t("editUser.passwordPlaceholder", {
+                    username: user.username,
+                  })}
                   autoComplete="off"
                 />
               </div>
@@ -78,7 +85,7 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                   htmlFor="role"
                   className="block mb-2 text-sm font-medium text-white"
                 >
-                  Role
+                  {t("editUser.role")}
                 </label>
                 <select
                   name="role"
@@ -87,15 +94,19 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                   onChange={(e) => setRole(e.target.value)}
                   className="rounded-lg bg-zinc-900 px-4 py-2 text-sm text-white border-gray-500 focus:ring-blue-500 focus:border-blue-500"
                 >
-                  <option value="default">Default</option>
-                  <option value="manager">Manager</option>
+                  <option value="default">{t("editUser.defaultRole")}</option>
+                  <option value="manager">{t("editUser.managerRole")}</option>
                   {currentUser?.role === "admin" && (
-                    <option value="admin">Administrator</option>
+                    <option value="admin">{t("editUser.adminRole")}</option>
                   )}
                 </select>
                 <RoleHintDisplay role={role} />
               </div>
-              {error && <p className="text-red-400 text-sm">Error: {error}</p>}
+              {error && (
+                <p className="text-red-400 text-sm">
+                  {t("editUser.error", { error })}
+                </p>
+              )}
             </div>
           </div>
           <div className="flex w-full justify-between items-center p-6 space-x-2 border-t rounded-b border-gray-500/50">
@@ -104,13 +115,13 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
               type="button"
               className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
             >
-              Cancel
+              {t("common.cancel")}
             </button>
             <button
               type="submit"
               className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
             >
-              Update user
+              {t("editUser.updateUser")}
             </button>
           </div>
         </form>

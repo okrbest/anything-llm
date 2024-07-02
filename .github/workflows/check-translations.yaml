@@ -27,10 +27,15 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Run verifyTranslations.mjs script
+      - name: Run verifyTranslations.mjs script for frontend
         run: |
           cd frontend/src/locales
           node verifyTranslations.mjs
+
+      - name: Run verifyTranslations.js script for server
+        run: |
+          cd server/locales
+          node verifyTranslations.js
 
       - name: Fail job on error
         if: failure()

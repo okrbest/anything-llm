@@ -1,16 +1,22 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function GeminiLLMOptions({ settings }) {
+  const { t } = useTranslation();
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Google AI API Key
+            {t("llm.providers.apiKeyLabel", { provider: "Google AI" })}
           </label>
           <input
             type="password"
             name="GeminiLLMApiKey"
             className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Google Gemini API Key"
+            placeholder={t("llm.providers.apiKeyPlaceholder", {
+              provider: "Google Gemini",
+            })}
             defaultValue={settings?.GeminiLLMApiKey ? "*".repeat(20) : ""}
             required={true}
             autoComplete="off"
@@ -22,7 +28,7 @@ export default function GeminiLLMOptions({ settings }) {
           <>
             <div className="flex flex-col w-60">
               <label className="text-white text-sm font-semibold block mb-4">
-                Chat Model Selection
+                {t("llm.providers.modelLabel")}
               </label>
               <select
                 name="GeminiLLMModelPref"
@@ -46,7 +52,7 @@ export default function GeminiLLMOptions({ settings }) {
             </div>
             <div className="flex flex-col w-60">
               <label className="text-white text-sm font-semibold block mb-4">
-                Safety Setting
+                {t("llm.providers.safetyLabel")}
               </label>
               <select
                 name="GeminiSafetySetting"
@@ -56,12 +62,18 @@ export default function GeminiLLMOptions({ settings }) {
                 required={true}
                 className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
               >
-                <option value="BLOCK_NONE">None</option>
-                <option value="BLOCK_ONLY_HIGH">Block few</option>
-                <option value="BLOCK_MEDIUM_AND_ABOVE">
-                  Block some (default)
+                <option value="BLOCK_NONE">
+                  {t("llm.providers.safety.none")}
                 </option>
-                <option value="BLOCK_LOW_AND_ABOVE">Block most</option>
+                <option value="BLOCK_ONLY_HIGH">
+                  {t("llm.providers.safety.blockFew")}
+                </option>
+                <option value="BLOCK_MEDIUM_AND_ABOVE">
+                  {t("llm.providers.safety.blockSome")}
+                </option>
+                <option value="BLOCK_LOW_AND_ABOVE">
+                  {t("llm.providers.safety.blockMost")}
+                </option>
               </select>
             </div>
           </>

@@ -9,6 +9,8 @@ const TRANSLATIONS = {
     save: "Save changes",
     previous: "Previous Page",
     next: "Next Page",
+    cancel: "Cancel",
+    create: "Create",
     close: "Close",
     download: "Download",
   },
@@ -21,9 +23,11 @@ const TRANSLATIONS = {
     users: "Users",
     workspaces: "Workspaces",
     "workspace-chats": "Workspace Chat",
+    agents: "Agent Skills",
     appearance: "Appearance",
     "api-keys": "API Keys",
     llm: "LLM Preference",
+    voice: "Voice and Speech Support",
     transcription: "Transcription Model",
     embedder: "Embedding Preferences",
     "text-splitting": "Text Splitter & Chunking",
@@ -33,6 +37,7 @@ const TRANSLATIONS = {
     security: "Security",
     "event-logs": "Event Logs",
     privacy: "Privacy & Data",
+    experimental: "Experimental Features",
   },
 
   // Page Definitions
@@ -80,6 +85,192 @@ const TRANSLATIONS = {
     part6: "Have Fun!",
     starOnGithub: "Star on GitHub",
     contact: "Contact OKR Best",
+  },
+
+  sidebar: {
+    home: "Home",
+    newWorkspace: "New Workspace",
+    showSidebar: "Show sidebar",
+  },
+
+  newWorkspaceModal: {
+    title: "New Workspace",
+    workspaceName: "Workspace Name",
+    myWorkspace: "My Workspace",
+  },
+
+  userButton: {
+    account: "Account",
+    support: "Support",
+    signOut: "Sign out",
+  },
+
+  accountModal: {
+    title: "Edit Account",
+    uploadError: "Failed to upload profile picture: {{error}}",
+    uploadSuccess: "Profile picture uploaded.",
+    removeError: "Failed to remove profile picture: {{error}}",
+    updateSuccess: "Profile updated.",
+    updateError: "Failed to update user: {{error}}",
+    profilePictureAlt: "User profile picture",
+    profilePicture: "Profile Picture",
+    removeProfilePicture: "Remove Profile Picture",
+    username: "Username",
+    usernamePlaceholder: "User's username",
+    newPassword: "New Password",
+    newPasswordPlaceholder: "{{username}}'s new password",
+    preferredLanguage: "Preferred language",
+    updateAccount: "Update Account",
+  },
+
+  adminSystem: {
+    title: "System Preferences",
+    description:
+      "These are the overall settings and configurations of your instance.",
+    toastSuccess: "System preferences updated successfully.",
+    limitMessagesTitle: "Limit messages per user per day",
+    limitMessagesDescription:
+      "Restrict non-admin users to a number of successful queries or chats within a 24 hour window. Enable this to prevent users from running up OpenAI costs.",
+    messageLimit: "Message limit per day",
+  },
+
+  adminInvites: {
+    title: "Invitations",
+    description:
+      "Create invitation links for people in your organization to accept and sign up with. Invitations can only be used by a single user.",
+    createInvite: "Create Invite Link",
+    status: "Status",
+    acceptedBy: "Accepted By",
+    createdBy: "Created By",
+    created: "Created",
+  },
+
+  newInviteModal: {
+    title: "Create new invite",
+    error: "Error: {{error}}",
+    description:
+      "After creation you will be able to copy the invite and send it to a new user where they can create an account as the <strong>default</strong> role and automatically be added to workspaces selected.",
+    autoAdd: "Auto-add invitee to workspaces",
+    autoAddDescription:
+      "You can optionally automatically assign the user to the workspaces below by selecting them. By default, the user will not have any workspaces visible. You can assign workspaces later post-invite acceptance.",
+    createInvite: "Create Invite Link",
+    copyInvite: "Copy Invite Link",
+    copied: "Copied Link",
+  },
+
+  newUserModal: {
+    title: "Create a new account",
+    username: "Username",
+    usernamePlaceholder: "My username",
+    password: "Password",
+    passwordPlaceholder: "Your password",
+    error: "Error: {{error}}",
+    info: "After creating your account you will be able to login with these credentials and start using workspaces.",
+    acceptInvite: "Accept Invitation",
+  },
+
+  adminUsers: {
+    title: "Users",
+    description:
+      "These are all the accounts which have an account on this instance. Removing an account will instantly remove their access to this instance.",
+    addUser: "Add user",
+    username: "Username",
+    role: "Role",
+    dateAdded: "Date Added",
+  },
+  roleHint: {
+    permissions: "Permissions",
+    default: [
+      "Can only send chats with workspaces they are added to by admin or managers.",
+      "Cannot modify any settings at all.",
+    ],
+    manager: [
+      "Can view, create, and delete any workspaces and modify workspace-specific settings.",
+      "Can create, update and invite new users to the instance.",
+      "Cannot modify LLM, vectorDB, embedding, or other connections.",
+    ],
+    admin: [
+      "Highest user level privilege.",
+      "Can see and do everything across the system.",
+    ],
+  },
+
+  editUser: {
+    title: "Edit {{username}}",
+    username: "Username",
+    usernamePlaceholder: "User's username",
+    password: "New Password",
+    passwordPlaceholder: "{{username}}'s new password",
+    role: "Role",
+    defaultRole: "Default",
+    managerRole: "Manager",
+    adminRole: "Administrator",
+    error: "Error: {{error}}",
+    cancel: "Cancel",
+    updateUser: "Update user",
+  },
+
+  userRow: {
+    suspendConfirm:
+      "Are you sure you want to suspend {{username}}?\nAfter you do this they will be logged out and unable to log back into this instance of TeamplGPT until unsuspended by an admin.",
+    unsuspendConfirm:
+      "Are you sure you want to unsuspend {{username}}?\nAfter you do this they will be able to log back into this instance of TeamplGPT.",
+    suspendApplied: "User has been suspended.",
+    unsuspendApplied: "User is no longer suspended.",
+    deleteConfirm:
+      "Are you sure you want to delete {{username}}?\nAfter you do this they will be logged out and unable to use this instance of TeamplGPT.\n\nThis action is irreversible.",
+    deleteSuccess: "User deleted from system.",
+    edit: "Edit",
+    suspend: "Suspend",
+    unsuspend: "Unsuspend",
+    delete: "Delete",
+  },
+
+  userRole: {
+    role: "Role",
+    admin: "Admin",
+    manager: "Manager",
+    default: "Default",
+  },
+
+  addUserModal: {
+    title: "Add user to instance",
+    usernamePlaceholder: "User's username",
+    passwordPlaceholder: "User's initial password",
+    note: "After creating a user they will need to login with their initial login to get access.",
+    addUser: "Add user",
+  },
+
+  adminWorkspaces: {
+    title: "Instance Workspaces",
+    description:
+      "These are all the workspaces that exist on this instance. Removing a workspace will delete all of its associated chats and settings.",
+    newWorkspace: "New Workspace",
+    name: "Name",
+    link: "Link",
+    users: "Users",
+    createdOn: "Created On",
+  },
+
+  workspaceCreation: {
+    title: "Create new workspace",
+    nameLabel: "Workspace Name",
+    namePlaceholder: "My workspace",
+    creationInfo:
+      "After creating this workspace only admins will be able to see it. You can add users after it has been created.",
+    cancel: "Cancel",
+    create: "Create workspace",
+    error: "Error: {{error}}",
+  },
+
+  workspaceAgentConfiguration: {
+    configureAgentSkills: "Configure Agent Skills",
+    customizeSkills:
+      "Customize and enhance the default agent's capabilities by enabling or disabling specific skills. These settings will be applied across all workspaces.",
+    updatingAgent: "Updating agent...",
+    updateWorkspaceAgent: "Update workspace agent",
+    workspaceUpdated: "Workspace updated!",
+    updateError: "Error: {{message}}",
   },
 
   // Workspace Settings menu items
@@ -215,7 +406,6 @@ const TRANSLATIONS = {
     },
   },
 
-  // Agent Configuration
   agent: {
     "performance-warning":
       "Performance of LLMs that do not explicitly support tool-calling is highly dependent on the model's capabilities and accuracy. Some abilities may be limited or non-functional.",
@@ -235,7 +425,6 @@ const TRANSLATIONS = {
         "The specific LLM model that will be used for this workspace's @agent agent.",
       wait: "-- waiting for models --",
     },
-
     skill: {
       title: "Default agent skills",
       description:
@@ -243,7 +432,7 @@ const TRANSLATIONS = {
       rag: {
         title: "RAG & long-term memory",
         description:
-          'Allow the agent to leverage your local documents to answer a query or ask the agent to "remember" pieces of content for long-term memory retrieval.',
+          "Allow the agent to leverage your local documents to answer a query or ask the agent to 'remember' pieces of content for long-term memory retrieval.",
       },
       view: {
         title: "View & summarize documents",
@@ -273,6 +462,12 @@ const TRANSLATIONS = {
           "Web search during agent sessions will not work until this is set up.",
       },
     },
+    "search-placeholder": "Search available LLM providers",
+    workspaceUpdated: "Workspace updated!",
+    updatingAgent: "Updating agent...",
+    updateWorkspaceAgent: "Update workspace agent",
+    pleaseMakeSelection: "Please make a selection",
+    agentsNotWork: "Agents will not work until a valid selection is made.",
   },
 
   // Workspace Chats
@@ -281,14 +476,22 @@ const TRANSLATIONS = {
     description:
       "These are all the recorded chats and messages that have been sent by users ordered by their creation date.",
     export: "Export",
+    clear: "Clear Chats",
     table: {
-      id: "Id",
+      id: "ID",
       by: "Sent By",
       workspace: "Workspace",
       prompt: "Prompt",
       response: "Response",
       at: "Sent At",
     },
+    exportSuccess: "Chats exported successfully as {{name}}.",
+    exportError: "Failed to export chats.",
+    clearSuccess: "Cleared all chats.",
+    clearConfirmation:
+      "Are you sure you want to clear all chats? This action is irreversible.",
+    previous: "Previous Page",
+    next: "Next Page",
   },
 
   // Appearance
@@ -342,6 +545,55 @@ const TRANSLATIONS = {
     description:
       "These are the credentials and settings for your preferred LLM chat & embedding provider. Its important these keys are current and correct or else TeamplGPT will not function properly.",
     provider: "LLM Provider",
+    searchPlaceholder: "Search available LLM providers",
+    noneSelected: "None selected",
+    selectLLM: "You need to select an LLM",
+    saving: "Saving...",
+    saveChanges: "Save changes",
+    saveSuccess: "LLM preferences saved successfully.",
+    saveError: "Failed to save LLM settings: {{error}}",
+    providers: {
+      apiKeyLabel: "{{provider}} API Key",
+      apiKeyPlaceholder: "{{provider}} API Key",
+      modelLabel: "Chat Model Selection",
+      openai: "The standard option for most non-commercial use.",
+      azure: "The enterprise option of OpenAI hosted on Azure services.",
+      anthropic: "A friendly AI Assistant hosted by Anthropic.",
+      gemini: "Google's largest and most capable AI model",
+      huggingface:
+        "Access 150,000+ open-source LLMs and the world's AI community",
+      ollama: "Run LLMs locally on your own machine.",
+      lmstudio:
+        "Discover, download, and run thousands of cutting edge LLMs in a few clicks.",
+      localai: "Run LLMs locally on your own machine.",
+      togetherai: "Run open source models from Together AI.",
+      mistral: "Run open source models from Mistral AI.",
+      perplexity:
+        "Run powerful and internet-connected models hosted by Perplexity AI.",
+      openrouter: "A unified interface for LLMs.",
+      groq: "The fastest LLM inferencing available for real-time AI applications.",
+      koboldcpp: "Run local LLMs using koboldcpp.",
+      textgenwebui: "Run local LLMs using Oobabooga's Text Generation Web UI.",
+      cohere: "Run Cohere's powerful Command models.",
+      litellm: "Run LiteLLM's OpenAI compatible proxy for various LLMs.",
+      genericopenai:
+        "Connect to any OpenAi-compatible service via a custom configuration",
+      native:
+        "Use a downloaded custom Llama model for chatting on this TeamplGPT instance.",
+      safetyLabel: "Safety Setting",
+      safety: {
+        none: "None",
+        blockFew: "Block few",
+        blockSome: "Block some (default)",
+        blockMost: "Block most",
+      },
+      baseUrl: "Base URL",
+      tokenContextWindow: "Token context window",
+      loadingModels: "-- loading available models --",
+      waitingForUrl: "-- waiting for URL --",
+      apiKey: "API Key",
+      loadedModels: "Your loaded models",
+    },
   },
 
   transcription: {

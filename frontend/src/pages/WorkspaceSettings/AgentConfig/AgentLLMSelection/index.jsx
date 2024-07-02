@@ -20,12 +20,8 @@ const ENABLED_PROVIDERS = [
   "mistral",
   "perplexity",
   "textgenwebui",
-  // TODO: More agent support.
-  // "generic-openai", // Need to support text-input for agent model input for this to be enabled.
-  // "cohere",         // Has tool calling and will need to build explicit support
-  // "huggingface"     // Can be done but already has issues with no-chat templated. Needs to be tested.
-  // "gemini",         // Too rate limited and broken in several ways to use for agents.
 ];
+
 const WARN_PERFORMANCE = [
   "lmstudio",
   "groq",
@@ -36,22 +32,6 @@ const WARN_PERFORMANCE = [
   "openrouter",
   "generic-openai",
   "textgenwebui",
-];
-
-const LLM_DEFAULT = {
-  name: "Please make a selection",
-  value: "none",
-  logo: AnythingLLMIcon,
-  options: () => <React.Fragment />,
-  description: "Agents will not work until a valid selection is made.",
-  requiredConfig: [],
-};
-
-const LLMS = [
-  LLM_DEFAULT,
-  ...AVAILABLE_LLM_PROVIDERS.filter((llm) =>
-    ENABLED_PROVIDERS.includes(llm.value)
-  ),
 ];
 
 export default function AgentLLMSelection({
@@ -67,6 +47,23 @@ export default function AgentLLMSelection({
   const [searchMenuOpen, setSearchMenuOpen] = useState(false);
   const searchInputRef = useRef(null);
   const { t } = useTranslation();
+
+  const LLM_DEFAULT = {
+    name: t("agent.pleaseMakeSelection"),
+    value: "none",
+    logo: AnythingLLMIcon,
+    options: () => <React.Fragment />,
+    description: t("agent.agentsNotWork"),
+    requiredConfig: [],
+  };
+
+  const LLMS = [
+    LLM_DEFAULT,
+    ...AVAILABLE_LLM_PROVIDERS.filter((llm) =>
+      ENABLED_PROVIDERS.includes(llm.value)
+    ),
+  ];
+
   function updateLLMChoice(selection) {
     setSearchQuery("");
     setSelectedLLM(selection);
@@ -91,6 +88,7 @@ export default function AgentLLMSelection({
   }, [searchQuery, selectedLLM]);
 
   const selectedLLMObject = LLMS.find((llm) => llm.value === selectedLLM);
+
   return (
     <div className="border-b border-white/40 pb-8">
       {WARN_PERFORMANCE.includes(selectedLLM) && (
@@ -132,7 +130,7 @@ export default function AgentLLMSelection({
                   type="text"
                   name="llm-search"
                   autoComplete="off"
-                  placeholder="Search available LLM providers"
+                  placeholder={t("agent.search-placeholder")}
                   className="border-none -ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none focus:border-white text-white placeholder:text-white placeholder:font-medium"
                   onChange={(e) => setSearchQuery(e.target.value)}
                   ref={searchInputRef}
@@ -177,10 +175,10 @@ export default function AgentLLMSelection({
               />
               <div className="flex flex-col text-left">
                 <div className="text-sm font-semibold text-white">
-                  {selectedLLMObject.name}
+                  {t(selectedLLMObject.name)}
                 </div>
                 <div className="mt-1 text-xs text-description">
-                  {selectedLLMObject.description}
+                  {t(selectedLLMObject.description)}
                 </div>
               </div>
             </div>
