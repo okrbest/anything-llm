@@ -553,6 +553,8 @@ const TRANSLATIONS = {
     saveSuccess: "LLM preferences saved successfully.",
     saveError: "Failed to save LLM settings: {{error}}",
     providers: {
+      defaultName: "System default",
+      defaultDescription: "Use the system LLM preference for this workspace.",
       apiKeyLabel: "{{provider}} API Key",
       apiKeyPlaceholder: "{{provider}} API Key",
       modelLabel: "Chat Model Selection",
@@ -591,9 +593,29 @@ const TRANSLATIONS = {
       tokenContextWindow: "Token context window",
       loadingModels: "-- loading available models --",
       waitingForUrl: "-- waiting for URL --",
+      waitingForAPI: "-- waiting for API --",
       apiKey: "API Key",
       loadedModels: "Your loaded models",
     },
+  },
+
+  azure: {
+    serviceEndpoint: "Azure Service Endpoint",
+    serviceEndpointPlaceholder: "https://my-azure.openai.azure.com",
+    chatDeploymentName: "Chat Deployment Name",
+    chatDeploymentNamePlaceholder: "Azure OpenAI chat model deployment name",
+    chatModelTokenLimit: "Chat Model Token Limit",
+    embeddingDeploymentName: "Embedding Deployment Name",
+    embeddingDeploymentNamePlaceholder:
+      "Azure OpenAI embedding model deployment name",
+  },
+
+  huggingface: {
+    inferenceEndpoint: "HuggingFace Inference Endpoint",
+    inferenceEndpointPlaceholder: "https://example.endpoints.huggingface.cloud",
+    accessToken: "HuggingFace Access Token",
+    accessTokenPlaceholder: "HuggingFace Access Token",
+    tokenLimit: "Model Token Limit",
   },
 
   transcription: {

@@ -48,7 +48,7 @@ import LLMItem from "@/components/LLMSelection/LLMItem";
 import { CaretUpDown, MagnifyingGlass, X } from "@phosphor-icons/react";
 import CTAButton from "@/components/lib/CTAButton";
 
-const LLM_PROVIDERS = (t) => [
+const AVAILABLE_LLM_PROVIDERS = (t) => [
   {
     name: "OpenAI",
     value: "openai",
@@ -216,6 +216,8 @@ const LLM_PROVIDERS = (t) => [
   },
 ];
 
+export { AVAILABLE_LLM_PROVIDERS };
+
 export default function GeneralLLMPreference() {
   const [saving, setSaving] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -275,13 +277,13 @@ export default function GeneralLLMPreference() {
   }, []);
 
   useEffect(() => {
-    const filtered = LLM_PROVIDERS(t).filter((llm) =>
+    const filtered = AVAILABLE_LLM_PROVIDERS(t).filter((llm) =>
       llm.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredLLMs(filtered);
   }, [searchQuery, selectedLLM]);
 
-  const selectedLLMObject = LLM_PROVIDERS(t).find(
+  const selectedLLMObject = AVAILABLE_LLM_PROVIDERS(t).find(
     (llm) => llm.value === selectedLLM
   );
 
@@ -414,7 +416,7 @@ export default function GeneralLLMPreference() {
                 className="mt-4 flex flex-col gap-y-1"
               >
                 {selectedLLM &&
-                  LLM_PROVIDERS(t)
+                  AVAILABLE_LLM_PROVIDERS(t)
                     .find((llm) => llm.value === selectedLLM)
                     ?.options?.(settings)}
               </div>

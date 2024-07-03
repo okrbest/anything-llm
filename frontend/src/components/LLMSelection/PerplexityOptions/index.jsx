@@ -1,18 +1,23 @@
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import System from "@/models/system";
-import { useState, useEffect } from "react";
 
 export default function PerplexityOptions({ settings }) {
+  const { t } = useTranslation("common");
+
   return (
     <div className="flex gap-x-4">
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          Perplexity API Key
+          {t("llm.providers.apiKeyLabel", { provider: "Perplexity" })}
         </label>
         <input
           type="password"
           name="PerplexityApiKey"
           className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-          placeholder="Perplexity API Key"
+          placeholder={t("llm.providers.apiKeyPlaceholder", {
+            provider: "Perplexity",
+          })}
           defaultValue={settings?.PerplexityApiKey ? "*".repeat(20) : ""}
           required={true}
           autoComplete="off"
@@ -27,6 +32,7 @@ export default function PerplexityOptions({ settings }) {
 }
 
 function PerplexityModelSelection({ settings }) {
+  const { t } = useTranslation("common");
   const [customModels, setCustomModels] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +50,7 @@ function PerplexityModelSelection({ settings }) {
     return (
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          Chat Model Selection
+          {t("llm.providers.modelLabel")}
         </label>
         <select
           name="PerplexityModelPref"
@@ -52,7 +58,7 @@ function PerplexityModelSelection({ settings }) {
           className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
-            -- loading available models --
+            {t("llm.providers.loadingModels")}
           </option>
         </select>
       </div>
@@ -62,7 +68,7 @@ function PerplexityModelSelection({ settings }) {
   return (
     <div className="flex flex-col w-60">
       <label className="text-white text-sm font-semibold block mb-4">
-        Chat Model Selection
+        {t("llm.providers.modelLabel")}
       </label>
       <select
         name="PerplexityModelPref"
@@ -70,7 +76,7 @@ function PerplexityModelSelection({ settings }) {
         className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
       >
         {customModels.length > 0 && (
-          <optgroup label="Available Perplexity Models">
+          <optgroup label={t("llm.providers.loadedModels")}>
             {customModels.map((model) => {
               return (
                 <option

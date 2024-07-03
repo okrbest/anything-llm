@@ -1,16 +1,21 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function HuggingFaceOptions({ settings }) {
+  const { t } = useTranslation("common");
+
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            HuggingFace Inference Endpoint
+            {t("huggingface.inferenceEndpoint")}
           </label>
           <input
             type="url"
             name="HuggingFaceLLMEndpoint"
             className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="https://example.endpoints.huggingface.cloud"
+            placeholder={t("huggingface.inferenceEndpointPlaceholder")}
             defaultValue={settings?.HuggingFaceLLMEndpoint}
             required={true}
             autoComplete="off"
@@ -19,24 +24,24 @@ export default function HuggingFaceOptions({ settings }) {
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            HuggingFace Access Token
+            {t("huggingface.accessToken")}
           </label>
           <input
             type="password"
             name="HuggingFaceLLMAccessToken"
             className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="HuggingFace Access Token"
+            placeholder={t("huggingface.accessTokenPlaceholder")}
             defaultValue={
               settings?.HuggingFaceLLMAccessToken ? "*".repeat(20) : ""
             }
             required={true}
-            autoComplete="off"
+            autoComplete="new-password"
             spellCheck={false}
           />
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Model Token Limit
+            {t("huggingface.tokenLimit")}
           </label>
           <input
             type="number"

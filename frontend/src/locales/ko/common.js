@@ -551,6 +551,8 @@ const TRANSLATIONS = {
     saveSuccess: "LLM 선호도가 성공적으로 저장되었습니다.",
     saveError: "LLM 설정을 저장하지 못했습니다: {{error}}",
     providers: {
+      defaultName: "시스템 기본값",
+      defaultDescription: "이 작업 공간에 시스템 기본 설정 LLM을 사용합니다.",
       apiKeyLabel: "{{provider}} API 키",
       apiKeyPlaceholder: "{{provider}} API 키",
       modelLabel: "채팅 모델 선택",
@@ -589,9 +591,28 @@ const TRANSLATIONS = {
       tokenContextWindow: "토큰 컨텍스트 창",
       loadingModels: "-- 사용 가능한 모델 로드 중 --",
       waitingForUrl: "-- URL 대기 중 --",
+      waitingForAPI: "-- API 대기 중 --",
       apiKey: "API 키",
       loadedModels: "사용자 모델",
     },
+  },
+
+  azure: {
+    serviceEndpoint: "Azure 서비스 엔드포인트",
+    serviceEndpointPlaceholder: "https://my-azure.openai.azure.com",
+    chatDeploymentName: "채팅 배포 이름",
+    chatDeploymentNamePlaceholder: "Azure OpenAI 채팅 모델 배포 이름",
+    chatModelTokenLimit: "채팅 모델 토큰 제한",
+    embeddingDeploymentName: "임베딩 배포 이름",
+    embeddingDeploymentNamePlaceholder: "Azure OpenAI 임베딩 모델 배포 이름",
+  },
+
+  huggingface: {
+    inferenceEndpoint: "HuggingFace 추론 엔드포인트",
+    inferenceEndpointPlaceholder: "https://example.endpoints.huggingface.cloud",
+    accessToken: "HuggingFace 액세스 토큰",
+    accessTokenPlaceholder: "HuggingFace 액세스 토큰",
+    tokenLimit: "모델 토큰 제한",
   },
 
   transcription: {

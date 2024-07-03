@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import AnythingLLMIcon from "@/media/logo/anything-llm-icon.png";
 import WorkspaceLLMItem from "./WorkspaceLLMItem";
 import { AVAILABLE_LLM_PROVIDERS } from "@/pages/GeneralSettings/LLMPreference";
@@ -10,24 +10,38 @@ import { useTranslation } from "react-i18next";
 // In that case there is no selection to be made so we can just move on.
 const NO_MODEL_SELECTION = ["default", "huggingface", "generic-openai"];
 const DISABLED_PROVIDERS = ["azure", "lmstudio", "native"];
-const LLM_DEFAULT = {
-  name: "System default",
-  value: "default",
-  logo: AnythingLLMIcon,
-  options: () => <React.Fragment />,
-  description: "Use the system LLM preference for this workspace.",
-  requiredConfig: [],
-};
-
-const LLMS = [LLM_DEFAULT, ...AVAILABLE_LLM_PROVIDERS].filter(
-  (llm) => !DISABLED_PROVIDERS.includes(llm.value)
-);
 
 export default function WorkspaceLLMSelection({
   settings,
   workspace,
   setHasChanges,
 }) {
+  const { t } = useTranslation();
+
+  // Memoize LLM_DEFAULT to prevent re-creation on every render
+  const LLM_DEFAULT = useMemo(
+    () => ({
+      name: t("llm.providers.defaultName"),
+      value: "default",
+      logo: AnythingLLMIcon,
+      options: () => <React.Fragment />,
+      description: t("llm.providers.defaultDescription"),
+      requiredConfig: [],
+    }),
+    [t]
+  );
+
+  // Memoize LLMS array to prevent re-creation on every render
+  const LLMS = useMemo(
+    () => [
+      LLM_DEFAULT,
+      ...AVAILABLE_LLM_PROVIDERS(t).filter(
+        (llm) => !DISABLED_PROVIDERS.includes(llm.value)
+      ),
+    ],
+    [LLM_DEFAULT, t]
+  );
+
   const [filteredLLMs, setFilteredLLMs] = useState([]);
   const [selectedLLM, setSelectedLLM] = useState(
     workspace?.chatProvider ?? "default"
@@ -35,7 +49,7 @@ export default function WorkspaceLLMSelection({
   const [searchQuery, setSearchQuery] = useState("");
   const [searchMenuOpen, setSearchMenuOpen] = useState(false);
   const searchInputRef = useRef(null);
-  const { t } = useTranslation();
+
   function updateLLMChoice(selection) {
     setSearchQuery("");
     setSelectedLLM(selection);
@@ -52,22 +66,23 @@ export default function WorkspaceLLMSelection({
     }
   }
 
+  // Filter the LLMS array based on the search query
   useEffect(() => {
     const filtered = LLMS.filter((llm) =>
       llm.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredLLMs(filtered);
-  }, [LLMS, searchQuery, selectedLLM]);
+  }, [searchQuery, LLMS]);
 
   const selectedLLMObject = LLMS.find((llm) => llm.value === selectedLLM);
   return (
     <div className="border-b border-white/40 pb-8">
       <div className="flex flex-col">
         <label htmlFor="name" className="block input-label">
-          {t("chat.llm.title")}
+          {t("llm.title")}
         </label>
         <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
-          {t("chat.llm.description")}
+          {t("llm.description")}
         </p>
       </div>
 
@@ -92,7 +107,7 @@ export default function WorkspaceLLMSelection({
                   type="text"
                   name="llm-search"
                   autoComplete="off"
-                  placeholder={t("chat.llm.search")}
+                  placeholder={t("llm.searchPlaceholder")}
                   className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none focus:border-white text-white placeholder:text-white placeholder:font-medium"
                   onChange={(e) => setSearchQuery(e.target.value)}
                   ref={searchInputRef}
