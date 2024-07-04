@@ -20,7 +20,7 @@ export default function OpenRouterOptions({ settings }) {
           })}
           defaultValue={settings?.OpenRouterApiKey ? "*".repeat(20) : ""}
           required={true}
-          autoComplete="off"
+          autoComplete="new-password"
           spellCheck={false}
         />
       </div>

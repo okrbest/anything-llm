@@ -499,16 +499,16 @@ const TRANSLATIONS = {
     description: "플랫폼의 외관 설정을 맞춤 설정합니다.",
     logo: {
       title: "로고 맞춤 설정",
-      description: "사용자 정의 로고를 업로드하여 챗봇을 개인화하세요.",
-      add: "사용자 정의 로고 추가",
+      description: "로고를 변경하여 챗봇을 맞춤형으로 변경할 수 있습니다.",
+      add: "내 로고 추가",
       recommended: "권장 크기: 800 x 200",
       remove: "제거",
       replace: "교체",
     },
     message: {
       title: "메시지 맞춤 설정",
-      description: "사용자에게 표시되는 자동 메시지를 맞춤 설정합니다.",
-      new: "새 메시지",
+      description: "사용자에게 보여주는 자동 메시지를 설정합니다.",
+      new: "새",
       system: "시스템",
       user: "사용자",
       message: "메시지",
@@ -517,8 +517,8 @@ const TRANSLATIONS = {
       save: "메시지 저장",
     },
     icons: {
-      title: "커스텀 푸터 아이콘",
-      description: "사이드바 하단에 표시되는 푸터 아이콘을 맞춤 설정합니다.",
+      title: "푸터 아이콘 설정",
+      description: "사이드바 하단에 표시되는 푸터 아이콘을 설정합니다.",
       icon: "아이콘",
       link: "링크",
     },
@@ -561,7 +561,7 @@ const TRANSLATIONS = {
       anthropic: "Anthropic에서 호스팅하는 친근한 AI 어시스턴트입니다.",
       gemini: "Google의 가장 크고 능력 있는 AI 모델입니다.",
       huggingface:
-        "150,000개 이상의 오픈 소스 LLM과 세계 AI 커뮤니티에 접근하십시오.",
+        "150,000개 이상의 오픈 소스 LLM과 전세계 AI 커뮤니티에 접근하십시오.",
       ollama: "자신의 머신에서 LLM을 로컬로 실행합니다.",
       lmstudio:
         "몇 번의 클릭만으로 수천 개의 최첨단 LLM을 발견, 다운로드 및 실행합니다.",
@@ -579,7 +579,7 @@ const TRANSLATIONS = {
       litellm: "여러 LLM을 위한 LiteLLM의 OpenAI 호환 프록시를 실행합니다.",
       genericopenai: "맞춤 구성을 통해 OpenAi 호환 서비스를 연결합니다.",
       native:
-        "이 TeamplGPT 인스턴스에서 채팅하기 위해 다운로드한 맞춤 Llama 모델을 사용합니다.",
+        "TeamplGPT 인스턴스에서 채팅하기 위해 다운로드한 맞춤형 Llama 모델을 사용합니다.",
       safetyLabel: "안전 설정",
       safety: {
         none: "없음",
@@ -613,6 +613,119 @@ const TRANSLATIONS = {
     accessToken: "HuggingFace 액세스 토큰",
     accessTokenPlaceholder: "HuggingFace 액세스 토큰",
     tokenLimit: "모델 토큰 제한",
+  },
+
+  genericOpenAi: {
+    baseUrl: "기본 URL",
+    baseUrlPlaceholder: "예: https://proxy.openai.com",
+    chatModelName: "채팅 모델 이름",
+    chatModelNamePlaceholder: "채팅 요청에 사용되는 모델 ID",
+    tokenContextWindow: "토큰 컨텍스트 윈도우",
+    tokenContextWindowPlaceholder: "컨텍스트 윈도우 한도 (예: 4096)",
+    maxTokens: "최대 토큰 수",
+    maxTokensPlaceholder: "요청당 최대 토큰 수 (예: 1024)",
+  },
+
+  ollama: {
+    maxTokens: "최대 토큰 수",
+    maxTokensDescription: "컨텍스트와 응답에 대한 최대 토큰 수입니다.",
+    hideManualInput: "수동 엔드포인트 입력 숨기기",
+    showManualInput: "수동 엔드포인트 입력 표시",
+    baseUrl: "Ollama 기본 URL",
+    baseUrlDescription: "Ollama가 실행 중인 URL을 입력하십시오.",
+    autoDetect: "자동 감지",
+    loadingModels: "--사용 가능한 모델 로딩 중--",
+    enterUrlFirst: "먼저 Ollama URL을 입력하십시오",
+    model: "Ollama 모델",
+    modelDescription:
+      "사용할 Ollama 모델을 선택하십시오. 유효한 Ollama URL을 입력한 후 모델이 로드됩니다.",
+    loadedModels: "로드된 모델",
+  },
+
+  lmstudio: {
+    alertMessage:
+      "LMStudio를 LLM으로 사용하려면 사용할 임베딩 서비스를 설정해야 합니다.",
+    manageEmbedding: "임베딩 관리 →",
+    maxTokens: "최대 토큰 수",
+    maxTokensDescription: "컨텍스트와 응답에 대한 최대 토큰 수입니다.",
+    hideManualInput: "수동 엔드포인트 입력 숨기기",
+    showManualInput: "수동 엔드포인트 입력 표시",
+    baseUrl: "LM Studio 기본 URL",
+    baseUrlDescription: "LM Studio가 실행 중인 URL을 입력하십시오.",
+    autoDetect: "자동 감지",
+    loadingModels: "--사용 가능한 모델 로딩 중--",
+    enterUrlFirst: "먼저 LM Studio URL을 입력하십시오",
+    model: "LM Studio 모델",
+    modelDescription:
+      "사용할 LM Studio 모델을 선택하십시오. 유효한 LM Studio URL을 입력한 후 모델이 로드됩니다.",
+    loadedModels: "로드된 모델",
+  },
+
+  localai: {
+    alertMessage:
+      "LocalAI를 LLM으로 사용하려면 사용할 임베딩 서비스를 설정해야 합니다.",
+    manageEmbedding: "임베딩 관리 →",
+    baseUrl: "Local AI 기본 URL",
+    tokenContextWindow: "토큰 컨텍스트 윈도우",
+    apiKey: "Local AI API 키",
+    modelSelection: "채팅 모델 선택",
+    loadingModels: "-- 사용 가능한 모델 로딩 중 --",
+    waitingForUrl: "-- URL 대기 중 --",
+    loadedModels: "로드된 모델",
+    optional: "선택 사항",
+  },
+
+  textgenwebui: {
+    baseUrl: "기본 URL",
+    tokenContextWindow: "토큰 컨텍스트 윈도우",
+    tokenContextWindowPlaceholder: "컨텐츠 윈도우 한도 (예: 4096)",
+    apiKeyOptional: "API 키 (선택 사항)",
+    apiKeyPlaceholder: "TextGen Web UI API 키",
+  },
+
+  nativellm: {
+    experimentalWarning:
+      "로컬에서 호스팅된 LLM을 사용하는 것은 실험적입니다. 주의해서 사용하십시오.",
+    modelSelection: "모델 선택",
+    waitingForModels: "-- 모델을 기다리는 중 --",
+    loadedModels: "로드된 모델",
+    tokenContextWindow: "토큰 컨텍스트 윈도우",
+  },
+
+  newApiKeyModal: {
+    title: "새 API 키 생성",
+    error: "오류: {{error}}",
+    description:
+      "API 키를 생성하면 이 TeamplGPT 인스턴스에 프로그래밍 방식으로 액세스하고 조작하는 데 사용할 수 있습니다.",
+    readDocumentation: "API 문서 읽기",
+    cancel: "취소",
+    createApiKey: "API 키 생성",
+    copyApiKey: "API 키 복사",
+    copiedApiKey: "API 키가 복사되었습니다",
+  },
+
+  supportEmail: {
+    title: "지원 이메일",
+    description:
+      "이 인스턴스에 로그인한 동안 사용자 메뉴에 표시될 지원 이메일 주소를 설정하세요.",
+    updateFailed: "지원 이메일을 업데이트하지 못했습니다: {{error}}",
+    updateSuccess: "지원 이메일이 성공적으로 업데이트되었습니다.",
+    clear: "지우기",
+    save: "저장",
+  },
+
+  languagePreference: {
+    title: "표시 언어",
+    description: "TeamplGPT의 UI를 렌더링할 때 사용할 언어를 선택하세요.",
+  },
+
+  customAppName: {
+    title: "앱 이름 수정",
+    description: "로그인 페이지에 표시되는 앱 이름을 수정할 수 있습니다.",
+    updateFailed: "앱 이름을 업데이트하지 못했습니다: {{error}}",
+    updateSuccess: "앱 이름이 성공적으로 업데이트되었습니다.",
+    clear: "지우기",
+    save: "저장",
   },
 
   transcription: {

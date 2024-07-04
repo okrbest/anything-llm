@@ -618,6 +618,120 @@ const TRANSLATIONS = {
     tokenLimit: "Model Token Limit",
   },
 
+  genericOpenAi: {
+    baseUrl: "Base URL",
+    baseUrlPlaceholder: "eg: https://proxy.openai.com",
+    chatModelName: "Chat Model Name",
+    chatModelNamePlaceholder: "Model id used for chat requests",
+    tokenContextWindow: "Token context window",
+    tokenContextWindowPlaceholder: "Content window limit (eg: 4096)",
+    maxTokens: "Max Tokens",
+    maxTokensPlaceholder: "Max tokens per request (eg: 1024)",
+  },
+
+  ollama: {
+    maxTokens: "Max Tokens",
+    maxTokensDescription: "Maximum number of tokens for context and response.",
+    hideManualInput: "Hide Manual Endpoint Input",
+    showManualInput: "Show Manual Endpoint Input",
+    baseUrl: "Ollama Base URL",
+    baseUrlDescription: "Enter the URL where Ollama is running.",
+    autoDetect: "Auto-Detect",
+    loadingModels: "--loading available models--",
+    enterUrlFirst: "Enter Ollama URL first",
+    model: "Ollama Model",
+    modelDescription:
+      "Select the Ollama model you want to use. Models will load after entering a valid Ollama URL.",
+    loadedModels: "Your loaded models",
+  },
+
+  lmstudio: {
+    alertMessage:
+      "LMStudio as your LLM requires you to set an embedding service to use.",
+    manageEmbedding: "Manage embedding →",
+    maxTokens: "Max Tokens",
+    maxTokensDescription: "Maximum number of tokens for context and response.",
+    hideManualInput: "Hide Manual Endpoint Input",
+    showManualInput: "Show Manual Endpoint Input",
+    baseUrl: "LM Studio Base URL",
+    baseUrlDescription: "Enter the URL where LM Studio is running.",
+    autoDetect: "Auto-Detect",
+    loadingModels: "--loading available models--",
+    enterUrlFirst: "Enter LM Studio URL first",
+    model: "LM Studio Model",
+    modelDescription:
+      "Select the LM Studio model you want to use. Models will load after entering a valid LM Studio URL.",
+    loadedModels: "Your loaded models",
+  },
+
+  localai: {
+    alertMessage:
+      "LocalAI as your LLM requires you to set an embedding service to use.",
+    manageEmbedding: "Manage embedding →",
+    baseUrl: "Local AI Base URL",
+    tokenContextWindow: "Token context window",
+    apiKey: "Local AI API Key",
+    modelSelection: "Chat Model Selection",
+    loadingModels: "-- loading available models --",
+    waitingForUrl: "-- waiting for URL --",
+    loadedModels: "Your loaded models",
+    optional: "optional",
+  },
+
+  textgenwebui: {
+    baseUrl: "Base URL",
+    tokenContextWindow: "Token context window",
+    tokenContextWindowPlaceholder: "Content window limit (eg: 4096)",
+    apiKeyOptional: "API Key (Optional)",
+    apiKeyPlaceholder: "TextGen Web UI API Key",
+  },
+
+  nativellm: {
+    experimentalWarning:
+      "Using a locally hosted LLM is experimental. Use with caution.",
+    modelSelection: "Model Selection",
+    waitingForModels: "-- waiting for models --",
+    loadedModels: "Your loaded models",
+    tokenContextWindow: "Token context window",
+  },
+
+  newApiKeyModal: {
+    title: "Create new API key",
+    error: "Error: {{error}}",
+    description:
+      "Once created the API key can be used to programmatically access and configure this TeamplGPT instance.",
+    readDocumentation: "Read the API documentation",
+    cancel: "Cancel",
+    createApiKey: "Create API key",
+    copyApiKey: "Copy API key",
+    copiedApiKey: "Copied API key",
+  },
+
+  supportEmail: {
+    title: "Support Email",
+    description:
+      "Set the support email address that shows up in the user menu while logged into this instance.",
+    updateFailed: "Failed to update support email: {{error}}",
+    updateSuccess: "Successfully updated support email.",
+    clear: "Clear",
+    save: "Save",
+  },
+
+  languagePreference: {
+    title: "Display Language",
+    description:
+      "Select the preferred language to render TeamplGPT's UI in, when applicable.",
+  },
+
+  customAppName: {
+    title: "Custom App Name",
+    description: "Set a custom app name that is displayed on the login page.",
+    updateFailed: "Failed to update custom app name: {{error}}",
+    updateSuccess: "Successfully updated custom app name.",
+    clear: "Clear",
+    save: "Save",
+  },
+
   transcription: {
     title: "Transcription Model Preference",
     description:

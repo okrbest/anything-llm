@@ -1,9 +1,14 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function TextGenWebUIOptions({ settings }) {
+  const { t } = useTranslation("common");
+
   return (
     <div className="flex gap-4 flex-wrap">
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          Base URL
+          {t("textgenwebui.baseUrl")}
         </label>
         <input
           type="url"
@@ -18,13 +23,13 @@ export default function TextGenWebUIOptions({ settings }) {
       </div>
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          Token context window
+          {t("textgenwebui.tokenContextWindow")}
         </label>
         <input
           type="number"
           name="TextGenWebUITokenLimit"
           className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-          placeholder="Content window limit (eg: 4096)"
+          placeholder={t("textgenwebui.tokenContextWindowPlaceholder")}
           min={1}
           onScroll={(e) => e.target.blur()}
           defaultValue={settings?.TextGenWebUITokenLimit}
@@ -34,15 +39,15 @@ export default function TextGenWebUIOptions({ settings }) {
       </div>
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          API Key (Optional)
+          {t("textgenwebui.apiKeyOptional")}
         </label>
         <input
           type="password"
           name="TextGenWebUIAPIKey"
           className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-          placeholder="TextGen Web UI API Key"
+          placeholder={t("textgenwebui.apiKeyPlaceholder")}
           defaultValue={settings?.TextGenWebUIAPIKey ? "*".repeat(20) : ""}
-          autoComplete="off"
+          autoComplete="new-password"
           spellCheck={false}
         />
       </div>

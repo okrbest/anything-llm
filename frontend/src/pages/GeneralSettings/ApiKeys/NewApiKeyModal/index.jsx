@@ -4,8 +4,10 @@ import Admin from "@/models/admin";
 import paths from "@/utils/paths";
 import { userFromStorage } from "@/utils/request";
 import System from "@/models/system";
+import { useTranslation } from "react-i18next";
 
 export default function NewApiKeyModal({ closeModal }) {
+  const { t } = useTranslation("common");
   const [apiKey, setApiKey] = useState(null);
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
@@ -20,11 +22,13 @@ export default function NewApiKeyModal({ closeModal }) {
     if (!!newApiKey) setApiKey(newApiKey);
     setError(error);
   };
+
   const copyApiKey = () => {
     if (!apiKey) return false;
     window.navigator.clipboard.writeText(apiKey.secret);
     setCopied(true);
   };
+
   useEffect(() => {
     function resetStatus() {
       if (!copied) return false;
@@ -40,7 +44,7 @@ export default function NewApiKeyModal({ closeModal }) {
       <div className="relative bg-main-gradient rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
           <h3 className="text-xl font-semibold text-white">
-            Create new API key
+            {t("newApiKeyModal.title")}
           </h3>
           <button
             onClick={closeModal}
@@ -54,7 +58,11 @@ export default function NewApiKeyModal({ closeModal }) {
         <form onSubmit={handleCreate}>
           <div className="p-6 space-y-6 flex h-full w-full">
             <div className="w-full flex flex-col gap-y-4">
-              {error && <p className="text-red-400 text-sm">Error: {error}</p>}
+              {error && (
+                <p className="text-red-400 text-sm">
+                  {t("newApiKeyModal.error", { error })}
+                </p>
+              )}
               {apiKey && (
                 <input
                   type="text"
@@ -64,8 +72,7 @@ export default function NewApiKeyModal({ closeModal }) {
                 />
               )}
               <p className="text-white text-xs md:text-sm">
-                Once created the API key can be used to programmatically access
-                and configure this TeamplGPT instance.
+                {t("newApiKeyModal.description")}
               </p>
               <a
                 href={paths.apiDocs()}
@@ -73,7 +80,7 @@ export default function NewApiKeyModal({ closeModal }) {
                 rel="noreferrer"
                 className="text-blue-400 hover:underline"
               >
-                Read the API documentation &rarr;
+                {t("newApiKeyModal.readDocumentation")} &rarr;
               </a>
             </div>
           </div>
@@ -85,13 +92,13 @@ export default function NewApiKeyModal({ closeModal }) {
                   type="button"
                   className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
                 >
-                  Cancel
+                  {t("newApiKeyModal.cancel")}
                 </button>
                 <button
                   type="submit"
                   className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
                 >
-                  Create API key
+                  {t("newApiKeyModal.createApiKey")}
                 </button>
               </>
             ) : (
@@ -101,7 +108,9 @@ export default function NewApiKeyModal({ closeModal }) {
                 disabled={copied}
                 className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800 text-center justify-center"
               >
-                {copied ? "Copied API key" : "Copy API key"}
+                {copied
+                  ? t("newApiKeyModal.copiedApiKey")
+                  : t("newApiKeyModal.copyApiKey")}
               </button>
             )}
           </div>

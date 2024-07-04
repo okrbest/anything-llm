@@ -19,7 +19,7 @@ export default function CohereAiOptions({ settings }) {
             })}
             defaultValue={settings?.CohereApiKey ? "*".repeat(20) : ""}
             required={true}
-            autoComplete="off"
+            autoComplete="new-password"
             spellCheck={false}
           />
         </div>

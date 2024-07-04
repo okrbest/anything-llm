@@ -20,7 +20,7 @@ export default function TogetherAiOptions({ settings }) {
           })}
           defaultValue={settings?.TogetherAiApiKey ? "*".repeat(20) : ""}
           required={true}
-          autoComplete="off"
+          autoComplete="new-password"
           spellCheck={false}
         />
       </div>

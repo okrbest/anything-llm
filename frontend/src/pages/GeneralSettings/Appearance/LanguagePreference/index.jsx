@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { useLanguageOptions } from "@/hooks/useLanguageOptions";
 
 export default function LanguagePreference() {
+  const { t } = useTranslation("common");
   const {
     currentLanguage,
     supportedLanguages,
@@ -12,11 +14,10 @@ export default function LanguagePreference() {
     <>
       <div className="flex flex-col gap-y-1">
         <h2 className="text-base leading-6 font-bold text-white">
-          Display Language
+          {t("languagePreference.title")}
         </h2>
         <p className="text-xs leading-[18px] font-base text-white/60">
-          Select the preferred language to render TeamplGPT's UI in, when
-          applicable.
+          {t("languagePreference.description")}
         </p>
       </div>
       <div className="flex items-center gap-x-4">
