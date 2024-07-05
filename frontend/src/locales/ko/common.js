@@ -13,6 +13,9 @@ const TRANSLATIONS = {
     create: "생성",
     close: "닫기",
     download: "다운로드",
+    back: "뒤로",
+    on: "켜짐",
+    off: "꺼짐",
   },
 
   // Setting Sidebar menu items.
@@ -406,67 +409,225 @@ const TRANSLATIONS = {
   // Agent Configuration
   agent: {
     "performance-warning":
-      "도구 호출을 명시적으로 지원하지 않는 LLM의 성능은 모델의 기능과 정확성에 크게 좌우됩니다. 일부 기능은 제한되거나 작동하지 않을 수 있습니다.",
+      "LLM의 성능은 도구 호출을 명시적으로 지원하지 않는 경우 모델의 기능과 정확성에 크게 의존합니다. 일부 기능은 제한되거나 작동하지 않을 수 있습니다.",
     provider: {
-      title: "워크스페이스 에이전트 LLM 공급자",
+      title: "워크스페이스 에이전트 LLM 제공자",
       description:
-        "이 워크스페이스의 @agent 에이전트에 사용할 LLM 공급자와 모델을 지정합니다.",
+        "이 워크스페이스의 @agent 에이전트에 사용될 특정 LLM 제공자 및 모델입니다.",
     },
     mode: {
       chat: {
         title: "워크스페이스 에이전트 채팅 모델",
         description:
-          "이 워크스페이스의 @agent 에이전트에 사용할 채팅 모델을 지정합니다.",
+          "이 워크스페이스의 @agent 에이전트에 사용될 특정 채팅 모델입니다.",
       },
       title: "워크스페이스 에이전트 모델",
       description:
-        "이 워크스페이스의 @agent 에이전트에 사용할 LLM 모델을 지정합니다.",
-      wait: "-- 모델을 기다리는 중 --",
+        "이 워크스페이스의 @agent 에이전트에 사용될 특정 LLM 모델입니다.",
+      wait: "-- 모델 대기 중 --",
     },
     skill: {
-      title: "에이전트 기본 기술",
+      title: "기본 에이전트 스킬",
       description:
-        "에이전트의 능력을 자연스럽게 향상시키기 위해 사전 구축된 기술을 사용하십시오. 이 설정은 모든 워크스페이스에 적용됩니다.",
+        "기본 에이전트의 자연 능력을 이 사전 구축된 스킬로 향상시킵니다. 이 설정은 모든 워크스페이스에 적용됩니다.",
       rag: {
-        title: "RAG 및 장기 기억",
+        title: "RAG & 장기 기억",
         description:
-          "에이전트가 로컬 문서를 활용하여 질문에 답변하거나 장기 기억 검색을 위해 콘텐츠를 '기억'하도록 허용합니다.",
+          "에이전트가 로컬 문서를 활용하여 쿼리에 응답하거나 장기 기억 검색을 위해 콘텐츠 조각을 '기억'하도록 합니다.",
       },
       view: {
         title: "문서 보기 및 요약",
         description:
-          "에이전트가 현재 임베드된 워크스페이스 파일의 콘텐츠를 나열하고 요약할 수 있도록 합니다.",
+          "현재 포함된 워크스페이스 파일의 내용을 나열하고 요약하도록 에이전트에게 허용합니다.",
       },
       scrape: {
         title: "웹사이트 스크랩",
         description:
-          "에이전트가 웹사이트를 방문하고 콘텐츠를 스크랩할 수 있도록 합니다.",
+          "에이전트가 웹사이트를 방문하고 내용을 스크랩하도록 허용합니다.",
       },
       generate: {
         title: "차트 생성",
         description:
-          "에이전트가 제공된 데이터나 채팅에서 다양한 유형의 차트를 생성할 수 있도록 합니다.",
+          "기본 에이전트가 제공된 데이터나 채팅에서 제공된 데이터를 사용하여 다양한 유형의 차트를 생성하도록 합니다.",
       },
       save: {
-        title: "브라우저에 파일 생성 및 저장",
+        title: "파일 생성 및 브라우저에 저장",
         description:
-          "에이전트가 파일을 생성하고 브라우저에서 다운로드할 수 있도록 저장할 수 있습니다.",
+          "기본 에이전트가 파일을 생성하고 브라우저에서 저장할 수 있도록 합니다.",
       },
       web: {
         title: "실시간 웹 검색 및 브라우징",
         "desc-start":
-          "웹 검색(SERP) 공급자에 연결하여 에이전트가 웹을 검색하여 질문에 답할 수 있도록 합니다.",
+          "에이전트 세션 중 웹 검색이 작동하려면 웹 검색 (SERP) 제공자에 연결해야 합니다.",
         "desc-end":
-          "에이전트 세션 중 웹 검색은 이 설정이 완료될 때까지 작동하지 않습니다.",
+          "에이전트 세션 중 웹 검색이 작동하려면 웹 검색 (SERP) 제공자에 연결해야 합니다.",
       },
     },
-    "search-placeholder": "사용 가능한 LLM 공급자 검색",
+    "search-placeholder": "사용 가능한 LLM 제공자 검색",
     workspaceUpdated: "워크스페이스가 업데이트되었습니다!",
     updatingAgent: "에이전트 업데이트 중...",
     updateWorkspaceAgent: "워크스페이스 에이전트 업데이트",
-    pleaseMakeSelection: "선택해 주세요",
+    pleaseMakeSelection: "선택을 해주세요",
     agentsNotWork:
-      "유효한 선택이 이루어질 때까지 에이전트는 작동하지 않습니다.",
+      "유효한 선택이 이루어질 때까지 에이전트가 작동하지 않습니다.",
+  },
+
+  agentSetting: {
+    skills: {
+      ragMemory: {
+        title: "RAG & 장기 기억",
+        description:
+          "에이전트가 로컬 문서를 활용하여 쿼리에 응답하거나 장기 기억 검색을 위해 콘텐츠 조각을 '기억'하도록 합니다.",
+      },
+      viewSummarize: {
+        title: "문서 보기 및 요약",
+        description:
+          "현재 포함된 워크스페이스 파일의 내용을 나열하고 요약하도록 에이전트에게 허용합니다.",
+      },
+      scrapeWebsites: {
+        title: "웹사이트 스크랩",
+        description:
+          "에이전트가 웹사이트를 방문하고 내용을 스크랩하도록 허용합니다.",
+      },
+      generateSaveFiles: {
+        title: "파일 생성 및 브라우저에 저장",
+        description:
+          "기본 에이전트가 파일을 생성하고 브라우저에서 저장할 수 있도록 합니다.",
+      },
+      createChart: {
+        title: "차트 생성",
+        description:
+          "기본 에이전트가 제공된 데이터나 채팅에서 제공된 데이터를 사용하여 다양한 유형의 차트를 생성하도록 합니다.",
+      },
+      webBrowsing: {
+        title: "웹 검색",
+      },
+      sqlAgent: {
+        title: "SQL 커넥터",
+      },
+    },
+    misc: {
+      performanceWarning:
+        "LLM의 성능은 도구 호출을 명시적으로 지원하지 않는 경우 모델의 기능과 정확성에 크게 의존합니다. 일부 기능은 제한되거나 작동하지 않을 수 있습니다.",
+      searchPlaceholder: "사용 가능한 LLM 제공자 검색",
+      workspaceUpdated: "워크스페이스가 업데이트되었습니다!",
+      updatingAgent: "에이전트 업데이트 중...",
+      updateWorkspaceAgent: "워크스페이스 에이전트 업데이트",
+      pleaseMakeSelection: "에이전트 스킬을 선택해주세요",
+      agentsNotWork:
+        "유효한 선택이 이루어질 때까지 에이전트가 작동하지 않습니다.",
+    },
+  },
+
+  webSearch: {
+    title: "실시간 웹 검색 및 브라우징",
+    description:
+      "에이전트가 웹 검색 (SERP) 제공자에 연결하여 질문에 답할 수 있도록 합니다. 설정이 완료될 때까지 에이전트 세션 중 웹 검색이 작동하지 않습니다.",
+    pleaseMakeSelection: "선택을 해주세요",
+    providers: {
+      none: {
+        name: "선택을 해주세요",
+        description: "제공자와 키가 제공될 때까지 웹 검색이 비활성화됩니다.",
+      },
+      googleSearch: {
+        name: "구글 검색 엔진",
+        description:
+          "커스텀 구글 검색 엔진을 통한 웹 검색. 하루에 100개의 쿼리가 무료입니다.",
+      },
+      serperDotDev: {
+        name: "Serper.dev",
+        description:
+          "Serper.dev 웹 검색. 무료 계정으로 2,500개의 호출이 가능하며, 그 이후에는 유료입니다.",
+      },
+      bingSearch: {
+        name: "빙 검색",
+        description:
+          "빙 검색 API를 통한 웹 검색. 한 달에 1000개의 쿼리가 무료입니다.",
+      },
+      serplyEngine: {
+        name: "Serply.io",
+        description:
+          "Serply.io 웹 검색. 한 달에 100개의 호출이 영원히 무료입니다.",
+      },
+      searxngEngine: {
+        name: "SearXNG",
+        description: "추적 없는 무료 오픈 소스 인터넷 메타 검색 엔진입니다.",
+      },
+    },
+    searchPlaceholder: "사용 가능한 웹 검색 제공자 검색",
+  },
+
+  webSearchOptions: {
+    googleSearch: {
+      info: "여기에서 구글 무료 검색 엔진 ID와 API 키를 받을 수 있습니다.",
+      searchEngineId: "검색 엔진 ID",
+      apiKey: "프로그래매틱 액세스 API 키",
+      searchEnginePlaceholder: "구글 검색 엔진 ID",
+      apiKeyPlaceholder: "구글 검색 엔진 API 키",
+    },
+    serperDotDev: {
+      info: "여기에서 Serper.dev 무료 API 키를 받을 수 있습니다.",
+      apiKey: "API 키",
+      apiKeyPlaceholder: "Serper.dev API 키",
+    },
+    bingSearch: {
+      info: "여기 Azure 포털에서 Bing 웹 검색 API 구독 키를 받을 수 있습니다.",
+      apiKey: "API 키",
+      apiKeyPlaceholder: "Bing 웹 검색 API 키",
+      setupInstructions: "Bing 웹 검색 API 구독을 설정하려면:",
+      setupSteps: [
+        "Azure 포털로 이동: https://portal.azure.com/",
+        "새 Azure 계정을 만들거나 기존 계정으로 로그인합니다.",
+        "'리소스 만들기' 섹션으로 이동하여 'Bing Search v7'을 검색합니다.",
+        "'Bing Search v7' 리소스를 선택하고 새 구독을 만듭니다.",
+        "필요에 맞는 가격 책정 등급을 선택합니다 (무료 등급 제공).",
+        "Bing 웹 검색 구독에 대한 API 키를 얻습니다.",
+      ],
+    },
+    serplySearch: {
+      info: "여기에서 Serply.io 무료 API 키를 받을 수 있습니다.",
+      apiKey: "API 키",
+      apiKeyPlaceholder: "Serply API 키",
+    },
+    searXNG: {
+      apiUrl: "SearXNG API 기본 URL",
+      apiUrlPlaceholder: "SearXNG API 키",
+    },
+  },
+
+  sqlAgent: {
+    title: "SQL 에이전트",
+    description:
+      "에이전트가 다양한 SQL 데이터베이스 제공자에 연결하여 질문에 답할 수 있도록 SQL을 활용할 수 있게 합니다.",
+    yourDatabaseConnections: "데이터베이스 연결",
+    newSQLConnection: "새로운 SQL 연결",
+  },
+
+  newSQLConnection: {
+    title: "새 SQL 연결",
+    description:
+      "아래에 데이터베이스에 대한 연결 정보를 추가하면 향후 SQL 에이전트 호출에 사용할 수 있습니다.",
+    warning: {
+      title: "경고:",
+      message:
+        "SQL 에이전트는 조회하는 쿼리만 수행하도록 지시되었습니다. 하지만 여전히 데이터를 삭제하는 환각을 완전히 방지하지 못합니다. READ_ONLY 권한이 있는 사용자로만 연결하세요.",
+    },
+    selectEngine: "SQL 엔진 선택",
+    connectionName: "연결 이름",
+    connectionNamePlaceholder: "이 SQL 연결을 식별하는 고유 이름",
+    databaseUser: "데이터베이스 사용자",
+    databaseUserPlaceholder: "root",
+    databaseUserPassword: "데이터베이스 사용자 비밀번호",
+    databaseUserPasswordPlaceholder: "password123",
+    serverEndpoint: "서버 엔드포인트",
+    serverEndpointPlaceholder: "데이터베이스의 호스트 이름 또는 엔드포인트",
+    port: "포트",
+    portPlaceholder: "3306",
+    database: "데이터베이스",
+    databasePlaceholder: "에이전트가 상호 작용할 데이터베이스",
+    connectionStringMessage: "위의 모든 필드를 채워주세요.",
+    cancelButton: "취소",
+    saveButton: "연결 저장",
   },
 
   // Workspace Chats

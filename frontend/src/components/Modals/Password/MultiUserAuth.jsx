@@ -315,7 +315,7 @@ export default function MultiUserAuth() {
                   placeholder={t("login.multi-user.placeholder-password")}
                   className="bg-zinc-900 text-white placeholder-white/20 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
                   required={true}
-                  autoComplete="off"
+                  autoComplete="new-password"
                 />
               </div>
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}

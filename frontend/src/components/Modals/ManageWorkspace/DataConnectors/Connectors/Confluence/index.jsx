@@ -135,7 +135,7 @@ export default function ConfluenceOptions() {
                   className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
                   placeholder="abcd1234"
                   required={true}
-                  autoComplete="off"
+                  autoComplete="new-password"
                   spellCheck={false}
                 />
               </div>

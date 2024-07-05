@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Sidebar from "@/components/SettingsSidebar";
 import { isMobile } from "react-device-detect";
 import Admin from "@/models/admin";
@@ -8,10 +9,11 @@ import { CaretLeft, CaretRight, Robot } from "@phosphor-icons/react";
 import ContextualSaveBar from "@/components/ContextualSaveBar";
 import { castToType } from "@/utils/types";
 import { FullScreenLoader } from "@/components/Preloader";
-import { defaultSkills, configurableSkills } from "./skills";
+import { getDefaultSkills, getConfigurableSkills } from "./skills";
 import { DefaultBadge } from "./Badges/default";
 
 export default function AdminAgents() {
+  const { t } = useTranslation();
   const [hasChanges, setHasChanges] = useState(false);
   const [settings, setSettings] = useState({});
   const [selectedSkill, setSelectedSkill] = useState("");
@@ -19,6 +21,9 @@ export default function AdminAgents() {
   const [loading, setLoading] = useState(true);
   const [showSkillModal, setShowSkillModal] = useState(false);
   const formEl = useRef(null);
+
+  const defaultSkills = getDefaultSkills(t);
+  const configurableSkills = getConfigurableSkills(t);
 
   // Alert user if they try to leave the page with unsaved changes
   useEffect(() => {
@@ -87,11 +92,11 @@ export default function AdminAgents() {
       const _preferences = await Admin.systemPreferences();
       setSettings({ ..._settings, preferences: _preferences.settings } ?? {});
       setAgentSkills(_preferences.settings?.default_agent_skills ?? []);
-      showToast(`Agent preferences saved successfully.`, "success", {
+      showToast(t("agent.misc.workspaceUpdated"), "success", {
         clear: true,
       });
     } else {
-      showToast(`Agent preferences failed to save.`, "error", { clear: true });
+      showToast(t("agent.misc.updateWorkspaceAgent"), "error", { clear: true });
     }
 
     setHasChanges(false);
@@ -135,7 +140,7 @@ export default function AdminAgents() {
           <div hidden={showSkillModal} className="flex flex-col gap-y-[18px]">
             <div className="text-white flex items-center gap-x-2">
               <Robot size={24} />
-              <p className="text-lg font-medium">Agent Skills</p>
+              <p className="text-lg font-medium">{t("agent.skill.title")}</p>
             </div>
             {/* Default skills */}
             <SkillList
@@ -174,7 +179,7 @@ export default function AdminAgents() {
                   >
                     <div className="flex items-center text-sky-400">
                       <CaretLeft size={24} />
-                      <div>Back</div>
+                      <div>{t("common.back")}</div>
                     </div>
                   </button>
                 </div>
@@ -195,7 +200,9 @@ export default function AdminAgents() {
                     ) : (
                       <div className="flex flex-col items-center justify-center h-full text-white/60">
                         <Robot size={40} />
-                        <p className="font-medium">Select an agent skill</p>
+                        <p className="font-medium">
+                          {t("agentSetting.misc.pleaseMakeSelection")}
+                        </p>
                       </div>
                     )}
                   </div>
@@ -230,7 +237,7 @@ export default function AdminAgents() {
         <div className="flex flex-col gap-y-[18px]">
           <div className="text-white flex items-center gap-x-2">
             <Robot size={24} />
-            <p className="text-lg font-medium">Agent Skills</p>
+            <p className="text-lg font-medium">{t("agent.skill.title")}</p>
           </div>
 
           {/* Default skills list */}
@@ -267,7 +274,9 @@ export default function AdminAgents() {
             ) : (
               <div className="flex flex-col items-center justify-center h-full text-white/60">
                 <Robot size={40} />
-                <p className="font-medium">Select an agent skill</p>
+                <p className="font-medium">
+                  {t("agentSetting.misc.pleaseMakeSelection")}
+                </p>
               </div>
             )}
           </div>
@@ -278,6 +287,8 @@ export default function AdminAgents() {
 }
 
 function SkillLayout({ children, hasChanges, handleSubmit, handleCancel }) {
+  const { t } = useTranslation();
+
   return (
     <div
       id="workspace-agent-settings-container"
@@ -306,6 +317,7 @@ function SkillList({
   handleClick = null,
   activeSkills = [],
 }) {
+  const { t } = useTranslation();
   if (skills.length === 0) return null;
 
   return (
@@ -334,7 +346,9 @@ function SkillList({
               <DefaultBadge title={skill} />
             ) : (
               <div className="text-sm text-white/60 font-medium">
-                {activeSkills.includes(skill) ? "On" : "Off"}
+                {activeSkills.includes(skill)
+                  ? t("common.on")
+                  : t("common.off")}
               </div>
             )}
             <CaretRight size={14} weight="bold" className="text-white/80" />

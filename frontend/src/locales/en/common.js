@@ -13,6 +13,9 @@ const TRANSLATIONS = {
     create: "Create",
     close: "Close",
     download: "Download",
+    back: "Back",
+    on: "On",
+    off: "Off",
   },
 
   // Setting Sidebar menu items.
@@ -468,6 +471,165 @@ const TRANSLATIONS = {
     updateWorkspaceAgent: "Update workspace agent",
     pleaseMakeSelection: "Please make a selection",
     agentsNotWork: "Agents will not work until a valid selection is made.",
+  },
+
+  agentSetting: {
+    skills: {
+      ragMemory: {
+        title: "RAG & long-term memory",
+        description:
+          "Allow the agent to leverage your local documents to answer a query or ask the agent to 'remember' pieces of content for long-term memory retrieval.",
+      },
+      viewSummarize: {
+        title: "View & summarize documents",
+        description:
+          "Allow the agent to list and summarize the content of workspace files currently embedded.",
+      },
+      scrapeWebsites: {
+        title: "Scrape websites",
+        description:
+          "Allow the agent to visit and scrape the content of websites.",
+      },
+      generateSaveFiles: {
+        title: "Generate & save files to browser",
+        description:
+          "Enable the default agent to generate and write to files that can be saved to your computer.",
+      },
+      createChart: {
+        title: "Generate charts",
+        description:
+          "Enable the default agent to generate various types of charts from data provided or given in chat.",
+      },
+      webBrowsing: {
+        title: "Web Search",
+      },
+      sqlAgent: {
+        title: "SQL Connector",
+      },
+    },
+    misc: {
+      performanceWarning:
+        "Performance of LLMs that do not explicitly support tool-calling is highly dependent on the model's capabilities and accuracy. Some abilities may be limited or non-functional.",
+      searchPlaceholder: "Search available LLM providers",
+      workspaceUpdated: "Workspace updated!",
+      updatingAgent: "Updating agent...",
+      updateWorkspaceAgent: "Update workspace agent",
+      pleaseMakeSelection: "Select an agent skill",
+      agentsNotWork: "Agents will not work until a valid selection is made.",
+    },
+  },
+
+  webSearch: {
+    title: "Live web search and browsing",
+    description:
+      "Enable your agent to search the web to answer your questions by connecting to a web-search (SERP) provider. Web search during agent sessions will not work until this is set up.",
+    pleaseMakeSelection: "Please make a selection",
+    providers: {
+      none: {
+        name: "Please make a selection",
+        description:
+          "Web search will be disabled until a provider and keys are provided.",
+      },
+      googleSearch: {
+        name: "Google Search Engine",
+        description:
+          "Web search powered by a custom Google Search Engine. Free for 100 queries per day.",
+      },
+      serperDotDev: {
+        name: "Serper.dev",
+        description:
+          "Serper.dev web-search. Free account with 2,500 calls, but then paid.",
+      },
+      bingSearch: {
+        name: "Bing Search",
+        description:
+          "Web search powered by the Bing Search API. Free for 1000 queries per month.",
+      },
+      serplyEngine: {
+        name: "Serply.io",
+        description:
+          "Serply.io web-search. Free account with 100 calls/month forever.",
+      },
+      searxngEngine: {
+        name: "SearXNG",
+        description:
+          "Free, open-source, internet meta-search engine with no tracking.",
+      },
+    },
+    searchPlaceholder: "Search available web-search providers",
+  },
+
+  webSearchOptions: {
+    googleSearch: {
+      info: "You can get a free search engine & API key from Google here.",
+      searchEngineId: "Search engine ID",
+      apiKey: "Programmatic Access API Key",
+      searchEnginePlaceholder: "Google Search Engine Id",
+      apiKeyPlaceholder: "Google Search Engine API Key",
+    },
+    serperDotDev: {
+      info: "You can get a free API key from Serper.dev.",
+      apiKey: "API Key",
+      apiKeyPlaceholder: "Serper.dev API Key",
+    },
+    bingSearch: {
+      info: "You can get a Bing Web Search API subscription key from the Azure portal.",
+      apiKey: "API Key",
+      apiKeyPlaceholder: "Bing Web Search API Key",
+      setupInstructions: "To set up a Bing Web Search API subscription:",
+      setupSteps: [
+        "Go to the Azure portal: https://portal.azure.com/",
+        "Create a new Azure account or sign in with an existing one.",
+        "Navigate to the 'Create a resource' section and search for 'Bing Search v7'.",
+        "Select the 'Bing Search v7' resource and create a new subscription.",
+        "Choose the pricing tier that suits your needs (free tier available).",
+        "Obtain the API key for your Bing Web Search subscription.",
+      ],
+    },
+    serplySearch: {
+      info: "You can get a free API key from Serply.io.",
+      apiKey: "API Key",
+      apiKeyPlaceholder: "Serply API Key",
+    },
+    searXNG: {
+      apiUrl: "SearXNG API base URL",
+      apiUrlPlaceholder: "SearXNG API Key",
+    },
+  },
+
+  sqlAgent: {
+    title: "SQL Agent",
+    description:
+      "Enable your agent to be able to leverage SQL to answer your questions by connecting to various SQL database providers.",
+    yourDatabaseConnections: "Your database connections",
+    newSQLConnection: "New SQL connection",
+  },
+
+  newSQLConnection: {
+    title: "New SQL Connection",
+    description:
+      "Add the connection information for your database below and it will be available for future SQL agent calls.",
+    warning: {
+      title: "WARNING:",
+      message:
+        "The SQL agent has been instructed to only perform non-modifying queries. This does not prevent a hallucination from still deleting data. Only connect with a user who has READ_ONLY permissions.",
+    },
+    selectEngine: "Select your SQL engine",
+    connectionName: "Connection name",
+    connectionNamePlaceholder: "a unique name to identify this SQL connection",
+    databaseUser: "Database user",
+    databaseUserPlaceholder: "root",
+    databaseUserPassword: "Database user password",
+    databaseUserPasswordPlaceholder: "password123",
+    serverEndpoint: "Server endpoint",
+    serverEndpointPlaceholder: "the hostname or endpoint for your database",
+    port: "Port",
+    portPlaceholder: "3306",
+    database: "Database",
+    databasePlaceholder: "the database the agent will interact with",
+    connectionStringMessage: "Please fill out all the fields above.",
+    cancelButton: "Cancel",
+    saveButton: "Save connection",
   },
 
   // Workspace Chats

@@ -1,27 +1,34 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export function GoogleSearchOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <p className="text-sm text-white/60 my-2">
-        You can get a free search engine & API key{" "}
+        {t("webSearchOptions.googleSearch.info")} &nbsp;
         <a
           href="https://programmablesearchengine.google.com/controlpanel/create"
           target="_blank"
           rel="noreferrer"
           className="text-blue-300 underline"
         >
-          from Google here.
+          Google Programmable Search Engine
         </a>
       </p>
       <div className="flex gap-x-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Search engine ID
+            {t("webSearchOptions.googleSearch.searchEngineId")}
           </label>
           <input
             type="text"
             name="env::AgentGoogleSearchEngineId"
             className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Google Search Engine Id"
+            placeholder={t(
+              "webSearchOptions.googleSearch.searchEnginePlaceholder"
+            )}
             defaultValue={settings?.AgentGoogleSearchEngineId}
             required={true}
             autoComplete="off"
@@ -30,18 +37,18 @@ export function GoogleSearchOptions({ settings }) {
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Programmatic Access API Key
+            {t("webSearchOptions.googleSearch.apiKey")}
           </label>
           <input
             type="password"
             name="env::AgentGoogleSearchEngineKey"
             className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Google Search Engine API Key"
+            placeholder={t("webSearchOptions.googleSearch.apiKeyPlaceholder")}
             defaultValue={
               settings?.AgentGoogleSearchEngineKey ? "*".repeat(20) : ""
             }
             required={true}
-            autoComplete="off"
+            autoComplete="new-password"
             spellCheck={false}
           />
         </div>
@@ -51,32 +58,34 @@ export function GoogleSearchOptions({ settings }) {
 }
 
 export function SerperDotDevOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <p className="text-sm text-white/60 my-2">
-        You can get a free API key{" "}
+        {t("webSearchOptions.serperDotDev.info")} &nbsp;
         <a
           href="https://serper.dev"
           target="_blank"
           rel="noreferrer"
           className="text-blue-300 underline"
         >
-          from Serper.dev.
+          Serper.dev
         </a>
       </p>
       <div className="flex gap-x-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            API Key
+            {t("webSearchOptions.serperDotDev.apiKey")}
           </label>
           <input
             type="password"
             name="env::AgentSerperApiKey"
             className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Serper.dev API Key"
+            placeholder={t("webSearchOptions.serperDotDev.apiKeyPlaceholder")}
             defaultValue={settings?.AgentSerperApiKey ? "*".repeat(20) : ""}
             required={true}
-            autoComplete="off"
+            autoComplete="new-password"
             spellCheck={false}
           />
         </div>
@@ -86,95 +95,90 @@ export function SerperDotDevOptions({ settings }) {
 }
 
 export function BingSearchOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <p className="text-sm text-white/60 my-2">
-        You can get a Bing Web Search API subscription key{" "}
+        {t("webSearchOptions.bingSearch.info")} &nbsp;
         <a
           href="https://portal.azure.com/"
           target="_blank"
           rel="noreferrer"
           className="text-blue-300 underline"
         >
-          from the Azure portal.
+          Azure Portal
         </a>
       </p>
       <div className="flex gap-x-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            API Key
+            {t("webSearchOptions.bingSearch.apiKey")}
           </label>
           <input
             type="password"
             name="env::AgentBingSearchApiKey"
             className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Bing Web Search API Key"
+            placeholder={t("webSearchOptions.bingSearch.apiKeyPlaceholder")}
             defaultValue={settings?.AgentBingSearchApiKey ? "*".repeat(20) : ""}
             required={true}
-            autoComplete="off"
+            autoComplete="new-password"
             spellCheck={false}
           />
         </div>
       </div>
       <p className="text-sm text-white/60 my-2">
-        To set up a Bing Web Search API subscription:
+        {t("webSearchOptions.bingSearch.setupInstructions")}
       </p>
       <ol className="list-decimal text-sm text-white/60 ml-6">
-        <li>
-          Go to the Azure portal:{" "}
-          <a
-            href="https://portal.azure.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-blue-300 underline"
-          >
-            https://portal.azure.com/
-          </a>
-        </li>
-        <li>Create a new Azure account or sign in with an existing one.</li>
-        <li>
-          Navigate to the "Create a resource" section and search for "Bing
-          Search v7".
-        </li>
-        <li>
-          Select the "Bing Search v7" resource and create a new subscription.
-        </li>
-        <li>
-          Choose the pricing tier that suits your needs (free tier available).
-        </li>
-        <li>Obtain the API key for your Bing Web Search subscription.</li>
+        {t("webSearchOptions.bingSearch.setupSteps", {
+          returnObjects: true,
+        }).map((step, index) => (
+          <li key={index}>
+            <a
+              href="https://portal.azure.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-300 underline"
+            >
+              {step}
+            </a>
+          </li>
+        ))}
       </ol>
     </>
   );
 }
 
 export function SerplySearchOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <p className="text-sm text-white/60 my-2">
-        You can get a free API key{" "}
+        {t("webSearchOptions.serplySearch.info")} &nbsp;
         <a
           href="https://serply.io"
           target="_blank"
           rel="noreferrer"
           className="text-blue-300 underline"
         >
-          from Serply.io.
+          Serply.io
         </a>
       </p>
       <div className="flex gap-x-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            API Key
+            {t("webSearchOptions.serplySearch.apiKey")}
           </label>
           <input
             type="password"
             name="env::AgentSerplyApiKey"
             className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Serply API Key"
+            placeholder={t("webSearchOptions.serplySearch.apiKeyPlaceholder")}
             defaultValue={settings?.AgentSerplyApiKey ? "*".repeat(20) : ""}
             required={true}
-            autoComplete="off"
+            autoComplete="new-password"
             spellCheck={false}
           />
         </div>
@@ -184,17 +188,19 @@ export function SerplySearchOptions({ settings }) {
 }
 
 export function SearXNGOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <div className="flex gap-x-4">
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          SearXNG API base URL
+          {t("webSearchOptions.searXNG.apiUrl")}
         </label>
         <input
           type="url"
           name="env::AgentSearXNGApiUrl"
           className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-          placeholder="SearXNG API Key"
+          placeholder={t("webSearchOptions.searXNG.apiUrlPlaceholder")}
           defaultValue={settings?.AgentSearXNGApiUrl}
           required={true}
           autoComplete="off"

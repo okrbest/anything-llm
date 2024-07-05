@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import DBConnection from "./DBConnection";
 import { Plus, Database } from "@phosphor-icons/react";
 import NewSQLConnection from "./NewConnectionModal";
@@ -12,6 +13,7 @@ export default function AgentSQLConnectorSelection({
   enabled = false,
   setHasChanges,
 }) {
+  const { t } = useTranslation();
   const { isOpen, openModal, closeModal } = useModal();
   const [connections, setConnections] = useState(
     settings?.preferences?.agent_sql_connections || []
@@ -23,7 +25,7 @@ export default function AgentSQLConnectorSelection({
           <div className="flex items-center gap-x-2">
             <Database size={24} color="white" weight="bold" />
             <label htmlFor="name" className="text-white text-md font-bold">
-              SQL Agent
+              {t("sqlAgent.title")}
             </label>
             <label className="border-none relative inline-flex cursor-pointer items-center ml-auto">
               <input
@@ -42,8 +44,7 @@ export default function AgentSQLConnectorSelection({
             className="w-full rounded-md"
           />
           <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
-            Enable your agent to be able to leverage SQL to answer you questions
-            by connecting to various SQL database providers.
+            {t("sqlAgent.description")}
           </p>
           {enabled && (
             <>
@@ -60,7 +61,7 @@ export default function AgentSQLConnectorSelection({
               />
               <div className="flex flex-col mt-2 gap-y-2">
                 <p className="text-white font-semibold text-sm">
-                  Your database connections
+                  {t("sqlAgent.yourDatabaseConnections")}
                 </p>
                 <div className="flex flex-col gap-y-3">
                   {connections
@@ -95,7 +96,7 @@ export default function AgentSQLConnectorSelection({
                         />
                       </div>
                       <p className="text-left text-slate-100 text-sm">
-                        New SQL connection
+                        {t("sqlAgent.newSQLConnection")}
                       </p>
                     </div>
                   </button>
