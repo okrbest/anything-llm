@@ -1,10 +1,15 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function WeaviateDBOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full flex flex-col gap-y-4">
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Weaviate Endpoint
+            {t("vector.providers.weaviate.endpointLabel")}
           </label>
           <input
             type="url"
@@ -20,7 +25,7 @@ export default function WeaviateDBOptions({ settings }) {
 
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            API Key
+            {t("vector.providers.weaviate.apiKeyLabel")}
           </label>
           <input
             type="password"

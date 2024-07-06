@@ -6,18 +6,21 @@ import { CaretUpDown, MagnifyingGlass, X } from "@phosphor-icons/react";
 import CTAButton from "@/components/lib/CTAButton";
 import AnythingLLMIcon from "@/media/logo/anything-llm-icon.png";
 import BrowserNative from "@/components/SpeechToText/BrowserNative";
-
-const PROVIDERS = [
-  {
-    name: "System native",
-    value: "native",
-    logo: AnythingLLMIcon,
-    options: (settings) => <BrowserNative settings={settings} />,
-    description: "Uses your browser's built in STT service if supported.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function SpeechToTextProvider({ settings }) {
+  const { t } = useTranslation();
+
+  const PROVIDERS = [
+    {
+      name: t("speechToText.providers.native.name"),
+      value: "native",
+      logo: AnythingLLMIcon,
+      options: (settings) => <BrowserNative settings={settings} />,
+      description: t("speechToText.providers.native.description"),
+    },
+  ];
+
   const [saving, setSaving] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,9 +42,9 @@ export default function SpeechToTextProvider({ settings }) {
     setSaving(true);
 
     if (error) {
-      showToast(`Failed to save preferences: ${error}`, "error");
+      showToast(t("speechToText.saveError", { error }), "error");
     } else {
-      showToast("Speech-to-text preferences saved successfully.", "success");
+      showToast(t("speechToText.saveSuccess"), "success");
     }
     setSaving(false);
     setHasChanges(!!error);
@@ -80,14 +83,11 @@ export default function SpeechToTextProvider({ settings }) {
         <div className="w-full flex flex-col gap-y-1 pb-6 border-white border-b-2 border-opacity-10">
           <div className="flex gap-x-4 items-center">
             <p className="text-lg leading-6 font-bold text-white">
-              Speech-to-text Preference
+              {t("speechToText.title")}
             </p>
           </div>
           <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
-            Here you can specify what kind of text-to-speech and speech-to-text
-            providers you would want to use in your TeamplGPT experience. By
-            default, we use the browser's built in support for these services,
-            but you may want to use others.
+            {t("speechToText.description")}
           </p>
         </div>
         <div className="w-full justify-end flex">
@@ -96,11 +96,15 @@ export default function SpeechToTextProvider({ settings }) {
               onClick={() => handleSubmit()}
               className="mt-3 mr-0 -mb-14 z-10"
             >
-              {saving ? "Saving..." : "Save changes"}
+              {saving
+                ? t("speechToText.saving")
+                : t("speechToText.saveChanges")}
             </CTAButton>
           )}
         </div>
-        <div className="text-base font-bold text-white mt-6 mb-4">Provider</div>
+        <div className="text-base font-bold text-white mt-6 mb-4">
+          {t("speechToText.provider")}
+        </div>
         <div className="relative">
           {searchMenuOpen && (
             <div
@@ -121,7 +125,7 @@ export default function SpeechToTextProvider({ settings }) {
                     type="text"
                     name="stt-provider-search"
                     autoComplete="off"
-                    placeholder="Search speech to text providers"
+                    placeholder={t("speechToText.searchPlaceholder")}
                     className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none focus:border-white text-white placeholder:text-white placeholder:font-medium"
                     onChange={(e) => setSearchQuery(e.target.value)}
                     ref={searchInputRef}

@@ -1,16 +1,21 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function CohereEmbeddingOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full flex flex-col gap-y-4">
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            API Key
+            {t("embedding.providers.cohere.apiKeyLabel")}
           </label>
           <input
             type="password"
             name="CohereApiKey"
             className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
-            placeholder="Cohere API Key"
+            placeholder={t("embedding.providers.cohere.apiKeyPlaceholder")}
             defaultValue={settings?.CohereApiKey ? "*".repeat(20) : ""}
             required={true}
             autoComplete="new-password"
@@ -19,14 +24,14 @@ export default function CohereEmbeddingOptions({ settings }) {
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Model Preference
+            {t("embedding.providers.cohere.modelPrefLabel")}
           </label>
           <select
             name="EmbeddingModelPref"
             required={true}
             className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
           >
-            <optgroup label="Available embedding models">
+            <optgroup label={t("embedding.providers.cohere.models.available")}>
               {[
                 "embed-english-v3.0",
                 "embed-multilingual-v3.0",

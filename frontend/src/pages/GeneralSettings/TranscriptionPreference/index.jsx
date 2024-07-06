@@ -13,24 +13,26 @@ import { CaretUpDown, MagnifyingGlass, X } from "@phosphor-icons/react";
 import CTAButton from "@/components/lib/CTAButton";
 import { useTranslation } from "react-i18next";
 
-const PROVIDERS = [
-  {
-    name: "OpenAI",
-    value: "openai",
-    logo: OpenAiLogo,
-    options: (settings) => <OpenAiWhisperOptions settings={settings} />,
-    description: "Leverage the OpenAI Whisper-large model using your API key.",
-  },
-  {
-    name: "TeamplGPT Built-In",
-    value: "local",
-    logo: AnythingLLMIcon,
-    options: (settings) => <NativeTranscriptionOptions settings={settings} />,
-    description: "Run a built-in whisper model on this instance privately.",
-  },
-];
-
 export default function TranscriptionModelPreference() {
+  const { t } = useTranslation();
+
+  const PROVIDERS = [
+    {
+      name: t("transcription.providers.openai.name"),
+      value: "openai",
+      logo: OpenAiLogo,
+      options: (settings) => <OpenAiWhisperOptions settings={settings} />,
+      description: t("transcription.providers.openai.description"),
+    },
+    {
+      name: t("transcription.providers.local.name"),
+      value: "local",
+      logo: AnythingLLMIcon,
+      options: (settings) => <NativeTranscriptionOptions settings={settings} />,
+      description: t("transcription.providers.local.description"),
+    },
+  ];
+
   const [saving, setSaving] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
   const [settings, setSettings] = useState(null);
@@ -40,7 +42,6 @@ export default function TranscriptionModelPreference() {
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [searchMenuOpen, setSearchMenuOpen] = useState(false);
   const searchInputRef = useRef(null);
-  const { t } = useTranslation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,9 +54,9 @@ export default function TranscriptionModelPreference() {
     setSaving(true);
 
     if (error) {
-      showToast(`Failed to save preferences: ${error}`, "error");
+      showToast(t("transcription.saveError", { error }), "error");
     } else {
-      showToast("Transcription preferences saved successfully.", "success");
+      showToast(t("transcription.saveSuccess"), "success");
     }
     setSaving(false);
     setHasChanges(!!error);
@@ -133,7 +134,9 @@ export default function TranscriptionModelPreference() {
                     onClick={() => handleSubmit()}
                     className="mt-3 mr-0 -mb-14 z-10"
                   >
-                    {saving ? "Saving..." : "Save changes"}
+                    {saving
+                      ? t("transcription.saving")
+                      : t("transcription.saveChanges")}
                   </CTAButton>
                 )}
               </div>
@@ -160,7 +163,7 @@ export default function TranscriptionModelPreference() {
                           type="text"
                           name="provider-search"
                           autoComplete="off"
-                          placeholder="Search audio transcription providers"
+                          placeholder={t("transcription.searchPlaceholder")}
                           className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none focus:border-white text-white placeholder:text-white placeholder:font-medium"
                           onChange={(e) => setSearchQuery(e.target.value)}
                           ref={searchInputRef}

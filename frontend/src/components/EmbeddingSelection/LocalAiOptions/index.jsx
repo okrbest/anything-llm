@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import System from "@/models/system";
+import { useTranslation } from "react-i18next";
 
 export default function LocalAiOptions({ settings }) {
+  const { t } = useTranslation();
   const [basePathValue, setBasePathValue] = useState(
     settings?.EmbeddingBasePath
   );
@@ -14,7 +16,7 @@ export default function LocalAiOptions({ settings }) {
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            LocalAI Base URL
+            {t("localai.baseUrl")}
           </label>
           <input
             type="url"
@@ -36,7 +38,7 @@ export default function LocalAiOptions({ settings }) {
         />
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Max embedding chunk length
+            {t("localai.tokenContextWindow")}
           </label>
           <input
             type="number"
@@ -55,8 +57,10 @@ export default function LocalAiOptions({ settings }) {
         <div className="flex flex-col w-60">
           <div className="flex flex-col gap-y-1 mb-4">
             <label className="text-white text-sm font-semibold flex items-center gap-x-2">
-              Local AI API Key{" "}
-              <p className="!text-xs !italic !font-thin">optional</p>
+              {t("localai.apiKey")}{" "}
+              <p className="!text-xs !italic !font-thin">
+                {t("localai.optional")}
+              </p>
             </label>
           </div>
           <input
@@ -77,6 +81,7 @@ export default function LocalAiOptions({ settings }) {
 }
 
 function LocalAIModelSelection({ settings, apiKey = null, basePath = null }) {
+  const { t } = useTranslation();
   const [customModels, setCustomModels] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -103,7 +108,7 @@ function LocalAIModelSelection({ settings, apiKey = null, basePath = null }) {
     return (
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          Embedding Model Name
+          {t("localai.modelSelection")}
         </label>
         <select
           name="EmbeddingModelPref"
@@ -112,8 +117,8 @@ function LocalAIModelSelection({ settings, apiKey = null, basePath = null }) {
         >
           <option disabled={true} selected={true}>
             {basePath?.includes("/v1")
-              ? "-- loading available models --"
-              : "-- waiting for URL --"}
+              ? t("localai.loadingModels")
+              : t("localai.waitingForUrl")}
           </option>
         </select>
       </div>
@@ -123,7 +128,7 @@ function LocalAIModelSelection({ settings, apiKey = null, basePath = null }) {
   return (
     <div className="flex flex-col w-60">
       <label className="text-white text-sm font-semibold block mb-4">
-        Embedding Model Name
+        {t("localai.modelSelection")}
       </label>
       <select
         name="EmbeddingModelPref"
@@ -131,7 +136,7 @@ function LocalAIModelSelection({ settings, apiKey = null, basePath = null }) {
         className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
       >
         {customModels.length > 0 && (
-          <optgroup label="Your loaded models">
+          <optgroup label={t("localai.loadedModels")}>
             {customModels.map((model) => {
               return (
                 <option

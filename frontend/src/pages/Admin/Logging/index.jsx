@@ -11,11 +11,11 @@ import { useTranslation } from "react-i18next";
 
 export default function AdminLogs() {
   const query = useQuery();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [logs, setLogs] = useState([]);
   const [offset, setOffset] = useState(Number(query.get("offset") || 0));
   const [canNext, setCanNext] = useState(false);
-  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchLogs() {
@@ -28,20 +28,15 @@ export default function AdminLogs() {
   }, [offset]);
 
   const handleResetLogs = async () => {
-    if (
-      !window.confirm(
-        "Are you sure you want to clear all event logs? This action is irreversible."
-      )
-    )
-      return;
+    if (!window.confirm(t("event.confirmClear"))) return;
     const { success, error } = await System.clearEventLogs();
     if (success) {
-      showToast("Event logs cleared successfully.", "success");
+      showToast(t("event.clearSuccess"), "success");
       setLogs([]);
       setCanNext(false);
       setOffset(0);
     } else {
-      showToast(`Failed to clear logs: ${error}`, "error");
+      showToast(`${t("event.clearError")}: ${error}`, "error");
     }
   };
 

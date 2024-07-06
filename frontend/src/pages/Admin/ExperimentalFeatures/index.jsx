@@ -8,8 +8,10 @@ import { configurableFeatures } from "./features";
 import ModalWrapper from "@/components/ModalWrapper";
 import paths from "@/utils/paths";
 import showToast from "@/utils/toast";
+import { useTranslation } from "react-i18next";
 
 export default function ExperimentalFeatures() {
+  const { t } = useTranslation();
   const [featureFlags, setFeatureFlags] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectedFeature, setSelectedFeature] = useState(
@@ -49,7 +51,9 @@ export default function ExperimentalFeatures() {
         <div className="flex flex-col gap-y-[18px]">
           <div className="text-white flex items-center gap-x-2">
             <Flask size={24} />
-            <p className="text-lg font-medium">Experimental Features</p>
+            <p className="text-lg font-medium">
+              {t("experimentalFeatures.title")}
+            </p>
           </div>
           {/* Feature list */}
           <FeatureList
@@ -75,7 +79,9 @@ export default function ExperimentalFeatures() {
               ) : (
                 <div className="flex flex-col items-center justify-center h-full text-white/60">
                   <Flask size={40} />
-                  <p className="font-medium">Select an experimental feature</p>
+                  <p className="font-medium">
+                    {t("experimentalFeatures.selectFeature")}
+                  </p>
                 </div>
               )}
             </div>
@@ -109,6 +115,7 @@ function FeatureList({
   handleClick = null,
   activeFeatures = [],
 }) {
+  const { t } = useTranslation();
   if (Object.keys(features).length === 0) return null;
 
   return (
@@ -131,10 +138,14 @@ function FeatureList({
           }`}
           onClick={() => handleClick?.(feature)}
         >
-          <div className="text-sm font-light">{settings.title}</div>
+          <div className="text-sm font-light">
+            {t(`features.${feature}.title`)}
+          </div>
           <div className="flex items-center gap-x-2">
             <div className="text-sm text-white/60 font-medium">
-              {activeFeatures.includes(settings.key) ? "On" : "Off"}
+              {activeFeatures.includes(settings.key)
+                ? t("experimentalFeatures.on")
+                : t("experimentalFeatures.off")}
             </div>
             <CaretRight size={14} weight="bold" className="text-white/80" />
           </div>
@@ -156,6 +167,7 @@ function SelectedFeatureComponent({ feature, settings, refresh }) {
 }
 
 function FeatureVerification({ children }) {
+  const { t } = useTranslation();
   if (
     !window.localStorage.getItem("anythingllm_tos_experimental_feature_set")
   ) {
@@ -166,10 +178,7 @@ function FeatureVerification({ children }) {
         "anythingllm_tos_experimental_feature_set",
         "accepted"
       );
-      showToast(
-        "Experimental Feature set enabled. Reloading the page.",
-        "success"
-      );
+      showToast(t("experimentalFeatures.accepted"), "success");
       setTimeout(() => {
         window.location.reload();
       }, 2_500);
@@ -186,66 +195,45 @@ function FeatureVerification({ children }) {
             <div className="relative bg-main-gradient rounded-lg shadow">
               <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
                 <h3 className="text-xl font-semibold text-white">
-                  Terms of use for experimental features
+                  {t("experimentalFeatures.tosTitle")}
                 </h3>
               </div>
               <div className="p-6 space-y-6 flex h-full w-full">
                 <div className="w-full flex flex-col gap-y-4 text-white">
-                  <p>
-                    Experimental features of TeamplGPT are features that we
-                    are piloting and are <b>opt-in</b>. We proactively will
-                    condition or warn you on any potential concerns should any
-                    exist prior to approval of any feature.
-                  </p>
+                  <p>{t("experimentalFeatures.tosIntro")}</p>
 
                   <div>
-                    <p>
-                      Use of any feature on this page can result in, but not
-                      limited to, the following possibilities.
-                    </p>
+                    <p>{t("experimentalFeatures.tosRisksIntro")}</p>
                     <ul className="list-disc ml-6 text-sm font-mono">
-                      <li>Loss of data.</li>
-                      <li>Change in quality of results.</li>
-                      <li>Increased storage.</li>
-                      <li>Increased resource consumption.</li>
-                      <li>
-                        Increased cost or use of any connected LLM or embedding
-                        provider.
-                      </li>
-                      <li>Potential bugs or issues using TeamplGPT.</li>
+                      <li>{t("experimentalFeatures.tosRisk1")}</li>
+                      <li>{t("experimentalFeatures.tosRisk2")}</li>
+                      <li>{t("experimentalFeatures.tosRisk3")}</li>
+                      <li>{t("experimentalFeatures.tosRisk4")}</li>
+                      <li>{t("experimentalFeatures.tosRisk5")}</li>
+                      <li>{t("experimentalFeatures.tosRisk6")}</li>
                     </ul>
                   </div>
 
                   <div>
-                    <p>
-                      Use of an experimental feature also comes with the
-                      following list of non-exhaustive conditions.
-                    </p>
+                    <p>{t("experimentalFeatures.tosConditionsIntro")}</p>
                     <ul className="list-disc ml-6 text-sm font-mono">
-                      <li>Feature may not exist in future updates.</li>
-                      <li>The feature being used is not currently stable.</li>
-                      <li>
-                        The feature may not be available in future versions,
-                        configurations, or subscriptions of TeamplGPT.
-                      </li>
-                      <li>
-                        Your privacy settings <b>will be honored</b> with use of
-                        any beta feature.
-                      </li>
-                      <li>These conditions may change in future updates.</li>
+                      <li>{t("experimentalFeatures.tosCondition1")}</li>
+                      <li>{t("experimentalFeatures.tosCondition2")}</li>
+                      <li>{t("experimentalFeatures.tosCondition3")}</li>
+                      <li>{t("experimentalFeatures.tosCondition4")}</li>
+                      <li>{t("experimentalFeatures.tosCondition5")}</li>
                     </ul>
                   </div>
 
                   <p>
-                    Access to any features requires approval of this modal. If
-                    you would like to read more you can refer to{" "}
+                    {t("experimentalFeatures.tosConclusion1")}{" "}
                     <a
                       href="https://docs.useanything.com/beta-preview/overview"
                       className="underline text-blue-500"
                     >
                       docs.useanything.com
                     </a>{" "}
-                    or email{" "}
+                    {t("experimentalFeatures.tosConclusion2")}{" "}
                     <a
                       href="mailto:team@mintplexlabs.com"
                       className="underline text-blue-500"
@@ -260,13 +248,13 @@ function FeatureVerification({ children }) {
                   href={paths.home()}
                   className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
                 >
-                  Reject & Close
+                  {t("experimentalFeatures.reject")}
                 </a>
                 <button
                   type="submit"
                   className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
                 >
-                  I understand
+                  {t("experimentalFeatures.accept")}
                 </button>
               </div>
             </div>

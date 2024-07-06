@@ -770,6 +770,8 @@ const TRANSLATIONS = {
     embeddingDeploymentName: "Embedding Deployment Name",
     embeddingDeploymentNamePlaceholder:
       "Azure OpenAI embedding model deployment name",
+    apiKeyLabel: "API Key",
+    apiKeyPlaceholder: "Azure OpenAI API Key",
   },
 
   huggingface: {
@@ -805,6 +807,8 @@ const TRANSLATIONS = {
     modelDescription:
       "Select the Ollama model you want to use. Models will load after entering a valid Ollama URL.",
     loadedModels: "Your loaded models",
+    maxChunkLength: "Max Embedding Chunk Length",
+    maxChunkLengthDescription: "Maximum length of text chunks for embedding.",
   },
 
   lmstudio: {
@@ -824,6 +828,8 @@ const TRANSLATIONS = {
     modelDescription:
       "Select the LM Studio model you want to use. Models will load after entering a valid LM Studio URL.",
     loadedModels: "Your loaded models",
+    maxChunkLength: "Max Embedding Chunk Length",
+    maxChunkLengthDescription: "Maximum length of text chunks for embedding.",
   },
 
   localai: {
@@ -894,6 +900,57 @@ const TRANSLATIONS = {
     save: "Save",
   },
 
+  speechToText: {
+    title: "Speech-to-text Preference",
+    description:
+      "Here you can specify what kind of text-to-speech and speech-to-text providers you would want to use in your TeamplGPT experience. By default, we use the browser's built in support for these services, but you may want to use others.",
+    provider: "Provider",
+    searchPlaceholder: "Search speech to text providers",
+    saveChanges: "Save changes",
+    saving: "Saving...",
+    saveSuccess: "Speech-to-text preferences saved successfully.",
+    saveError: "Failed to save preferences: {{error}}",
+    providers: {
+      native: {
+        name: "System native",
+        description: "Uses your browser's built in STT service if supported.",
+        noConfiguration: "There is no configuration needed for this provider.",
+      },
+    },
+  },
+
+  textToSpeech: {
+    title: "Text-to-speech Preference",
+    description:
+      "Here you can specify what kind of text-to-speech providers you would want to use in your TeamplGPT experience. By default, we use the browser's built in support for these services, but you may want to use others.",
+    voiceModelLabel: "Voice Model",
+    provider: "Provider",
+    searchPlaceholder: "Search text to speech providers",
+    saveChanges: "Save changes",
+    saving: "Saving...",
+    saveSuccess: "Text-to-speech preferences saved successfully.",
+    saveError: "Failed to save preferences: {{error}}",
+    providers: {
+      native: {
+        name: "System native",
+        description: "Uses your browser's built in TTS service if supported.",
+        noConfiguration: "There is no configuration needed for this provider.",
+      },
+      openai: {
+        name: "OpenAI",
+        description: "Use OpenAI's text to speech voices.",
+        apiKeyLabel: "API Key",
+        apiKeyPlaceholder: "OpenAI API Key",
+        whisperModelLabel: "Whisper Model",
+        whisperModel: "Whisper Large",
+      },
+      elevenlabs: {
+        name: "ElevenLabs",
+        description: "Use ElevenLabs's text to speech voices and technology.",
+      },
+    },
+  },
+
   transcription: {
     title: "Transcription Model Preference",
     description:
@@ -905,6 +962,22 @@ const TRANSLATIONS = {
       "We recommend at least 2GB of RAM and upload files <10Mb.",
     "warn-end":
       "The built-in model will automatically download on the first use.",
+    searchPlaceholder: "Search audio transcription providers",
+    saveChanges: "Save changes",
+    saving: "Saving...",
+    saveSuccess: "Transcription preferences saved successfully.",
+    saveError: "Failed to save preferences: {{error}}",
+    providers: {
+      openai: {
+        name: "OpenAI",
+        description:
+          "Leverage the OpenAI Whisper-large model using your API key.",
+      },
+      local: {
+        name: "TeamplGPT Built-In",
+        description: "Run a built-in whisper model on this instance privately.",
+      },
+    },
   },
 
   embedding: {
@@ -917,6 +990,94 @@ const TRANSLATIONS = {
       title: "Embedding Provider",
       description:
         "There is no set up required when using TeamplGPT's native embedding engine.",
+    },
+    searchPlaceholder: "Search all embedding providers",
+    saveChanges: "Save changes",
+    saving: "Saving...",
+    saveSuccess: "Embedding preferences saved successfully.",
+    saveError: "Failed to save preferences: {{error}}",
+    changeWarning:
+      "Switching the embedding model will break previously embedded documents from working during chat. They will need to un-embed from every workspace and fully removed and re-uploaded so they can be embed by the new embedding model.",
+    providers: {
+      native: {
+        name: "TeamplGPT Embedder",
+        description:
+          "Use the built-in embedding provider for TeamplGPT. Zero setup!",
+      },
+      openai: {
+        name: "OpenAI",
+        description: "The standard option for most non-commercial use.",
+        apiKeyLabel: "API Key",
+        apiKeyPlaceholder: "OpenAI API Key",
+        modelPrefLabel: "Model Preference",
+        models: {
+          available: "Available embedding models",
+        },
+      },
+      azure: {
+        name: "Azure OpenAI",
+        description:
+          "The enterprise option of OpenAI hosted on Azure services.",
+      },
+      localai: {
+        name: "Local AI",
+        description: "Run embedding models locally on your own machine.",
+      },
+      ollama: {
+        name: "Ollama",
+        description: "Run embedding models locally on your own machine.",
+      },
+      lmstudio: {
+        name: "LM Studio",
+        description:
+          "Discover, download, and run thousands of cutting edge LLMs in a few clicks.",
+      },
+      cohere: {
+        name: "Cohere",
+        description: "Run powerful embedding models from Cohere.",
+        apiKeyLabel: "API Key",
+        apiKeyPlaceholder: "Cohere API Key",
+        modelPrefLabel: "Model Preference",
+        models: {
+          available: "Available embedding models",
+        },
+      },
+      voyageai: {
+        name: "Voyage AI",
+        description: "Run powerful embedding models from Voyage AI.",
+        apiKeyLabel: "API Key",
+        apiKeyPlaceholder: "Voyage AI API Key",
+        modelPrefLabel: "Model Preference",
+        models: {
+          available: "Available embedding models",
+        },
+      },
+      litellm: {
+        name: "LiteLLM",
+        description: "Run powerful embedding models from LiteLLM.",
+        baseUrl: "Base URL",
+        maxChunkLengthLabel: "Max embedding chunk length",
+        apiKeyLabel: "API Key",
+        optional: "optional",
+        modelSelection: "Embedding Model Selection",
+        loadingModels: "-- loading available models --",
+        waitingForUrl: "-- waiting for URL --",
+        loadedModels: "Your loaded models",
+        tooltipText:
+          "Be sure to select a valid embedding model. Chat models are not embedding models. See",
+        tooltipLinkText: "this page",
+        tooltipEndText: "for more information.",
+      },
+      genericOpenai: {
+        name: "Generic OpenAI",
+        description:
+          "Run embedding models from any OpenAI compatible API service.",
+        baseUrl: "Base URL",
+        model: "Embedding Model",
+        maxChunkLength: "Max embedding chunk length",
+        apiKeyLabel: "API Key",
+        optional: "optional",
+      },
     },
   },
 
@@ -948,10 +1109,114 @@ const TRANSLATIONS = {
     title: "Vector Database",
     description:
       "These are the credentials and settings for how your TeamplGPT instance will function. It's important these keys are current and correct.",
+    saveSuccess: "Vector database settings saved successfully.",
+    saveError: "Failed to save vector database settings: {{error}}",
     provider: {
       title: "Vector Database Provider",
       description: "There is no configuration needed for LanceDB.",
     },
+    searchPlaceholder: "Search all vector database providers",
+    saveChanges: "Save changes",
+    changeWarning:
+      "Switching the vector database will ignore previously embedded documents and future similarity search results. They will need to be re-added to each workspace.",
+    providers: {
+      lancedb: {
+        description:
+          "100% local vector DB that runs on the same instance as TeamplGPT.",
+      },
+      chroma: {
+        description:
+          "Open source vector database you can host yourself or on the cloud.",
+        endpointLabel: "Chroma Endpoint",
+        apiHeaderLabel: "API Header",
+        apiKeyLabel: "API Key",
+      },
+      pinecone: {
+        description:
+          "100% cloud-based vector database for enterprise use cases.",
+        apiKeyLabel: "Pinecone DB API Key",
+        indexNameLabel: "Pinecone Index Name",
+      },
+      zilliz: {
+        description:
+          "Cloud hosted vector database built for enterprise with SOC 2 compliance.",
+        endpointLabel: "Cluster Endpoint",
+        apiTokenLabel: "API Token",
+      },
+      qdrant: {
+        description: "Open source local and distributed cloud vector database.",
+        endpointLabel: "QDrant API Endpoint",
+        apiKeyLabel: "API Key",
+      },
+      weaviate: {
+        description:
+          "Open source local and cloud hosted multi-modal vector database.",
+        endpointLabel: "Weaviate Endpoint",
+        apiKeyLabel: "API Key",
+      },
+      milvus: {
+        description: "Open-source, highly scalable, and blazing fast.",
+        addressLabel: "Milvus DB Address",
+        usernameLabel: "Milvus Username",
+        passwordLabel: "Milvus Password",
+      },
+      astra: {
+        description: "Vector Search for Real-world GenAI.",
+        endpointLabel: "Astra DB Endpoint",
+        endpointPlaceholder: "Astra DB API endpoint",
+        tokenLabel: "Astra DB Application Token",
+      },
+    },
+  },
+
+  embedModal: {
+    title: "Create new embed for workspace",
+    maxChatsPerDay: "Max chats per day",
+    maxChatsPerDayHint:
+      "Limit the amount of chats this embedded chat can process in a 24 hour period. Zero is unlimited.",
+    maxChatsPerSession: "Max chats per session",
+    maxChatsPerSessionHint:
+      "Limit the amount of chats a session user can send with this embed in a 24 hour period. Zero is unlimited.",
+    allowModelOverride: "Enable dynamic model use",
+    allowModelOverrideHint:
+      "Allow setting of the preferred LLM model to override the workspace default.",
+    allowTemperatureOverride: "Enable dynamic LLM temperature",
+    allowTemperatureOverrideHint:
+      "Allow setting of the LLM temperature to override the workspace default.",
+    allowPromptOverride: "Enable Prompt Override",
+    allowPromptOverrideHint:
+      "Allow setting of the system prompt to override the workspace default.",
+    workspace: "Workspace",
+    workspaceHint:
+      "This is the workspace your chat window will be based on. All defaults will be inherited from the workspace unless overridden by this config.",
+    chatMode: "Allowed chat method",
+    chatModeHint:
+      "Set how your chatbot should operate. Query means it will only respond if a document helps answer the query.\nChat opens the chat to even general questions and can answer totally unrelated queries to your workspace.",
+    chatModeChat: "Chat: Respond to all questions regardless of context",
+    chatModeQuery:
+      "Query: Only respond to chats related to documents in workspace",
+    permittedDomains: "Restrict requests from domains",
+    permittedDomainsHint:
+      "This filter will block any requests that come from a domain other than the list below.\nLeaving this empty means anyone can use your embed on any site.",
+    afterCreating:
+      "After creating an embed you will be provided a link that you can publish on your website with a simple",
+    tag: "tag.",
+    error: "Error: {{error}}",
+    createEmbed: "Create embed",
+  },
+
+  embedRow: {
+    confirmSuspend:
+      "Are you sure you want to disable this embed?\nOnce disabled the embed will no longer respond to any chat requests.",
+    confirmDelete:
+      "Are you sure you want to delete this embed?\nOnce deleted this embed will no longer respond to chats or be active.\n\nThis action is irreversible.",
+    disabled: "Embed has been disabled.",
+    enabled: "Embed is active.",
+    deleted: "Embed deleted from system.",
+    showCode: "Show Code",
+    disable: "Disable",
+    enable: "Enable",
+    delete: "Delete",
   },
 
   // Embeddable Chat Widgets
@@ -1011,6 +1276,10 @@ const TRANSLATIONS = {
     description:
       "View all actions and events happening on this instance for monitoring.",
     clear: "Clear Event Logs",
+    confirmClear:
+      "Are you sure you want to clear all event logs? This action is irreversible.",
+    clearSuccess: "Event logs cleared successfully.",
+    clearError: "Failed to clear logs",
     table: {
       type: "Event Type",
       user: "User",
@@ -1020,13 +1289,305 @@ const TRANSLATIONS = {
 
   // Privacy & Data-Handling
   privacy: {
-    title: "Privacy & Data-Handling",
+    title: "Data Handling & Privacy",
     description:
-      "This is your configuration for how connected third party providers and TeamplGPT handle your data.",
+      "We are committed to transparency and control when it comes to your personal data.",
     llm: "LLM Selection",
     embedding: "Embedding Preference",
     vector: "Vector Database",
-    anonymous: "Anonymous Telemetry Enabled",
+    anonymous: "Anonymous Telemetry",
+    telemetryDescription1:
+      "All events do not record IP-address and contain no identifying content, settings, chats, or other non-usage based information. To see the list of event tags collected you can look on",
+    telemetryDescription2:
+      "As an open-source project we respect your right to privacy. We are dedicated to building the best solution for integrating AI and documents privately and securely. If you do decide to turn off telemetry all we ask is to consider sending us feedback and thoughts so that we can continue to improve AnythingLLM for you.",
+    reconfigure:
+      "These settings can be reconfigured at any time in the settings.",
+    telemetryStatus: {
+      enabled: "Anonymous Telemetry has been enabled.",
+      disabled: "Anonymous Telemetry has been disabled.",
+    },
+  },
+  llmProviders: {
+    openai: {
+      name: "OpenAI",
+      description: [
+        "Your chats will not be used for training",
+        "Your prompts and document text used in response creation are visible to OpenAI",
+      ],
+    },
+    azure: {
+      name: "Azure OpenAI",
+      description: [
+        "Your chats will not be used for training",
+        "Your text and embedding text are not visible to OpenAI or Microsoft",
+      ],
+    },
+    anthropic: {
+      name: "Anthropic",
+      description: [
+        "Your chats will not be used for training",
+        "Your prompts and document text used in response creation are visible to Anthropic",
+      ],
+    },
+    gemini: {
+      name: "Google Gemini",
+      description: [
+        "Your chats are de-identified and used in training",
+        "Your prompts and document text used in response creation are visible to Google",
+      ],
+    },
+    lmstudio: {
+      name: "LMStudio",
+      description: [
+        "Your model and chats are only accessible on the server running LMStudio",
+      ],
+    },
+    localai: {
+      name: "LocalAI",
+      description: [
+        "Your model and chats are only accessible on the server running LocalAI",
+      ],
+    },
+    ollama: {
+      name: "Ollama",
+      description: [
+        "Your model and chats are only accessible on the machine running Ollama models",
+      ],
+    },
+    native: {
+      name: "Custom Llama Model",
+      description: [
+        "Your model and chats are only accessible on this AnythingLLM instance",
+      ],
+    },
+    togetherai: {
+      name: "TogetherAI",
+      description: [
+        "Your chats will not be used for training",
+        "Your prompts and document text used in response creation are visible to TogetherAI",
+      ],
+    },
+    mistral: {
+      name: "Mistral",
+      description: [
+        "Your prompts and document text used in response creation are visible to Mistral",
+      ],
+    },
+    huggingface: {
+      name: "HuggingFace",
+      description: [
+        "Your prompts and document text used in response are sent to your HuggingFace managed endpoint",
+      ],
+    },
+    perplexity: {
+      name: "Perplexity AI",
+      description: [
+        "Your chats will not be used for training",
+        "Your prompts and document text used in response creation are visible to Perplexity AI",
+      ],
+    },
+    openrouter: {
+      name: "OpenRouter",
+      description: [
+        "Your chats will not be used for training",
+        "Your prompts and document text used in response creation are visible to OpenRouter",
+      ],
+    },
+    groq: {
+      name: "Groq",
+      description: [
+        "Your chats will not be used for training",
+        "Your prompts and document text used in response creation are visible to Groq",
+      ],
+    },
+    koboldcpp: {
+      name: "KoboldCPP",
+      description: [
+        "Your model and chats are only accessible on the server running KoboldCPP",
+      ],
+    },
+    textgenwebui: {
+      name: "Oobabooga Web UI",
+      description: [
+        "Your model and chats are only accessible on the server running the Oobabooga Text Generation Web UI",
+      ],
+    },
+    "generic-openai": {
+      name: "Generic OpenAI compatible service",
+      description: [
+        "Data is shared according to the terms of service applicable with your generic endpoint provider.",
+      ],
+    },
+    cohere: {
+      name: "Cohere",
+      description: [
+        "Data is shared according to the terms of service of cohere.com and your localities privacy laws.",
+      ],
+    },
+    litellm: {
+      name: "LiteLLM",
+      description: [
+        "Your model and chats are only accessible on the server running LiteLLM",
+      ],
+    },
+  },
+  embeddingEngines: {
+    native: {
+      name: "AnythingLLM Embedder",
+      description: [
+        "Your document text is embedded privately on this instance of AnythingLLM",
+      ],
+    },
+    openai: {
+      name: "OpenAI",
+      description: [
+        "Your document text is sent to OpenAI servers",
+        "Your documents are not used for training",
+      ],
+    },
+    azure: {
+      name: "Azure OpenAI",
+      description: [
+        "Your document text is sent to your Microsoft Azure service",
+        "Your documents are not used for training",
+      ],
+    },
+    localai: {
+      name: "LocalAI",
+      description: [
+        "Your document text is embedded privately on the server running LocalAI",
+      ],
+    },
+    ollama: {
+      name: "Ollama",
+      description: [
+        "Your document text is embedded privately on the server running Ollama",
+      ],
+    },
+    lmstudio: {
+      name: "LMStudio",
+      description: [
+        "Your document text is embedded privately on the server running LMStudio",
+      ],
+    },
+    cohere: {
+      name: "Cohere",
+      description: [
+        "Data is shared according to the terms of service of cohere.com and your localities privacy laws.",
+      ],
+    },
+    voyageai: {
+      name: "Voyage AI",
+      description: [
+        "Data sent to Voyage AI's servers is shared according to the terms of service of voyageai.com.",
+      ],
+    },
+    litellm: {
+      name: "LiteLLM",
+      description: [
+        "Your document text is only accessible on the server running LiteLLM and to the providers you configured in LiteLLM.",
+      ],
+    },
+    "generic-openai": {
+      name: "Generic OpenAI compatible service",
+      description: [
+        "Data is shared according to the terms of service applicable with your generic endpoint provider.",
+      ],
+    },
+  },
+  vectorDbs: {
+    chroma: {
+      name: "Chroma",
+      description: [
+        "Your vectors and document text are stored on your Chroma instance",
+        "Access to your instance is managed by you",
+      ],
+    },
+    pinecone: {
+      name: "Pinecone",
+      description: [
+        "Your vectors and document text are stored on Pinecone's servers",
+        "Access to your data is managed by Pinecone",
+      ],
+    },
+    qdrant: {
+      name: "QDrant",
+      description: [
+        "Your vectors and document text are stored on your Qdrant instance (cloud or self-hosted)",
+      ],
+    },
+    weaviate: {
+      name: "Weaviate",
+      description: [
+        "Your vectors and document text are stored on your Weaviate instance (cloud or self-hosted)",
+      ],
+    },
+    milvus: {
+      name: "Milvus",
+      description: [
+        "Your vectors and document text are stored on your Milvus instance (cloud or self-hosted)",
+      ],
+    },
+    zilliz: {
+      name: "Zilliz Cloud",
+      description: [
+        "Your vectors and document text are stored on your Zilliz cloud cluster.",
+      ],
+    },
+    astra: {
+      name: "AstraDB",
+      description: [
+        "Your vectors and document text are stored on your cloud AstraDB database.",
+      ],
+    },
+    lancedb: {
+      name: "LanceDB",
+      description: [
+        "Your vectors and document text are stored privately on this instance of AnythingLLM",
+      ],
+    },
+  },
+
+  experimentalFeatures: {
+    title: "Experimental Features",
+    selectFeature: "Select an experimental feature",
+    on: "On",
+    off: "Off",
+    accepted: "Experimental Feature set enabled. Reloading the page.",
+    tosTitle: "Terms of use for experimental features",
+    tosIntro:
+      "Experimental features of TeamplGPT are features that we are piloting and are opt-in. We proactively will condition or warn you on any potential concerns should any exist prior to approval of any feature.",
+    tosRisksIntro:
+      "Use of any feature on this page can result in, but not limited to, the following possibilities.",
+    tosRisk1: "Loss of data.",
+    tosRisk2: "Change in quality of results.",
+    tosRisk3: "Increased storage.",
+    tosRisk4: "Increased resource consumption.",
+    tosRisk5:
+      "Increased cost or use of any connected LLM or embedding provider.",
+    tosRisk6: "Potential bugs or issues using TeamplGPT.",
+    tosConditionsIntro:
+      "Use of an experimental feature also comes with the following list of non-exhaustive conditions.",
+    tosCondition1: "Feature may not exist in future updates.",
+    tosCondition2: "The feature being used is not currently stable.",
+    tosCondition3:
+      "The feature may not be available in future versions, configurations, or subscriptions of TeamplGPT.",
+    tosCondition4:
+      "Your privacy settings will be honored with use of any beta feature.",
+    tosCondition5: "These conditions may change in future updates.",
+    tosConclusion1:
+      "Access to any features requires approval of this modal. If you would like to read more you can refer to",
+    tosConclusion2: "or email",
+    reject: "Reject & Close",
+    accept: "I understand",
+  },
+  features: {
+    experimental_live_file_sync: {
+      title: "Experimental Live File Sync",
+    },
+    another_feature: {
+      title: "Another Feature",
+    },
   },
 };
 

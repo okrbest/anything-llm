@@ -26,14 +26,14 @@ const TRANSLATIONS = {
     users: "사용자",
     workspaces: "워크스페이스",
     "workspace-chats": "워크스페이스 채팅",
-    agents: "에이전트 기능",
+    agents: "에이전트 기술",
     appearance: "외관 설정",
     "api-keys": "API 키",
     llm: "LLM 환경설정",
     voice: "음성과 말하기 지원",
     transcription: "음성 인식 모델",
     embedder: "임베딩 환경설정",
-    "text-splitting": "텍스트 분할과 분절",
+    "text-splitting": "텍스트 분할과 청크 처리",
     "vector-database": "벡터 데이터베이스",
     embeds: "채팅 임베드 위젯",
     "embed-chats": "채팅 임베드 기록",
@@ -167,7 +167,7 @@ const TRANSLATIONS = {
     password: "비밀번호",
     passwordPlaceholder: "비밀번호",
     error: "오류: {{error}}",
-    info: "계정을 생성한 후, 이 자격 증명으로 로그인하여 워크스페이스를 사용할 수 있습니다.",
+    info: "계정을 생성한 후, 이 인증 정보로 로그인하여 워크스페이스를 사용할 수 있습니다.",
     acceptInvite: "초대 수락",
   },
 
@@ -269,7 +269,7 @@ const TRANSLATIONS = {
   workspaceAgentConfiguration: {
     configureAgentSkills: "에이전트 기술 구성",
     customizeSkills:
-      "기본 에이전트의 기능을 맞춤 설정하고 특정 기술을 활성화하거나 비활성화하여 향상시킬 수 있습니다. 이러한 설정은 모든 워크스페이스에 적용됩니다.",
+      "기본 에이전트의 기술을 맞춤 설정하고 특정 기술을 활성화하거나 비활성화하여 향상시킬 수 있습니다. 여기에서 설정한 기술은 모든 워크스페이스에 적용됩니다.",
     updatingAgent: "에이전트 업데이트 중...",
     updateWorkspaceAgent: "워크스페이스 에이전트 업데이트",
     workspaceUpdated: "워크스페이스가 업데이트되었습니다!",
@@ -324,10 +324,10 @@ const TRANSLATIONS = {
   // Chat Settings
   chat: {
     llm: {
-      title: "워크스페이스 LLM 공급자",
+      title: "워크스페이스 LLM 제공자",
       description:
-        "이 워크스페이스에서 사용할 LLM 공급자와 모델을 지정합니다. 기본값으로 시스템 LLM 공급자와 설정을 사용합니다.",
-      search: "모든 LLM 공급자 검색",
+        "이 워크스페이스에서 사용할 LLM 제공자와 모델을 지정합니다. 기본값으로 시스템 LLM 제공자와 설정을 사용합니다.",
+      search: "모든 LLM 제공자 검색",
     },
     model: {
       title: "워크스페이스 채팅 모델",
@@ -374,7 +374,7 @@ const TRANSLATIONS = {
       "desc-start": "이 설정은 LLM 응답의 '창의성' 수준을 제어합니다.",
       "desc-end":
         "값이 높을수록 더 창의적인 응답을 제공합니다. 일부 모델에서는 너무 높게 설정하면 일관성 없는 응답이 생성될 수 있습니다.",
-      hint: "대부분의 LLM은 유효한 값 범위가 있습니다. LLM 공급자에게 문의하세요.",
+      hint: "대부분의 LLM은 유효한 값 범위가 있습니다. LLM 제공자에게 문의하세요.",
     },
   },
 
@@ -427,13 +427,13 @@ const TRANSLATIONS = {
       wait: "-- 모델 대기 중 --",
     },
     skill: {
-      title: "기본 에이전트 스킬",
+      title: "기본 에이전트 기술",
       description:
-        "기본 에이전트의 자연 능력을 이 사전 구축된 스킬로 향상시킵니다. 이 설정은 모든 워크스페이스에 적용됩니다.",
+        "기본 에이전트의 능력을 사전 구축된 기술을 사용하여 더 향상시킵니다. 여기에서 설정한 기술은 모든 워크스페이스에 적용됩니다.",
       rag: {
         title: "RAG & 장기 기억",
         description:
-          "에이전트가 로컬 문서를 활용하여 쿼리에 응답하거나 장기 기억 검색을 위해 콘텐츠 조각을 '기억'하도록 합니다.",
+          "에이전트가 저장된 문서를 활용하여 질의에 응답하거나 장기 기억 검색을 위해 대화를 '기억'하도록 합니다.",
       },
       view: {
         title: "문서 보기 및 요약",
@@ -448,15 +448,15 @@ const TRANSLATIONS = {
       generate: {
         title: "차트 생성",
         description:
-          "기본 에이전트가 제공된 데이터나 채팅에서 제공된 데이터를 사용하여 다양한 유형의 차트를 생성하도록 합니다.",
+          "에이전트가 제공된 데이터를 사용하여 다양한 유형의 차트를 생성하도록 합니다.",
       },
       save: {
-        title: "파일 생성 및 브라우저에 저장",
+        title: "파일 생성과 브라우저에 저장",
         description:
           "기본 에이전트가 파일을 생성하고 브라우저에서 저장할 수 있도록 합니다.",
       },
       web: {
-        title: "실시간 웹 검색 및 브라우징",
+        title: "실시간 웹 검색과 브라우징",
         "desc-start":
           "에이전트 세션 중 웹 검색이 작동하려면 웹 검색 (SERP) 제공자에 연결해야 합니다.",
         "desc-end":
@@ -477,7 +477,7 @@ const TRANSLATIONS = {
       ragMemory: {
         title: "RAG & 장기 기억",
         description:
-          "에이전트가 로컬 문서를 활용하여 쿼리에 응답하거나 장기 기억 검색을 위해 콘텐츠 조각을 '기억'하도록 합니다.",
+          "에이전트가 저장된 문서를 활용하여 질문에 응답하거나 장기 기억 검색을 위해 대화를 '기억'하도록 합니다.",
       },
       viewSummarize: {
         title: "문서 보기 및 요약",
@@ -492,12 +492,12 @@ const TRANSLATIONS = {
       generateSaveFiles: {
         title: "파일 생성 및 브라우저에 저장",
         description:
-          "기본 에이전트가 파일을 생성하고 브라우저에서 저장할 수 있도록 합니다.",
+          "에이전트가 파일을 생성하고 브라우저에서 저장할 수 있도록 합니다.",
       },
       createChart: {
         title: "차트 생성",
         description:
-          "기본 에이전트가 제공된 데이터나 채팅에서 제공된 데이터를 사용하여 다양한 유형의 차트를 생성하도록 합니다.",
+          "에이전트가 제공된 데이터를 사용하여 다양한 유형의 차트를 생성하도록 합니다.",
       },
       webBrowsing: {
         title: "웹 검색",
@@ -513,7 +513,7 @@ const TRANSLATIONS = {
       workspaceUpdated: "워크스페이스가 업데이트되었습니다!",
       updatingAgent: "에이전트 업데이트 중...",
       updateWorkspaceAgent: "워크스페이스 에이전트 업데이트",
-      pleaseMakeSelection: "에이전트 스킬을 선택해주세요",
+      pleaseMakeSelection: "에이전트 기술을 선택해주세요",
       agentsNotWork:
         "유효한 선택이 이루어질 때까지 에이전트가 작동하지 않습니다.",
     },
@@ -527,12 +527,12 @@ const TRANSLATIONS = {
     providers: {
       none: {
         name: "선택을 해주세요",
-        description: "제공자와 키가 제공될 때까지 웹 검색이 비활성화됩니다.",
+        description: "제공자 정보를 입력할 때까지 웹 검색이 비활성화됩니다.",
       },
       googleSearch: {
         name: "구글 검색 엔진",
         description:
-          "커스텀 구글 검색 엔진을 통한 웹 검색. 하루에 100개의 쿼리가 무료입니다.",
+          "사용자정의 구글 검색 엔진을 통한 웹 검색. 하루에 100개의 쿼리가 무료입니다.",
       },
       serperDotDev: {
         name: "Serper.dev",
@@ -689,7 +689,7 @@ const TRANSLATIONS = {
   api: {
     title: "API 키",
     description:
-      "API 키를 사용하면 TeamplGPT 인스턴스에 프로그래밍 방식으로 액세스하고 관리할 수 있습니다.",
+      "API 키를 사용하면 TeamplGPT 인스턴스에 프로그래밍 방식으로 접속하고 관리할 수 있습니다.",
     link: "API 문서 읽기",
     generate: "새 API 키 생성",
     table: {
@@ -702,9 +702,9 @@ const TRANSLATIONS = {
   llm: {
     title: "LLM 환경 설정",
     description:
-      "선호하는 LLM 채팅과 임베딩 공급자에 대한 자격 증명 설정입니다. 이 키가 올바르지 않으면 TeamplGPT가 제대로 작동하지 않습니다.",
-    provider: "LLM 공급자",
-    searchPlaceholder: "사용 가능한 LLM 공급자 검색",
+      "선호하는 LLM 채팅과 임베딩 제공자에 대한 인증 키 설정입니다. 이 키가 올바르지 않으면 TeamplGPT가 제대로 작동하지 않습니다.",
+    provider: "LLM 제공자",
+    searchPlaceholder: "사용 가능한 LLM 제공자 검색",
     noneSelected: "선택되지 않음",
     selectLLM: "LLM을 선택해야 합니다",
     saving: "저장 중...",
@@ -717,15 +717,15 @@ const TRANSLATIONS = {
       apiKeyLabel: "{{provider}} API 키",
       apiKeyPlaceholder: "{{provider}} API 키",
       modelLabel: "채팅 모델 선택",
-      openai: "대부분의 비상업적 사용을 위한 표준 옵션입니다.",
+      openai: "가장 인기있는 LLM 표준 옵션입니다.",
       azure: "Azure 서비스에서 호스팅되는 OpenAI의 엔터프라이즈 옵션입니다.",
-      anthropic: "Anthropic에서 호스팅하는 친근한 AI 어시스턴트입니다.",
+      anthropic: "Anthropic에서 호스팅하는 친숙한 AI 어시스턴트입니다.",
       gemini: "Google의 가장 크고 능력 있는 AI 모델입니다.",
       huggingface:
         "150,000개 이상의 오픈 소스 LLM과 전세계 AI 커뮤니티에 접근하십시오.",
       ollama: "자신의 머신에서 LLM을 로컬로 실행합니다.",
       lmstudio:
-        "몇 번의 클릭만으로 수천 개의 최첨단 LLM을 발견, 다운로드 및 실행합니다.",
+        "몇 번의 클릭만으로 수천 개의 최첨단 LLM을 발견, 다운로드하고 실행합니다.",
       localai: "자신의 머신에서 LLM을 로컬로 실행합니다.",
       togetherai: "Together AI의 오픈 소스 모델을 실행합니다.",
       mistral: "Mistral AI의 오픈 소스 모델을 실행합니다.",
@@ -766,6 +766,8 @@ const TRANSLATIONS = {
     chatModelTokenLimit: "채팅 모델 토큰 제한",
     embeddingDeploymentName: "임베딩 배포 이름",
     embeddingDeploymentNamePlaceholder: "Azure OpenAI 임베딩 모델 배포 이름",
+    apiKeyLabel: "API 키",
+    apiKeyPlaceholder: "Azure OpenAI API 키",
   },
 
   huggingface: {
@@ -801,6 +803,8 @@ const TRANSLATIONS = {
     modelDescription:
       "사용할 Ollama 모델을 선택하십시오. 유효한 Ollama URL을 입력한 후 모델이 로드됩니다.",
     loadedModels: "로드된 모델",
+    maxChunkLength: "최대 임베딩 청크 길이",
+    maxChunkLengthDescription: "임베딩을 위한 텍스트 청크의 최대 길이입니다.",
   },
 
   lmstudio: {
@@ -820,6 +824,8 @@ const TRANSLATIONS = {
     modelDescription:
       "사용할 LM Studio 모델을 선택하십시오. 유효한 LM Studio URL을 입력한 후 모델이 로드됩니다.",
     loadedModels: "로드된 모델",
+    maxChunkLength: "최대 임베딩 청크 길이",
+    maxChunkLengthDescription: "임베딩을 위한 텍스트 청크의 최대 길이입니다.",
   },
 
   localai: {
@@ -857,7 +863,7 @@ const TRANSLATIONS = {
     title: "새 API 키 생성",
     error: "오류: {{error}}",
     description:
-      "API 키를 생성하면 이 TeamplGPT 인스턴스에 프로그래밍 방식으로 액세스하고 조작하는 데 사용할 수 있습니다.",
+      "API 키를 생성하면 TeamplGPT 인스턴스에 프로그래밍 방식으로 접속하고 관리할 수 있습니다.",
     readDocumentation: "API 문서 읽기",
     cancel: "취소",
     createApiKey: "API 키 생성",
@@ -889,32 +895,186 @@ const TRANSLATIONS = {
     save: "저장",
   },
 
+  speechToText: {
+    title: "음성 인식 설정",
+    description:
+      "여기에서 TeamplGPT 환경에서 사용하려는 음성 인식 및 텍스트 음성 변환 제공자를 지정할 수 있습니다. 기본적으로 우리는 이러한 서비스에 대한 브라우저의 기본 지원을 사용하지만, 다른 서비스를 사용하고 싶을 수도 있습니다.",
+    provider: "제공자",
+    searchPlaceholder: "음성 인식 제공자 검색",
+    saveChanges: "변경 사항 저장",
+    saving: "저장 중...",
+    saveSuccess: "음성 인식 설정이 성공적으로 저장되었습니다.",
+    saveError: "설정 저장 실패: {{error}}",
+    providers: {
+      native: {
+        name: "시스템 기본",
+        description: "지원되는 경우 브라우저의 내장 STT 서비스를 사용합니다.",
+        noConfiguration: "이 제공자일 때는 구성할 내용이 없습니다.",
+      },
+    },
+  },
+
+  textToSpeech: {
+    title: "텍스트 음성 변환 설정",
+    description:
+      "여기에서 TeamplGPT 환경에서 사용하려는 텍스트 음성 변환 제공자를 지정할 수 있습니다. 기본적으로 우리는 이러한 서비스에 대한 브라우저의 기본 지원을 사용하지만, 다른 서비스를 사용하고 싶을 수도 있습니다.",
+    voiceModelLabel: "음성 모델 선택",
+    provider: "제공자",
+    searchPlaceholder: "텍스트 음성 변환 제공자 검색",
+    saveChanges: "변경 사항 저장",
+    saving: "저장 중...",
+    saveSuccess: "텍스트 음성 변환 설정이 성공적으로 저장되었습니다.",
+    saveError: "설정 저장 실패: {{error}}",
+    providers: {
+      native: {
+        name: "시스템 기본",
+        description: "지원되는 경우 브라우저의 내장 TTS 서비스를 사용합니다.",
+        noConfiguration: "이 제공자에는 구성 필요가 없습니다.",
+      },
+      openai: {
+        name: "OpenAI",
+        description: "OpenAI의 텍스트 말하기 음성 변환 기술을 사용합니다.",
+        apiKeyLabel: "API 키",
+        apiKeyPlaceholder: "OpenAI API 키",
+        whisperModelLabel: "위스퍼 모델",
+        whisperModel: "위스퍼 라지",
+      },
+      elevenlabs: {
+        name: "ElevenLabs",
+        description: "ElevenLabs의 텍스트 말하기 음성 변환 기술을 사용합니다.",
+      },
+    },
+  },
+
   transcription: {
     title: "음성 텍스트 변환 모델 환경 설정",
     description:
-      "선호하는 음성 텍스트 변환 모델 공급자에 대한 자격 증명 설정입니다. 이 키가 올바르지 않으면 미디어 파일 및 오디오가 음성 텍스트 변환되지 않습니다.",
-    provider: "음성 텍스트 변환 공급자",
+      "선호하는 음성 텍스트 변환 모델 제공자에 대한 인증 키 설정입니다. 이 키가 올바르지 않으면 미디어 파일 및 오디오가 텍스트로 변환되지 않습니다.",
+    provider: "음성 텍스트 변환 제공자",
     "warn-start":
       "RAM 또는 CPU가 제한된 기기에서 로컬 위스퍼 모델을 사용할 경우 미디어 파일 처리 시 TeamplGPT가 멈출 수 있습니다.",
     "warn-recommend": "최소 2GB RAM과 10Mb 미만의 파일 업로드를 권장합니다.",
     "warn-end": "내장된 모델은 처음 사용할 때 자동으로 다운로드됩니다.",
+    searchPlaceholder: "오디오 텍스트 변환 제공자 검색",
+    saveChanges: "변경 사항 저장",
+    saving: "저장 중...",
+    saveSuccess: "음성 텍스트 변환 설정이 성공적으로 저장되었습니다.",
+    saveError: "설정을 저장하지 못했습니다: {{error}}",
+    providers: {
+      openai: {
+        name: "OpenAI",
+        description:
+          "API 키를 사용하여 OpenAI Whisper-large 모델을 활용합니다.",
+      },
+      local: {
+        name: "TeamplGPT 내장",
+        description: "이 인스턴스에 내장된 위스퍼 모델을 활용합니다.",
+      },
+    },
   },
 
   embedding: {
     title: "임베딩 환경 설정",
     "desc-start":
-      "임베딩 엔진을 네이티브로 지원하지 않는 LLM을 사용할 때는 추가적으로 임베딩 텍스트에 대한 자격 증명을 지정해야 할 수 있습니다.",
+      "임베딩 엔진을 내장형으로 지원하지 않는 LLM을 사용할 때는 추가적으로 임베딩 텍스트에 대한 인증 정보를 지정해야 할 수 있습니다.",
     "desc-end":
-      "임베딩은 텍스트를 벡터로 변환하는 과정입니다. 이러한 자격 증명은 파일과 프롬프트를 TeamplGPT가 처리할 수 있는 형식으로 변환하는 데 필요합니다.",
+      "임베딩은 텍스트를 벡터로 변환하는 과정입니다. 인증 정보는 파일과 프롬프트를 TeamplGPT가 처리할 수 있는 형식으로 변환하는 데 필요합니다.",
     provider: {
-      title: "임베딩 공급자",
+      title: "임베딩 제공자",
       description:
-        "TeamplGPT의 네이티브 임베딩 엔진을 사용할 때는 설정이 필요하지 않습니다.",
+        "TeamplGPT의 내장형 임베딩 엔진을 사용할 때는 설정이 필요하지 않습니다.",
+    },
+    searchPlaceholder: "모든 임베딩 제공자 검색",
+    saveChanges: "변경 사항 저장",
+    saving: "저장 중...",
+    saveSuccess: "임베딩 설정이 성공적으로 저장되었습니다.",
+    saveError: "설정을 저장하는 데 실패했습니다: {{error}}",
+    changeWarning:
+      "임베딩 모델을 변경하면 채팅 중에 이전에 임베딩된 문서가 작동하지 않게 됩니다. 각 작업공간에서 모든 문서를 분리하고 완전히 제거한 후 다시 업로드하여 새 임베딩 모델로 임베딩해야 합니다.",
+    providers: {
+      native: {
+        name: "TeamplGPT 임베더",
+        description:
+          "TeamplGPT에 내장된 임베딩 제공자를 사용합니다. 설정이 필요 없습니다!",
+      },
+      openai: {
+        name: "OpenAI",
+        description: "전세계에서 가장 인기있는 표준 임베딩 모델입니다.",
+        apiKeyLabel: "API 키",
+        apiKeyPlaceholder: "OpenAI API 키",
+        modelPrefLabel: "선호하는 모델",
+        models: {
+          available: "사용 가능한 임베딩 모델",
+        },
+      },
+      azure: {
+        name: "Azure OpenAI",
+        description: "Azure에서 서비스하는 OpenAI의 엔터프라이즈 옵션입니다.",
+      },
+      localai: {
+        name: "Local AI",
+        description: "자신의 머신에서 로컬로 임베딩 모델을 실행합니다.",
+      },
+      ollama: {
+        name: "Ollama",
+        description: "자신의 머신에서 로컬로 임베딩 모델을 실행합니다.",
+      },
+      lmstudio: {
+        name: "LM Studio",
+        description:
+          "몇 번의 클릭만으로 수천 개의 최첨단 LLM을 검색, 다운로드 및 실행합니다.",
+      },
+      cohere: {
+        name: "Cohere",
+        description: "Cohere의 강력한 임베딩 모델을 실행합니다.",
+        apiKeyLabel: "API 키",
+        apiKeyPlaceholder: "Cohere API 키",
+        modelPrefLabel: "선호하는 모델",
+        models: {
+          available: "사용 가능한 임베딩 모델",
+        },
+      },
+      voyageai: {
+        name: "Voyage AI",
+        description: "Voyage AI의 강력한 임베딩 모델을 실행합니다.",
+        apiKeyLabel: "API 키",
+        apiKeyPlaceholder: "Voyage AI API 키",
+        modelPrefLabel: "선호하는 모델",
+        models: {
+          available: "사용 가능한 임베딩 모델",
+        },
+      },
+      litellm: {
+        name: "LiteLLM",
+        description: "LiteLLM의 강력한 임베딩 모델을 실행하세요.",
+        baseUrl: "기본 URL",
+        maxChunkLengthLabel: "최대 임베딩 청크 길이",
+        apiKeyLabel: "API 키",
+        optional: "선택 사항",
+        modelSelection: "임베딩 모델 선택",
+        loadingModels: "-- 사용 가능한 모델 로드 중 --",
+        waitingForUrl: "-- URL 대기 중 --",
+        loadedModels: "로드된 모델",
+        tooltipText:
+          "유효한 임베딩 모델을 선택해야 합니다. 채팅 모델은 임베딩 모델이 아닙니다. 자세한 내용은",
+        tooltipLinkText: "이 페이지",
+        tooltipEndText: "를 참조하세요.",
+      },
+      genericOpenai: {
+        name: "Generic OpenAI",
+        description:
+          "OpenAI 호환 API 서비스를 사용하여 임베딩 모델을 실행하세요.",
+        baseUrl: "기본 URL",
+        model: "임베딩 모델 선택",
+        maxChunkLength: "임베딩 청크 최대 길이",
+        apiKeyLabel: "API 키",
+        optional: "선택 사항",
+      },
     },
   },
 
   text: {
-    title: "텍스트 분할 및 청킹 환경 설정",
+    title: "텍스트 분할과 청킹 환경 설정",
     "desc-start":
       "때로는 벡터 데이터베이스에 삽입되기 전에 새 문서를 분할하고 청킹하는 기본 방법을 변경하고 싶을 수 있습니다.",
     "desc-end":
@@ -924,13 +1084,14 @@ const TRANSLATIONS = {
     "warn-end": "적용됩니다. 기존 문서에는 적용되지 않습니다.",
     size: {
       title: "텍스트 청크 크기",
-      description: "단일 벡터에 존재할 수 있는 최대 문자 길이입니다.",
+      description: "단일 벡터에 포함될 수 있는 최대 글자 수입니다.",
       recommend: "임베드 모델 최대 길이",
     },
 
     overlap: {
       title: "텍스트 청크 오버랩",
-      description: "인접한 두 텍스트 청크 사이의 최대 오버랩 문자 수입니다.",
+      description:
+        "인접한 두 텍스트 청크를 겹치게하는 최대 중복 문자 수입니다.",
     },
   },
 
@@ -938,11 +1099,114 @@ const TRANSLATIONS = {
   vector: {
     title: "벡터 데이터베이스",
     description:
-      "TeamplGPT 인스턴스의 벡터 데이터베이스 연결에 대한 자격 증명 설정입니다. 이 키가 올바르지 않으면 제대로 작동하지 않습니다.",
+      "TeamplGPT 인스턴스의 벡터 데이터베이스 연결에 대한 인증 정보 설정입니다. 이 키가 올바르지 않으면 제대로 작동하지 않습니다.",
+    saveSuccess: "벡터 데이터베이스 설정이 성공적으로 저장되었습니다.",
+    saveError: "벡터 데이터베이스 설정을 저장하지 못했습니다: {{error}}",
     provider: {
-      title: "벡터 데이터베이스 공급자",
+      title: "벡터 데이터베이스 제공자",
       description: "LanceDB에 대한 구성은 필요하지 않습니다.",
     },
+    searchPlaceholder: "모든 벡터 데이터베이스 제공자 검색",
+    saveChanges: "변경 사항 저장",
+    changeWarning:
+      "벡터 데이터베이스를 변경하면 이전에 삽입된 문서와 향후 유사성 검색 결과가 무시됩니다. 각 작업 공간에 다시 추가해야 합니다.",
+    providers: {
+      lancedb: {
+        description:
+          "TeamplGPT와 동일한 인스턴스에서 실행되는 100% 로컬 벡터 DB입니다.",
+      },
+      chroma: {
+        description:
+          "직접 호스팅하거나 클라우드에서 호스팅할 수 있는 오픈 소스 벡터 데이터베이스입니다.",
+        endpointLabel: "Chroma 엔드포인트",
+        apiHeaderLabel: "API 헤더",
+        apiKeyLabel: "API 키",
+      },
+      pinecone: {
+        description:
+          "엔터프라이즈 사용 사례를 위한 100% 클라우드 기반 벡터 데이터베이스입니다.",
+        apiKeyLabel: "Pinecone DB API 키",
+        indexNameLabel: "Pinecone 인덱스 이름",
+      },
+      zilliz: {
+        description:
+          "SOC 2 규정을 준수하는 엔터프라이즈용 클라우드 호스팅 벡터 데이터베이스입니다.",
+        endpointLabel: "클러스터 엔드포인트",
+        apiTokenLabel: "API 토큰",
+      },
+      qdrant: {
+        description:
+          "로컬 및 분산 클라우드 벡터 데이터베이스를 오픈 소스로 제공합니다.",
+        endpointLabel: "QDrant API 엔드포인트",
+        apiKeyLabel: "API 키",
+      },
+      weaviate: {
+        description:
+          "로컬 및 클라우드 호스팅 멀티모달 벡터 데이터베이스를 오픈 소스로 제공합니다.",
+        endpointLabel: "Weaviate 엔드포인트",
+        apiKeyLabel: "API 키",
+      },
+      milvus: {
+        description: "오픈 소스, 고도로 확장 가능하고 매우 빠릅니다.",
+        addressLabel: "Milvus DB 주소",
+        usernameLabel: "Milvus 사용자 이름",
+        passwordLabel: "Milvus 비밀번호",
+      },
+      astra: {
+        description: "실제 세계의 GenAI를 위한 벡터 검색을 제공합니다.",
+        endpointLabel: "Astra DB 엔드포인트",
+        endpointPlaceholder: "Astra DB API 엔드포인트",
+        tokenLabel: "Astra DB 애플리케이션 토큰",
+      },
+    },
+  },
+
+  embedModal: {
+    title: "워크스페이스에 대한 새 임베드 만들기",
+    maxChatsPerDay: "하루 최대 채팅 수",
+    maxChatsPerDayHint:
+      "이 임베드된 채팅이 24시간 동안 처리할 수 있는 채팅 수를 제한합니다. 0은 무제한입니다.",
+    maxChatsPerSession: "세션당 최대 채팅 수",
+    maxChatsPerSessionHint:
+      "이 임베드된 채팅에서 세션 사용자가 24시간 동안 보낼 수 있는 채팅 수를 제한합니다. 0은 무제한입니다.",
+    allowModelOverride: "동적 모델 사용 허용",
+    allowModelOverrideHint:
+      "워크스페이스 기본값을 재정의하기 위해 선호하는 LLM 모델을 설정할 수 있습니다.",
+    allowTemperatureOverride: "동적 LLM 온도 허용",
+    allowTemperatureOverrideHint:
+      "워크스페이스 기본값을 재정의하기 위해 LLM 온도를 설정할 수 있습니다.",
+    allowPromptOverride: "프롬프트 재정의 허용",
+    allowPromptOverrideHint:
+      "워크스페이스 기본값을 재정의하기 위해 시스템 프롬프트를 설정할 수 있습니다.",
+    workspace: "워크스페이스",
+    workspaceHint:
+      "이것은 채팅 창이 기반으로 하는 워크스페이스입니다. 모든 기본값은 이 구성에 의해 재정의되지 않는 한 워크스페이스에서 상속됩니다.",
+    chatMode: "허용된 채팅 방법",
+    chatModeHint:
+      "챗봇이 어떻게 작동해야 하는지 설정합니다. 쿼리는 문서가 쿼리 답변에 도움이 될 때만 응답합니다.\n챗 모드는 일반 질문에도 응답할 수 있으며 워크스페이스와 전혀 관련 없는 질문에도 답변할 수 있습니다.",
+    chatModeChat: "채팅: 문맥에 상관없이 모든 질문에 응답",
+    chatModeQuery: "쿼리: 워크스페이스의 문서와 관련된 채팅에만 응답",
+    permittedDomains: "도메인에서의 요청 제한",
+    permittedDomainsHint:
+      "이 필터는 아래 목록에 없는 도메인에서 오는 모든 요청을 차단합니다.\n이것을 비워두면 누구든지 어떤 사이트에서도 임베드를 사용할 수 있습니다.",
+    afterCreating: "임베드를 만든 후에는 다음과 같은 간단한",
+    tag: "태그와 함께 웹사이트에 게시할 수 있는 링크를 제공받게 됩니다.",
+    error: "오류: {{error}}",
+    createEmbed: "임베드 만들기",
+  },
+
+  embedRow: {
+    confirmSuspend:
+      "이 임베드를 비활성화하시겠습니까?\n비활성화되면 임베드는 더 이상 채팅 요청에 응답하지 않습니다.",
+    confirmDelete:
+      "이 임베드를 삭제하시겠습니까?\n삭제되면 이 임베드는 더 이상 채팅에 응답하지 않으며 활성화되지 않습니다.\n\n이 작업은 되돌릴 수 없습니다.",
+    disabled: "임베드가 비활성화되었습니다.",
+    enabled: "임베드가 활성화되었습니다.",
+    deleted: "임베드가 시스템에서 삭제되었습니다.",
+    showCode: "코드 보기",
+    disable: "비활성화",
+    enable: "활성화",
+    delete: "삭제",
   },
 
   // Embeddable Chat Widgets
@@ -1001,6 +1265,10 @@ const TRANSLATIONS = {
     description:
       "이 인스턴스에서 발생하는 모든 작업과 이벤트를 모니터링하기 위해 확인하세요.",
     clear: "이벤트 로그 지우기",
+    confirmClear:
+      "모든 이벤트 로그를 지우시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    clearSuccess: "이벤트 로그가 성공적으로 지워졌습니다.",
+    clearError: "로그 지우기에 실패했습니다",
     table: {
       type: "이벤트 유형",
       user: "사용자",
@@ -1011,12 +1279,300 @@ const TRANSLATIONS = {
   // Privacy & Data-Handling
   privacy: {
     title: "개인 정보 및 데이터 처리",
-    description:
-      "연결된 타사 공급자와 TeamplGPT가 데이터를 처리하는 방법을 구성합니다.",
+    description: "개인 정보에 대한 투명성과 제어에 전념하고 있습니다.",
     llm: "LLM 선택",
     embedding: "임베딩 환경 설정",
     vector: "벡터 데이터베이스",
-    anonymous: "익명 텔레메트리 활성화",
+    anonymous: "익명 텔레메트리",
+    telemetryDescription1:
+      "모든 이벤트는 IP 주소를 기록하지 않으며 식별 가능한 콘텐츠, 설정, 채팅 또는 기타 비사용 기반 정보를 포함하지 않습니다. 수집된 이벤트 태그 목록은",
+    telemetryDescription2:
+      "오픈 소스 프로젝트로서 우리는 귀하의 개인 정보를 보호할 권리를 존중합니다. 우리는 AI와 문서를 비공개 및 안전하게 통합하기 위한 최상의 솔루션을 구축하는 데 전념하고 있습니다. 텔레메트리를 비활성화하기로 결정한 경우, TeamplGPT를 계속 개선할 수 있도록 피드백과 의견을 보내주시기 바랍니다.",
+    reconfigure: "이 설정은 설정에서 언제든지 재구성할 수 있습니다.",
+    telemetryStatus: {
+      enabled: "익명 텔레메트리가 활성화되었습니다.",
+      disabled: "익명 텔레메트리가 비활성화되었습니다.",
+    },
+  },
+  llmProviders: {
+    openai: {
+      name: "OpenAI",
+      description: [
+        "채팅 내용은 학습에 사용되지 않습니다.",
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 OpenAI에서 볼 수 있습니다.",
+      ],
+    },
+    azure: {
+      name: "Azure OpenAI",
+      description: [
+        "채팅 내용은 학습에 사용되지 않습니다.",
+        "텍스트 및 임베딩 텍스트는 OpenAI 또는 Microsoft에서 볼 수 없습니다.",
+      ],
+    },
+    anthropic: {
+      name: "Anthropic",
+      description: [
+        "채팅 내용은 학습에 사용되지 않습니다.",
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 Anthropic에서 볼 수 있습니다.",
+      ],
+    },
+    gemini: {
+      name: "Google Gemini",
+      description: [
+        "채팅 내용은 식별되지 않으며 학습에 사용됩니다.",
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 Google에서 볼 수 있습니다.",
+      ],
+    },
+    lmstudio: {
+      name: "LMStudio",
+      description: [
+        "모델 및 채팅은 LMStudio를 실행하는 서버에서만 액세스할 수 있습니다.",
+      ],
+    },
+    localai: {
+      name: "LocalAI",
+      description: [
+        "모델 및 채팅은 LocalAI를 실행하는 서버에서만 액세스할 수 있습니다.",
+      ],
+    },
+    ollama: {
+      name: "Ollama",
+      description: [
+        "모델 및 채팅은 Ollama 모델을 실행하는 기기에서만 액세스할 수 있습니다.",
+      ],
+    },
+    native: {
+      name: "맞춤형 Llama 모델",
+      description: [
+        "모델 및 채팅은 이 TeamplGPT 인스턴스에서만 액세스할 수 있습니다.",
+      ],
+    },
+    togetherai: {
+      name: "TogetherAI",
+      description: [
+        "채팅 내용은 학습에 사용되지 않습니다.",
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 TogetherAI에서 볼 수 있습니다.",
+      ],
+    },
+    mistral: {
+      name: "Mistral",
+      description: [
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 Mistral에서 볼 수 있습니다.",
+      ],
+    },
+    huggingface: {
+      name: "HuggingFace",
+      description: [
+        "응답에 사용된 프롬프트 및 문서 텍스트는 HuggingFace 관리 엔드포인트로 전송됩니다.",
+      ],
+    },
+    perplexity: {
+      name: "Perplexity AI",
+      description: [
+        "채팅 내용은 학습에 사용되지 않습니다.",
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 Perplexity AI에서 볼 수 있습니다.",
+      ],
+    },
+    openrouter: {
+      name: "OpenRouter",
+      description: [
+        "채팅 내용은 학습에 사용되지 않습니다.",
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 OpenRouter에서 볼 수 있습니다.",
+      ],
+    },
+    groq: {
+      name: "Groq",
+      description: [
+        "채팅 내용은 학습에 사용되지 않습니다.",
+        "응답 생성에 사용된 프롬프트 및 문서 텍스트는 Groq에서 볼 수 있습니다.",
+      ],
+    },
+    koboldcpp: {
+      name: "KoboldCPP",
+      description: [
+        "모델 및 채팅은 KoboldCPP를 실행하는 서버에서만 액세스할 수 있습니다.",
+      ],
+    },
+    textgenwebui: {
+      name: "Oobabooga Web UI",
+      description: [
+        "모델 및 채팅은 Oobabooga 텍스트 생성 웹 UI를 실행하는 서버에서만 액세스할 수 있습니다.",
+      ],
+    },
+    "generic-openai": {
+      name: "Generic OpenAI 호환 서비스",
+      description: [
+        "데이터는 귀하의 일반 엔드포인트 제공자에게 적용되는 서비스 약관에 따라 공유됩니다.",
+      ],
+    },
+    cohere: {
+      name: "Cohere",
+      description: [
+        "데이터는 cohere.com의 서비스 약관 및 귀하의 지역 개인정보 보호법에 따라 공유됩니다.",
+      ],
+    },
+    litellm: {
+      name: "LiteLLM",
+      description: [
+        "모델 및 채팅은 LiteLLM을 실행하는 서버에서만 액세스할 수 있습니다.",
+      ],
+    },
+  },
+  embeddingEngines: {
+    native: {
+      name: "TeamplGPT 임베더",
+      description: [
+        "문서 텍스트는 이 TeamplGPT 인스턴스에서 비공개로 임베딩됩니다.",
+      ],
+    },
+    openai: {
+      name: "OpenAI",
+      description: [
+        "문서 텍스트는 OpenAI 서버로 전송됩니다.",
+        "문서는 학습에 사용되지 않습니다.",
+      ],
+    },
+    azure: {
+      name: "Azure OpenAI",
+      description: [
+        "문서 텍스트는 Microsoft Azure 서비스로 전송됩니다.",
+        "문서는 학습에 사용되지 않습니다.",
+      ],
+    },
+    localai: {
+      name: "LocalAI",
+      description: [
+        "문서 텍스트는 LocalAI를 실행하는 서버에서 비공개로 임베딩됩니다.",
+      ],
+    },
+    ollama: {
+      name: "Ollama",
+      description: [
+        "문서 텍스트는 Ollama를 실행하는 서버에서 비공개로 임베딩됩니다.",
+      ],
+    },
+    lmstudio: {
+      name: "LMStudio",
+      description: [
+        "문서 텍스트는 LMStudio를 실행하는 서버에서 비공개로 임베딩됩니다.",
+      ],
+    },
+    cohere: {
+      name: "Cohere",
+      description: [
+        "데이터는 cohere.com의 서비스 약관 및 귀하의 지역 개인정보 보호법에 따라 공유됩니다.",
+      ],
+    },
+    voyageai: {
+      name: "Voyage AI",
+      description: [
+        "데이터는 voyageai.com의 서비스 약관에 따라 Voyage AI의 서버로 전송됩니다.",
+      ],
+    },
+    litellm: {
+      name: "LiteLLM",
+      description: [
+        "문서 텍스트는 LiteLLM을 실행하는 서버에서만 액세스할 수 있으며, LiteLLM에서 구성한 제공자에게만 액세스할 수 있습니다.",
+      ],
+    },
+    "generic-openai": {
+      name: "Generic OpenAI 호환 서비스",
+      description: [
+        "데이터는 귀하의 일반 엔드포인트 제공자에게 적용되는 서비스 약관에 따라 공유됩니다.",
+      ],
+    },
+  },
+  vectorDbs: {
+    chroma: {
+      name: "Chroma",
+      description: [
+        "벡터와 문서 텍스트는 귀하의 Chroma 인스턴스에 저장됩니다.",
+        "인스턴스에 대한 액세스는 귀하가 관리합니다.",
+      ],
+    },
+    pinecone: {
+      name: "Pinecone",
+      description: [
+        "벡터와 문서 텍스트는 Pinecone의 서버에 저장됩니다.",
+        "데이터에 대한 액세스는 Pinecone에서 관리합니다.",
+      ],
+    },
+    qdrant: {
+      name: "QDrant",
+      description: [
+        "벡터와 문서 텍스트는 귀하의 Qdrant 인스턴스(클라우드 또는 자체 호스팅)에 저장됩니다.",
+      ],
+    },
+    weaviate: {
+      name: "Weaviate",
+      description: [
+        "벡터와 문서 텍스트는 귀하의 Weaviate 인스턴스(클라우드 또는 자체 호스팅)에 저장됩니다.",
+      ],
+    },
+    milvus: {
+      name: "Milvus",
+      description: [
+        "벡터와 문서 텍스트는 귀하의 Milvus 인스턴스(클라우드 또는 자체 호스팅)에 저장됩니다.",
+      ],
+    },
+    zilliz: {
+      name: "Zilliz Cloud",
+      description: [
+        "벡터와 문서 텍스트는 귀하의 Zilliz 클라우드 클러스터에 저장됩니다.",
+      ],
+    },
+    astra: {
+      name: "AstraDB",
+      description: [
+        "벡터와 문서 텍스트는 귀하의 AstraDB 클라우드 데이터베이스에 저장됩니다.",
+      ],
+    },
+    lancedb: {
+      name: "LanceDB",
+      description: [
+        "벡터와 문서 텍스트는 이 TeamplGPT 인스턴스에 비공개로 저장됩니다.",
+      ],
+    },
+  },
+
+  experimentalFeatures: {
+    title: "실험적 기능",
+    selectFeature: "실험적 기능을 선택하세요",
+    on: "켜짐",
+    off: "꺼짐",
+    accepted: "실험적 기능 세트가 활성화되었습니다. 페이지를 다시 로드합니다.",
+    tosTitle: "실험적 기능 사용 약관",
+    tosIntro:
+      "TeamplGPT의 실험적 기능은 우리가 파일럿 테스트 중인 기능으로, 선택적으로 사용할 수 있습니다. 기능 승인 전에 잠재적인 우려 사항이 있으면 사전에 조건을 제시하거나 경고할 것입니다.",
+    tosRisksIntro:
+      "이 페이지의 기능을 사용할 때 다음과 같은 가능성이 있습니다.",
+    tosRisk1: "데이터 손실.",
+    tosRisk2: "결과 품질의 변화.",
+    tosRisk3: "저장 공간 증가.",
+    tosRisk4: "자원 소비 증가.",
+    tosRisk5: "연결된 LLM 또는 임베딩 제공자의 비용 또는 사용 증가.",
+    tosRisk6: "TeamplGPT 사용 중 잠재적인 버그 또는 문제.",
+    tosConditionsIntro:
+      "실험적 기능을 사용할 때 다음과 같은 비포괄적인 조건 목록이 따릅니다.",
+    tosCondition1: "기능이 향후 업데이트에서 존재하지 않을 수 있습니다.",
+    tosCondition2: "현재 사용 중인 기능은 안정적이지 않습니다.",
+    tosCondition3:
+      "해당 기능은 향후 버전, 구성 또는 구독에서 사용할 수 없을 수 있습니다.",
+    tosCondition4: "베타 기능 사용 시 개인정보 보호 설정이 준수됩니다.",
+    tosCondition5: "이 조건은 향후 업데이트에서 변경될 수 있습니다.",
+    tosConclusion1:
+      "기능에 접근하려면 이 모달의 승인이 필요합니다. 자세한 내용을 읽으려면",
+    tosConclusion2: "또는 이메일로 문의하세요",
+    reject: "거부 및 닫기",
+    accept: "이해했습니다",
+  },
+  features: {
+    experimental_live_file_sync: {
+      title: "실험적 라이브 파일 동기화",
+    },
+    another_feature: {
+      title: "또 다른 기능",
+    },
   },
 };
 

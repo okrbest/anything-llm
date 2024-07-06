@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { DotsThreeOutline, LinkSimple } from "@phosphor-icons/react";
 import showToast from "@/utils/toast";
 import { useModal } from "@/hooks/useModal";
@@ -8,8 +8,10 @@ import paths from "@/utils/paths";
 import { nFormatter } from "@/utils/numbers";
 import EditEmbedModal from "./EditEmbedModal";
 import CodeSnippetModal from "./CodeSnippetModal";
+import { useTranslation } from "react-i18next";
 
 export default function EmbedRow({ embed }) {
+  const { t } = useTranslation();
   const rowRef = useRef(null);
   const [enabled, setEnabled] = useState(Number(embed.enabled) === 1);
   const {
@@ -24,38 +26,26 @@ export default function EmbedRow({ embed }) {
   } = useModal();
 
   const handleSuspend = async () => {
-    if (
-      !window.confirm(
-        `Are you sure you want to disabled this embed?\nOnce disabled the embed will no longer respond to any chat requests.`
-      )
-    )
-      return false;
+    if (!window.confirm(t("embedRow.confirmSuspend"))) return false;
 
     const { success, error } = await Embed.updateEmbed(embed.id, {
       enabled: !enabled,
     });
     if (!success) showToast(error, "error", { clear: true });
     if (success) {
-      showToast(
-        `Embed ${enabled ? "has been disabled" : "is active"}.`,
-        "success",
-        { clear: true }
-      );
+      showToast(t(`embedRow.${enabled ? "disabled" : "enabled"}`), "success", {
+        clear: true,
+      });
       setEnabled(!enabled);
     }
   };
   const handleDelete = async () => {
-    if (
-      !window.confirm(
-        `Are you sure you want to delete this embed?\nOnce deleted this embed will no longer respond to chats or be active.\n\nThis action is irreversible.`
-      )
-    )
-      return false;
+    if (!window.confirm(t("embedRow.confirmDelete"))) return false;
     const { success, error } = await Embed.deleteEmbed(embed.id);
     if (!success) showToast(error, "error", { clear: true });
     if (success) {
       rowRef?.current?.remove();
-      showToast("Embed deleted from system.", "success", { clear: true });
+      showToast(t("embedRow.deleted"), "success", { clear: true });
     }
   };
 
@@ -96,19 +86,19 @@ export default function EmbedRow({ embed }) {
               onClick={openSnippetModal}
               className="font-medium text-blue-600 dark:text-blue-300 px-2 py-1 rounded-lg hover:bg-blue-50 hover:dark:bg-blue-800 hover:dark:bg-opacity-20"
             >
-              Show Code
+              {t("embedRow.showCode")}
             </button>
             <button
               onClick={handleSuspend}
               className="font-medium text-orange-600 dark:text-orange-300 px-2 py-1 rounded-lg hover:bg-orange-50 hover:dark:bg-orange-800 hover:dark:bg-opacity-20"
             >
-              {enabled ? "Disable" : "Enable"}
+              {enabled ? t("embedRow.disable") : t("embedRow.enable")}
             </button>
             <button
               onClick={handleDelete}
               className="font-medium text-red-600 dark:text-red-300 px-2 py-1 rounded-lg hover:bg-red-50 hover:dark:bg-red-800 hover:dark:bg-opacity-20"
             >
-              Delete
+              {t("embedRow.delete")}
             </button>
           </>
         </td>
@@ -130,7 +120,11 @@ function ActiveDomains({ domainList }) {
     return (
       <div className="flex flex-col gap-y-2">
         {domains.map((domain) => {
-          return <p className="font-mono !font-normal">{domain}</p>;
+          return (
+            <p className="font-mono !font-normal" key={domain}>
+              {domain}
+            </p>
+          );
         })}
       </div>
     );

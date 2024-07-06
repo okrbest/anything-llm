@@ -66,7 +66,7 @@ function ElevenLabsModelSelection({ apiKey, settings }) {
     return (
       <div className="flex flex-col w-60">
         <label className="text-white text-sm font-semibold block mb-4">
-          {t("llm.providers.modelLabel")}
+          {t("textToSpeech.voiceModelLabel")}
         </label>
         <select
           name="TTSElevenLabsVoiceModel"
@@ -84,7 +84,7 @@ function ElevenLabsModelSelection({ apiKey, settings }) {
   return (
     <div className="flex flex-col w-60">
       <label className="text-white text-sm font-semibold block mb-4">
-        {t("llm.providers.modelLabel")}
+        {t("textToSpeech.voiceModelLabel")}
       </label>
       <select
         name="TTSElevenLabsVoiceModel"

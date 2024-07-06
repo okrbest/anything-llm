@@ -10,32 +10,35 @@ import ElevenLabsIcon from "@/media/ttsproviders/elevenlabs.png";
 import BrowserNative from "@/components/TextToSpeech/BrowserNative";
 import OpenAiTTSOptions from "@/components/TextToSpeech/OpenAiOptions";
 import ElevenLabsTTSOptions from "@/components/TextToSpeech/ElevenLabsOptions";
-
-const PROVIDERS = [
-  {
-    name: "System native",
-    value: "native",
-    logo: AnythingLLMIcon,
-    options: (settings) => <BrowserNative settings={settings} />,
-    description: "Uses your browser's built in TTS service if supported.",
-  },
-  {
-    name: "OpenAI",
-    value: "openai",
-    logo: OpenAiLogo,
-    options: (settings) => <OpenAiTTSOptions settings={settings} />,
-    description: "Use OpenAI's text to speech voices.",
-  },
-  {
-    name: "ElevenLabs",
-    value: "elevenlabs",
-    logo: ElevenLabsIcon,
-    options: (settings) => <ElevenLabsTTSOptions settings={settings} />,
-    description: "Use ElevenLabs's text to speech voices and technology.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function TextToSpeechProvider({ settings }) {
+  const { t } = useTranslation();
+
+  const PROVIDERS = [
+    {
+      name: t("textToSpeech.providers.native.name"),
+      value: "native",
+      logo: AnythingLLMIcon,
+      options: (settings) => <BrowserNative settings={settings} />,
+      description: t("textToSpeech.providers.native.description"),
+    },
+    {
+      name: t("textToSpeech.providers.openai.name"),
+      value: "openai",
+      logo: OpenAiLogo,
+      options: (settings) => <OpenAiTTSOptions settings={settings} />,
+      description: t("textToSpeech.providers.openai.description"),
+    },
+    {
+      name: t("textToSpeech.providers.elevenlabs.name"),
+      value: "elevenlabs",
+      logo: ElevenLabsIcon,
+      options: (settings) => <ElevenLabsTTSOptions settings={settings} />,
+      description: t("textToSpeech.providers.elevenlabs.description"),
+    },
+  ];
+
   const [saving, setSaving] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -57,9 +60,9 @@ export default function TextToSpeechProvider({ settings }) {
     setSaving(true);
 
     if (error) {
-      showToast(`Failed to save preferences: ${error}`, "error");
+      showToast(t("textToSpeech.saveError", { error }), "error");
     } else {
-      showToast("Text-to-speech preferences saved successfully.", "success");
+      showToast(t("textToSpeech.saveSuccess"), "success");
     }
     setSaving(false);
     setHasChanges(!!error);
@@ -98,24 +101,25 @@ export default function TextToSpeechProvider({ settings }) {
         <div className="w-full flex flex-col gap-y-1 pb-6 border-white border-b-2 border-opacity-10">
           <div className="flex gap-x-4 items-center">
             <p className="text-lg leading-6 font-bold text-white">
-              Text-to-speech Preference
+              {t("textToSpeech.title")}
             </p>
           </div>
           <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
-            Here you can specify what kind of text-to-speech providers you would
-            want to use in your TeamplGPT experience. By default, we use the
-            browser's built in support for these services, but you may want to
-            use others.
+            {t("textToSpeech.description")}
           </p>
         </div>
         <div className="w-full justify-end flex">
           {hasChanges && (
             <CTAButton className="mt-3 mr-0 -mb-14 z-10">
-              {saving ? "Saving..." : "Save changes"}
+              {saving
+                ? t("textToSpeech.saving")
+                : t("textToSpeech.saveChanges")}
             </CTAButton>
           )}
         </div>
-        <div className="text-base font-bold text-white mt-6 mb-4">Provider</div>
+        <div className="text-base font-bold text-white mt-6 mb-4">
+          {t("textToSpeech.provider")}
+        </div>
         <div className="relative">
           {searchMenuOpen && (
             <div
@@ -136,7 +140,7 @@ export default function TextToSpeechProvider({ settings }) {
                     type="text"
                     name="tts-provider-search"
                     autoComplete="off"
-                    placeholder="Search text to speech providers"
+                    placeholder={t("textToSpeech.searchPlaceholder")}
                     className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none focus:border-white text-white placeholder:text-white placeholder:font-medium"
                     onChange={(e) => setSearchQuery(e.target.value)}
                     ref={searchInputRef}

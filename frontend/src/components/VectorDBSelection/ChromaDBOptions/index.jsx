@@ -1,10 +1,15 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function ChromaDBOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full flex flex-col gap-y-4">
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Chroma Endpoint
+            {t("vector.providers.chroma.endpointLabel")}
           </label>
           <input
             type="url"
@@ -20,7 +25,7 @@ export default function ChromaDBOptions({ settings }) {
 
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            API Header
+            {t("vector.providers.chroma.apiHeaderLabel")}
           </label>
           <input
             name="ChromaApiHeader"
@@ -34,7 +39,7 @@ export default function ChromaDBOptions({ settings }) {
 
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            API Key
+            {t("vector.providers.chroma.apiKeyLabel")}
           </label>
           <input
             name="ChromaApiKey"

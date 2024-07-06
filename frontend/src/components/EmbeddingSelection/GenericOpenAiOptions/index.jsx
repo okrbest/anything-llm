@@ -1,10 +1,14 @@
+import { useTranslation } from "react-i18next";
+
 export default function GenericOpenAiEmbeddingOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full flex flex-col gap-y-4">
       <div className="w-full flex items-center gap-4 flex-wrap">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Base URL
+            {t("embedding.providers.genericOpenai.baseUrl")}
           </label>
           <input
             type="url"
@@ -19,7 +23,7 @@ export default function GenericOpenAiEmbeddingOptions({ settings }) {
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Embedding Model
+            {t("embedding.providers.genericOpenai.model")}
           </label>
           <input
             type="text"
@@ -34,7 +38,7 @@ export default function GenericOpenAiEmbeddingOptions({ settings }) {
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Max embedding chunk length
+            {t("embedding.providers.genericOpenai.maxChunkLength")}
           </label>
           <input
             type="number"
@@ -53,7 +57,10 @@ export default function GenericOpenAiEmbeddingOptions({ settings }) {
         <div className="flex flex-col w-60">
           <div className="flex flex-col gap-y-1 mb-4">
             <label className="text-white text-sm font-semibold flex items-center gap-x-2">
-              API Key <p className="!text-xs !italic !font-thin">optional</p>
+              {t("embedding.providers.genericOpenai.apiKeyLabel")}{" "}
+              <p className="!text-xs !italic !font-thin">
+                {t("embedding.providers.genericOpenai.optional")}
+              </p>
             </label>
           </div>
           <input

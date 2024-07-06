@@ -1,10 +1,15 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
 export default function MilvusDBOptions({ settings }) {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full flex flex-col gap-y-4">
       <div className="w-full flex items-center gap-4">
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Milvus DB Address
+            {t("vector.providers.milvus.addressLabel")}
           </label>
           <input
             type="text"
@@ -20,7 +25,7 @@ export default function MilvusDBOptions({ settings }) {
 
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Milvus Username
+            {t("vector.providers.milvus.usernameLabel")}
           </label>
           <input
             type="text"
@@ -34,7 +39,7 @@ export default function MilvusDBOptions({ settings }) {
         </div>
         <div className="flex flex-col w-60">
           <label className="text-white text-sm font-semibold block mb-4">
-            Milvus Password
+            {t("vector.providers.milvus.passwordLabel")}
           </label>
           <input
             type="password"

@@ -81,12 +81,14 @@ function ThirdParty({ settings }) {
               className="w-8 h-8 rounded"
             />
             <p className="text-white text-sm font-bold">
-              {LLM_SELECTION_PRIVACY[llmChoice].name}
+              {t(`llmProviders.${llmChoice}.name`)}
             </p>
           </div>
           <ul className="flex flex-col list-disc ml-4">
-            {LLM_SELECTION_PRIVACY[llmChoice].description.map((desc) => (
-              <li className="text-white/90 text-sm">{desc}</li>
+            {LLM_SELECTION_PRIVACY[llmChoice].description.map((desc, index) => (
+              <li className="text-white/90 text-sm" key={index}>
+                {t(`llmProviders.${llmChoice}.description.${index}`)}
+              </li>
             ))}
           </ul>
         </div>
@@ -97,17 +99,21 @@ function ThirdParty({ settings }) {
           <div className="flex items-center gap-2.5">
             <img
               src={EMBEDDING_ENGINE_PRIVACY[embeddingEngine].logo}
-              alt="LLM Logo"
+              alt="Embedding Engine Logo"
               className="w-8 h-8 rounded"
             />
             <p className="text-white text-sm font-bold">
-              {EMBEDDING_ENGINE_PRIVACY[embeddingEngine].name}
+              {t(`embeddingEngines.${embeddingEngine}.name`)}
             </p>
           </div>
           <ul className="flex flex-col list-disc ml-4">
             {EMBEDDING_ENGINE_PRIVACY[embeddingEngine].description.map(
-              (desc) => (
-                <li className="text-white/90 text-sm">{desc}</li>
+              (desc, index) => (
+                <li className="text-white/90 text-sm" key={index}>
+                  {t(
+                    `embeddingEngines.${embeddingEngine}.description.${index}`
+                  )}
+                </li>
               )
             )}
           </ul>
@@ -120,16 +126,18 @@ function ThirdParty({ settings }) {
           <div className="flex items-center gap-2.5">
             <img
               src={VECTOR_DB_PRIVACY[vectorDb].logo}
-              alt="LLM Logo"
+              alt="Vector DB Logo"
               className="w-8 h-8 rounded"
             />
             <p className="text-white text-sm font-bold">
-              {VECTOR_DB_PRIVACY[vectorDb].name}
+              {t(`vectorDbs.${vectorDb}.name`)}
             </p>
           </div>
           <ul className="flex flex-col list-disc ml-4">
-            {VECTOR_DB_PRIVACY[vectorDb].description.map((desc) => (
-              <li className="text-white/90 text-sm">{desc}</li>
+            {VECTOR_DB_PRIVACY[vectorDb].description.map((desc, index) => (
+              <li className="text-white/90 text-sm" key={index}>
+                {t(`vectorDbs.${vectorDb}.description.${index}`)}
+              </li>
             ))}
           </ul>
         </div>
@@ -149,7 +157,7 @@ function TelemetryLogs({ settings }) {
     });
     setTelemetry(!telemetry);
     showToast(
-      `Anonymous Telemetry has been ${!telemetry ? "enabled" : "disabled"}.`,
+      t(`privacy.telemetryStatus.${!telemetry ? "enabled" : "disabled"}`),
       "info",
       { clear: true }
     );
@@ -179,10 +187,7 @@ function TelemetryLogs({ settings }) {
         </div>
         <div className="flex flex-col items-left space-y-2">
           <p className="text-white/80 text-xs rounded-lg w-96">
-            All events do not record IP-address and contain{" "}
-            <b>no identifying</b> content, settings, chats, or other non-usage
-            based information. To see the list of event tags collected you can
-            look on{" "}
+            {t("privacy.telemetryDescription1")}{" "}
             <a
               href="https://github.com/search?q=repo%3AMintplex-Labs%2Fanything-llm%20.sendTelemetry(&type=code"
               className="underline text-blue-400"
@@ -193,11 +198,7 @@ function TelemetryLogs({ settings }) {
             .
           </p>
           <p className="text-white/80 text-xs rounded-lg w-96">
-            As an open-source project we respect your right to privacy. We are
-            dedicated to building the best solution for integrating AI and
-            documents privately and securely. If you do decide to turn off
-            telemetry all we ask is to consider sending us feedback and thoughts
-            so that we can continue to improve TeamplGPT for you.{" "}
+            {t("privacy.telemetryDescription2")}{" "}
             <a
               href="mailto:team@mintplexlabs.com"
               className="underline text-blue-400"
