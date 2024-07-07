@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import PreLoader from "@/components/Preloader";
 import { dollarFormat } from "@/utils/numbers";
 import WorkspaceFileRow from "./WorkspaceFileRow";
@@ -22,6 +23,8 @@ function WorkspaceDirectory({
   embeddingCosts,
   movedItems,
 }) {
+  const { t } = useTranslation();
+
   if (loading) {
     return (
       <div className="px-8">
@@ -32,7 +35,7 @@ function WorkspaceDirectory({
         </div>
         <div className="relative w-[560px] h-[445px] bg-zinc-900 rounded-2xl mt-5">
           <div className="text-white/80 text-xs grid grid-cols-12 py-2 px-8">
-            <p className="col-span-5">Name</p>
+            <p className="col-span-5">{t("directory.name")}</p>
             <p className="col-span-2" />
           </div>
           <div className="w-full h-full flex items-center justify-center flex-col gap-y-5">
@@ -60,7 +63,7 @@ function WorkspaceDirectory({
           }`}
         >
           <div className="text-white/80 text-xs grid grid-cols-12 py-2 px-8 border-b border-white/20 bg-zinc-900 sticky top-0 z-10">
-            <p className="col-span-5">Name</p>
+            <p className="col-span-5">{t("directory.name")}</p>
             <p className="col-span-2" />
           </div>
           <div className="w-full h-full flex flex-col z-0">
@@ -87,7 +90,7 @@ function WorkspaceDirectory({
             ) : (
               <div className="w-full h-full flex items-center justify-center">
                 <p className="text-white text-opacity-40 text-sm font-medium">
-                  No Documents
+                  {t("directory.noDocuments")}
                 </p>
               </div>
             )}
@@ -99,14 +102,15 @@ function WorkspaceDirectory({
               <p className="text-sm font-semibold">
                 {embeddingCosts === 0
                   ? ""
-                  : `Estimated Cost: ${
-                      embeddingCosts < 0.01
-                        ? `< $0.01`
-                        : dollarFormat(embeddingCosts)
-                    }`}
+                  : t("workspaceDirectory.estimatedCost", {
+                      cost:
+                        embeddingCosts < 0.01
+                          ? `< $0.01`
+                          : dollarFormat(embeddingCosts),
+                    })}
               </p>
               <p className="mt-2 text-xs italic" hidden={embeddingCosts === 0}>
-                *One time cost for embeddings
+                {t("workspaceDirectory.oneTimeCost")}
               </p>
             </div>
 
@@ -114,7 +118,7 @@ function WorkspaceDirectory({
               onClick={saveChanges}
               className="border border-slate-200 px-5 py-2.5 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
             >
-              Save and Embed
+              {t("workspaceDirectory.saveAndEmbed")}
             </button>
           </div>
         )}
@@ -126,7 +130,9 @@ function WorkspaceDirectory({
 }
 
 const PinAlert = memo(() => {
+  const { t } = useTranslation();
   const [showAlert, setShowAlert] = useState(false);
+
   function dismissAlert() {
     setShowAlert(false);
     window.localStorage.setItem(SEEN_DOC_PIN_ALERT, "1");
@@ -151,25 +157,14 @@ const PinAlert = memo(() => {
             <div className="flex items-center gap-2">
               <PushPin className="text-red-600 text-lg w-6 h-6" weight="fill" />
               <h3 className="text-xl font-semibold text-white">
-                What is document pinning?
+                {t("workspaceDirectory.pinAlert.title")}
               </h3>
             </div>
           </div>
           <div className="w-full p-6 text-white text-md flex flex-col gap-y-2">
-            <p>
-              When you <b>pin</b> a document in TeamplGPT we will inject the
-              entire content of the document into your prompt window for your
-              LLM to fully comprehend.
-            </p>
-            <p>
-              This works best with <b>large-context models</b> or small files
-              that are critical to its knowledge-base.
-            </p>
-            <p>
-              If you are not getting the answers you desire from TeamplGPT by
-              default then pinning is a great way to get higher quality answers
-              in a click.
-            </p>
+            <p>{t("workspaceDirectory.pinAlert.message1")}</p>
+            <p>{t("workspaceDirectory.pinAlert.message2")}</p>
+            <p>{t("workspaceDirectory.pinAlert.message3")}</p>
           </div>
 
           <div className="flex w-full justify-between items-center p-6 space-x-2 border-t rounded-b border-gray-500/50">
@@ -178,7 +173,7 @@ const PinAlert = memo(() => {
               onClick={dismissAlert}
               className="border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
             >
-              Okay, got it
+              {t("workspaceDirectory.pinAlert.button")}
             </button>
           </div>
         </div>
@@ -188,7 +183,9 @@ const PinAlert = memo(() => {
 });
 
 const DocumentWatchAlert = memo(() => {
+  const { t } = useTranslation();
   const [showAlert, setShowAlert] = useState(false);
+
   function dismissAlert() {
     setShowAlert(false);
     window.localStorage.setItem(SEEN_WATCH_ALERT, "1");
@@ -216,30 +213,22 @@ const DocumentWatchAlert = memo(() => {
                 weight="regular"
               />
               <h3 className="text-xl font-semibold text-white">
-                What does watching a document do?
+                {t("workspaceDirectory.watchAlert.title")}
               </h3>
             </div>
           </div>
           <div className="w-full p-6 text-white text-md flex flex-col gap-y-2">
+            <p>{t("workspaceDirectory.watchAlert.message1")}</p>
+            <p>{t("workspaceDirectory.watchAlert.message2")}</p>
             <p>
-              When you <b>watch</b> a document in TeamplGPT we will{" "}
-              <i>automatically</i> sync your document content from it's original
-              source on regular intervals. This will automatically update the
-              content in every workspace where this file is managed.
-            </p>
-            <p>
-              This feature currently supports online-based content and will not
-              be available for manually uploaded documents.
-            </p>
-            <p>
-              You can manage what documents are watched from the{" "}
+              {t("workspaceDirectory.watchAlert.message3.part1")}{" "}
               <Link
                 to={paths.experimental.liveDocumentSync.manage()}
                 className="text-blue-600 underline"
               >
-                File manager
+                {t("workspaceDirectory.watchAlert.message3.link")}
               </Link>{" "}
-              admin view.
+              {t("workspaceDirectory.watchAlert.message3.part2")}
             </p>
           </div>
 
@@ -249,7 +238,7 @@ const DocumentWatchAlert = memo(() => {
               onClick={dismissAlert}
               className="border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
             >
-              Okay, got it
+              {t("workspaceDirectory.watchAlert.button")}
             </button>
           </div>
         </div>

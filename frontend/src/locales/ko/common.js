@@ -83,7 +83,7 @@ const TRANSLATIONS = {
     createWorkspace: "첫 번째 워크스페이스 생성",
     user2: "이건 AI 드롭박스 같은 건가요? 채팅은 어떤가요? 채팅 봇 아닌가요?",
     part5:
-      "TeamplGPT는 단순한 드롭박스 이상의 기능을 제공합니다.\n\nTeamplGPT는 데이터를 활용해 대화하는 두 가지 방법을 제공합니다:\n\n **질의 모드**: 이 모드에서는 워크스페이스에 저장된 문서에서 데이터를 찾아 답변합니다. 워크스페이스에 더 많은 문서를 추가할수록 더 유용한 정보를 얻을 수 있습니다.\n\n**대화 모드**: 이 모드에서는 문서와 진행 중인 채팅 기록, 사전 훈련된 LLM의 지식 모두를 반영하여 답변합니다. 실시간으로 정보를 추가하거나 수정할 때 유용합니다.\n\n채팅 중간에도 이 두 모드 사이를 자유롭게 전환할 수 있습니다.",
+      "TeamplGPT는 단순한 드롭박스 이상의 기능을 제공합니다.\n\nTeamplGPT는 데이터를 활용해 대화하는 두 가지 방법을 제공합니다:\n\n **쿼리 모드**: 이 모드에서는 워크스페이스에 저장된 문서에서 데이터를 찾아 답변합니다. 워크스페이스에 더 많은 문서를 추가할수록 더 유용한 정보를 얻을 수 있습니다.\n\n**대화 모드**: 이 모드에서는 문서와 진행 중인 채팅 기록, 사전 훈련된 LLM의 지식 모두를 반영하여 답변합니다. 실시간으로 정보를 추가하거나 수정할 때 유용합니다.\n\n채팅 중간에도 이 두 모드 사이를 자유롭게 전환할 수 있습니다.",
     user3: "와, 이거 정말 놀라운데요. 빨리 사용해보고 싶어요!",
     part6: "즐거운 시간 되세요!",
     starOnGithub: "GitHub 스타 누르기",
@@ -94,6 +94,37 @@ const TRANSLATIONS = {
     home: "홈",
     newWorkspace: "새 워크스페이스",
     showSidebar: "사이드바 열기",
+  },
+
+  threadContainer: {
+    loadingThreads: "대화방을 로드 중...",
+    startingThread: "대화방 시작 중...",
+    newThread: "새 대화방",
+    deleteSelected: "선택 삭제",
+  },
+  threadItem: {
+    default: "기본",
+    deletedThread: "삭제된 대화방",
+    renameThread: "이름 변경",
+    deleteThread: "대화방 삭제",
+    confirmDelete:
+      "이 대화방을 삭제하시겠습니까? 모든 채팅이 삭제됩니다. 이 작업은 되돌릴 수 없습니다.",
+    threadRenamePrompt: "대화방의 새 이름을 입력하세요.",
+    threadUpdateError: "대화방을 업데이트할 수 없습니다! {{message}}",
+    threadDeleteError: "대화방을 삭제할 수 없습니다!",
+    threadDeleteSuccess: "대화방이 성공적으로 삭제되었습니다!",
+  },
+
+  chatHistory: {
+    welcome: "새 워크스페이스에 오신 것을 환영합니다.",
+    startChat: "시작하려면",
+    uploadDocument: "문서를 업로드하거나",
+    orSendChat: "채팅을 보내세요.",
+    justSendChat: "시작하려면 채팅을 보내세요.",
+    statusResponse: "상태 응답",
+    scrollToBottom: "맨 아래로 스크롤",
+    startingThread: "스레드 시작 중...",
+    newThread: "새 스레드",
   },
 
   newWorkspaceModal: {
@@ -338,16 +369,16 @@ const TRANSLATIONS = {
     mode: {
       title: "채팅 모드",
       chat: {
-        title: "채팅",
-        "desc-start": "LLM의 일반 지식",
-        and: "과",
-        "desc-end": "문서 컨텍스트를 기반으로 답변을 제공합니다.",
+        title: "대화",
+        "desc-start": " : LLM의 사전 학습 지식과",
+        and: " ",
+        "desc-end": "제공한 문서를 기반으로 답변합니다.",
       },
       query: {
         title: "쿼리",
-        "desc-start": "문서 컨텍스트가 발견된 경우에만",
-        only: "쿼리",
-        "desc-end": "모드에서 답변을 제공합니다.",
+        "desc-start": " : 제공한 문서에 질문 관련 정보가 있는 경우에만",
+        only: " ",
+        "desc-end": "답변합니다.",
       },
     },
     history: {
@@ -713,7 +744,7 @@ const TRANSLATIONS = {
     saveError: "LLM 설정을 저장하지 못했습니다: {{error}}",
     providers: {
       defaultName: "시스템 기본값",
-      defaultDescription: "이 작업 공간에 시스템 기본 설정 LLM을 사용합니다.",
+      defaultDescription: "이 워크스페이스에 시스템 기본 설정 LLM을 사용합니다.",
       apiKeyLabel: "{{provider}} API 키",
       apiKeyPlaceholder: "{{provider}} API 키",
       modelLabel: "채팅 모델 선택",
@@ -1109,7 +1140,7 @@ const TRANSLATIONS = {
     searchPlaceholder: "모든 벡터 데이터베이스 제공자 검색",
     saveChanges: "변경 사항 저장",
     changeWarning:
-      "벡터 데이터베이스를 변경하면 이전에 삽입된 문서와 향후 유사성 검색 결과가 무시됩니다. 각 작업 공간에 다시 추가해야 합니다.",
+      "벡터 데이터베이스를 변경하면 이전에 삽입된 문서와 향후 유사성 검색 결과가 무시됩니다. 각 워크스페이스에 다시 추가해야 합니다.",
     providers: {
       lancedb: {
         description:
@@ -1572,6 +1603,242 @@ const TRANSLATIONS = {
     },
     another_feature: {
       title: "또 다른 기능",
+    },
+  },
+
+  liveSyncToggle: {
+    updateFailed: "기능 상태 업데이트에 실패했습니다.",
+    status: {
+      enabled: "라이브 문서 콘텐츠 동기화가 활성화되었습니다.",
+      disabled: "라이브 문서 콘텐츠 동기화가 비활성화되었습니다.",
+    },
+    title: "자동 문서 콘텐츠 동기화",
+    description1:
+      "문서를 '감시'하도록 지정할 수 있는 기능을 활성화합니다. 감시된 문서의 내용은 TeamplGPT에서 정기적으로 가져와 업데이트됩니다.",
+    description2:
+      "감시된 문서는 업데이트와 동시에 참조된 모든 워크스페이스에서 자동으로 업데이트됩니다.",
+    description3:
+      "이 기능은 웹 기반 콘텐츠(예: 웹사이트, Confluence, YouTube, GitHub 파일)에만 적용됩니다.",
+    docsLink: "기능 설명 및 주의 사항",
+    manageLink: "감시 중인 문서 관리 →",
+  },
+
+  liveDocumentSyncManager: {
+    title: "감시 중인 문서",
+    description:
+      "현재 인스턴스에서 감시 중인 모든 문서입니다. 이 문서들의 내용은 주기적으로 동기화됩니다.",
+    documentName: "문서 이름",
+    lastSynced: "마지막 동기화",
+    timeUntilNextRefresh: "다음 갱신까지 남은 시간",
+    createdOn: "생성 날짜",
+  },
+
+  uploadFile: {
+    scrapingLink: "링크 스크래핑 중...",
+    errorUploadingLink: "링크 업로드 오류: {{error}}",
+    linkUploaded: "링크가 성공적으로 업로드되었습니다",
+    processorUnavailable: "문서 프로세서 사용 불가",
+    tryAgainLater:
+      "문서 프로세서가 오프라인 상태이므로 현재 파일을 업로드할 수 없습니다. 나중에 다시 시도해 주세요.",
+    clickOrDrag: "클릭하여 업로드하거나 드래그 앤 드롭",
+    supportedFormats:
+      "텍스트 파일, CSV, 스프레드시트, 오디오 파일 등을 지원합니다!",
+    orSubmitLink: "또는 링크 제출",
+    fetching: "가져오는 중...",
+    fetchWebsite: "웹사이트<br />가져오기",
+    uploadInfo:
+      "이 파일들은 이 TeamplGPT 인스턴스에서 실행 중인 문서 프로세서로 업로드됩니다. <br />이 파일들은 제3자에게 전송되거나 공유되지 않습니다.",
+  },
+
+  documentSettings: {
+    updatingWorkspace: "워크스페이스 업데이트 중...",
+    loadingMessage: "큰 문서의 경우 시간이 걸릴 수 있습니다",
+    error: "오류: {{message}}",
+    updateSuccess: "워크스페이스가 성공적으로 업데이트되었습니다.",
+    updateFailed: "워크스페이스 업데이트 실패: {{error}}",
+  },
+  workspaceDirectory: {
+    name: "이름",
+    noDocuments: "문서 없음",
+    estimatedCost: "예상 비용: {{cost}}",
+    oneTimeCost: "*임베딩에 대한 일회성 비용",
+    saveAndEmbed: "저장 및 임베드",
+    pinAlert: {
+      title: "문서 고정이란 무엇입니까?",
+      message1:
+        "TeamplGPT에서 문서를 고정하면 문서의 전체 내용을 LLM이 완전히 이해할 수 있도록 프롬프트 창에 주입합니다.",
+      message2:
+        "이는 큰 컨텍스트 모델이나 지식 기반에 중요한 작은 파일에 가장 적합합니다.",
+      message3:
+        "기본적으로 TeamplGPT에서 원하는 답변을 얻지 못하는 경우 고정은 클릭 한 번으로 더 높은 품질의 답변을 얻을 수 있는 좋은 방법입니다.",
+      button: "알겠습니다",
+    },
+    watchAlert: {
+      title: "문서를 보는 것은 무엇을 의미합니까?",
+      message1:
+        "TeamplGPT에서 문서를 보면 정기적으로 원본 소스에서 문서 내용을 자동으로 동기화합니다. 이렇게 하면 이 파일이 관리되는 모든 워크스페이스의 내용이 자동으로 업데이트됩니다.",
+      message2:
+        "이 기능은 현재 온라인 기반 콘텐츠를 지원하며 수동으로 업로드된 문서에는 사용할 수 없습니다.",
+      message3: {
+        part1: "파일 관리자의",
+        link: "파일 관리자",
+        part2: "관리자 보기에서 어떤 문서를 보는지 관리할 수 있습니다.",
+      },
+      button: "알겠습니다",
+    },
+  },
+  directory: {
+    deleteConfirmation:
+      "이 파일과 폴더를 삭제하시겠습니까?\n이렇게 하면 파일이 시스템에서 제거되고 기존 워크스페이스에서 자동으로 제거됩니다.\n이 작업은 되돌릴 수 없습니다.",
+    removingFiles:
+      "{{numDocuments}}개의 문서와 {{numFolders}}개의 폴더를 제거 중입니다. 잠시만 기다려 주십시오.",
+    errorMovingFiles: "파일 이동 오류: {{message}}",
+    successfullyMoved: "{{numDocuments}}개의 문서를 성공적으로 이동했습니다.",
+    movingDocuments:
+      "{{numDocuments}}개의 문서를 이동 중입니다. 잠시만 기다려 주십시오.",
+    myDocuments: "내 문서",
+    searchPlaceholder: "문서 검색",
+    newFolder: "새 폴더",
+    name: "이름",
+    noDocuments: "문서 없음",
+    moveToWorkspace: "워크스페이스로 이동",
+  },
+
+  newFolderModal: {
+    createNewFolder: "새 폴더 만들기",
+    folderName: "폴더 이름",
+    folderNamePlaceholder: "폴더 이름을 입력하세요",
+    createFolderError: "폴더 생성 실패",
+    cancel: "취소",
+    createFolder: "폴더 만들기",
+    error: "오류: {{error}}",
+  },
+
+  manageWorkspace: {
+    editing: "편집 중",
+    editingNotAvailable:
+      "이 설정은 데스크탑 장치에서만 편집할 수 있습니다. 계속하려면 데스크탑에서 이 페이지에 액세스하세요.",
+    dismiss: "닫기",
+    documents: "문서",
+    dataConnectors: "데이터 커넥터",
+  },
+
+  dataConnectors: {
+    searchPlaceholder: "데이터 커넥터 검색",
+    noConnectorsFound: "데이터 커넥터를 찾을 수 없습니다.",
+    github: {
+      name: "GitHub 저장소",
+      description:
+        "전체 공개 또는 비공개 Github 저장소를 한 번의 클릭으로 가져옵니다.",
+    },
+    youtubeTranscript: {
+      name: "YouTube 대본",
+      description: "링크를 통해 전체 YouTube 비디오의 대본을 가져옵니다.",
+    },
+    websiteDepth: {
+      name: "웹사이트 수집기",
+      description: "웹사이트와 해당 하위 링크를 특정 깊이까지 스크랩핑합니다.",
+    },
+    confluence: {
+      name: "Confluence",
+      description: "전체 Confluence 페이지를 한 번의 클릭으로 가져옵니다.",
+    },
+  },
+
+  githubOptions: {
+    fetchingFiles:
+      "저장소의 모든 파일을 가져오는 중입니다 - 시간이 걸릴 수 있습니다.",
+    filesCollected:
+      "{{files}}개의 {{fileText}}이(가) {{author}}/{{repo}}:{{branch}}에서 수집되었습니다. 출력 폴더는 {{destination}}입니다.",
+    repoUrlLabel: "GitHub 저장소 URL",
+    repoUrlDescription: "수집하려는 GitHub 저장소의 URL입니다.",
+    accessTokenLabel: "GitHub 액세스 토큰",
+    optional: "선택 사항",
+    accessTokenDescription: "접근 요청을 수락하기 위한 액세스 토큰.",
+    fileIgnoresLabel: "파일 무시",
+    fileIgnoresDescription:
+      "수집 중 특정 파일을 무시하려면 .gitignore 형식으로 나열합니다. 저장하려는 각 항목 뒤에 Enter 키를 누르세요.",
+    fileIgnoresPlaceholder: "!*.js, images/*, .DS_Store, bin/*",
+    collectingFiles: "파일을 수집하는 중...",
+    submit: "제출",
+    loadingMessage:
+      "완료되면 모든 파일이 문서 선택기에 있는 워크스페이스에 포함될 수 있습니다.",
+    branchLabel: "브랜치",
+    branchDescription: "파일을 수집하려는 브랜치입니다.",
+    loadingBranches: "-- 사용 가능한 브랜치를 로드하는 중 --",
+    patAlertMessage:
+      "GitHub 액세스 토큰을 입력하지 않으면, 이 데이터 커넥터는 GitHub 저장소의 공용 파일만 수집할 수 있습니다.",
+    patLinkText:
+      "여기에서 GitHub 계정으로 무료 개인 액세스 토큰을 받아 사용하세요.",
+    patTooltipMessage: "액세스 토큰 없이 ",
+    patDocLinkText: "개인 액세스 토큰",
+    patTooltipMessageContinued:
+      "을(를) 사용하지 않으면 GitHub API는 비율 제한 때문에 수집할 수 있는 파일 수를 제한할 수 있습니다. 이 문제를 피하려면 ",
+    patCreateLinkText: "임시 액세스 토큰을 생성하세요",
+  },
+
+  youtubeOptions: {
+    title: "YouTube 비디오 URL",
+    description: "자막을 작성할 YouTube 비디오의 URL입니다.",
+    placeholder: "https://youtube.com/watch?v=abc123",
+    submitButton: "자막 수집",
+    loadingButton: "자막 수집 중...",
+    loadingMessage: "YouTube 비디오의 자막을 가져오는 중입니다.",
+    successMessage:
+      "{{author}}의 {{title}} 자막이 완료되었습니다. 출력 폴더는 {{destination}}입니다.",
+    errorMessage: "오류: {{message}}",
+    transcriptionComplete:
+      "완료되면 문서 선택기에 있는 워크스페이스에 포함할 자막이 제공됩니다.",
+  },
+
+  websiteScraper: {
+    scraping_website:
+      "웹사이트를 스크랩 중입니다 - 시간이 좀 걸릴 수 있습니다.",
+    scraping_success: "성공적으로 {{count}}개의 {{page}} 스크랩 완료!",
+    scraping_website_submit: "제출",
+    scraping_website_in_progress: "웹사이트 스크랩 중...",
+    scraping_website_complete:
+      "완료되면, 모든 스크랩된 페이지는 문서 선택기에서 워크스페이스에 포함될 수 있습니다.",
+    websiteUrl: {
+      label: "웹사이트 URL",
+      description: "스크랩하려는 웹사이트의 URL을 입력하세요.",
+    },
+    depth: {
+      label: "깊이",
+      description: "원본 URL에서 작업자가 따라가야 할 하위 링크의 수입니다.",
+    },
+    maxLinks: {
+      label: "최대 링크 수",
+      description: "스크랩할 최대 링크 수입니다.",
+    },
+  },
+
+  confluence: {
+    scraping:
+      "Confluence 공간의 모든 페이지를 가져오는 중입니다. 시간이 걸릴 수 있습니다.",
+    success:
+      "Confluence 공간 {{spaceKey}}에서 페이지를 수집했습니다. 출력 폴더는 {{destination}}입니다.",
+    pageUrl: {
+      label: "Confluence 페이지 URL",
+      description: "Confluence 공간의 페이지 URL입니다.",
+    },
+    username: {
+      label: "Confluence 사용자 이름",
+      description: "Confluence 사용자 이름입니다.",
+    },
+    accessToken: {
+      label: "Confluence 액세스 토큰",
+      description: "인증을 위한 액세스 토큰.",
+      tooltip: {
+        text: "인증을 위해 액세스 토큰을 제공해야 합니다. 액세스 토큰은",
+        linkText: "여기서 생성할 수 있습니다",
+      },
+    },
+    submit: {
+      loading: "페이지 수집 중...",
+      default: "제출",
+      description:
+        "완료되면 모든 페이지가 워크스페이스에 임베드할 수 있도록 준비됩니다.",
     },
   },
 };

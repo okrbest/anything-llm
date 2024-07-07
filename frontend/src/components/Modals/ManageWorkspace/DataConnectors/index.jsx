@@ -6,42 +6,44 @@ import ConfluenceOptions from "./Connectors/Confluence";
 import { useState } from "react";
 import ConnectorOption from "./ConnectorOption";
 import WebsiteDepthOptions from "./Connectors/WebsiteDepth";
+import { useTranslation } from "react-i18next";
 
 export const DATA_CONNECTORS = {
   github: {
-    name: "GitHub Repo",
+    name: "dataConnectors.github.name",
     image: ConnectorImages.github,
-    description:
-      "Import an entire public or private Github repository in a single click.",
+    description: "dataConnectors.github.description",
     options: <GithubOptions />,
   },
   "youtube-transcript": {
-    name: "YouTube Transcript",
+    name: "dataConnectors.youtubeTranscript.name",
     image: ConnectorImages.youtube,
-    description:
-      "Import the transcription of an entire YouTube video from a link.",
+    description: "dataConnectors.youtubeTranscript.description",
     options: <YoutubeOptions />,
   },
   "website-depth": {
-    name: "Bulk Link Scraper",
+    name: "dataConnectors.websiteDepth.name",
     image: ConnectorImages.websiteDepth,
-    description: "Scrape a website and its sub-links up to a certain depth.",
+    description: "dataConnectors.websiteDepth.description",
     options: <WebsiteDepthOptions />,
   },
   confluence: {
-    name: "Confluence",
+    name: "dataConnectors.confluence.name",
     image: ConnectorImages.confluence,
-    description: "Import an entire Confluence page in a single click.",
+    description: "dataConnectors.confluence.description",
     options: <ConfluenceOptions />,
   },
 };
 
 export default function DataConnectors() {
+  const { t } = useTranslation();
   const [selectedConnector, setSelectedConnector] = useState("github");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredConnectors = Object.keys(DATA_CONNECTORS).filter((slug) =>
-    DATA_CONNECTORS[slug].name.toLowerCase().includes(searchQuery.toLowerCase())
+    t(DATA_CONNECTORS[slug].name)
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -55,7 +57,7 @@ export default function DataConnectors() {
           />
           <input
             type="text"
-            placeholder="Search data connectors"
+            placeholder={t("dataConnectors.searchPlaceholder")}
             className="border-none bg-zinc-600 z-20 pl-10 h-[38px] rounded-full w-full px-4 py-1 text-sm border-2 border-slate-300/40 outline-none focus:border-white text-white"
             autoComplete="off"
             value={searchQuery}
@@ -71,13 +73,13 @@ export default function DataConnectors() {
                 selectedConnector={selectedConnector}
                 setSelectedConnector={setSelectedConnector}
                 image={DATA_CONNECTORS[slug].image}
-                name={DATA_CONNECTORS[slug].name}
-                description={DATA_CONNECTORS[slug].description}
+                name={t(DATA_CONNECTORS[slug].name)}
+                description={t(DATA_CONNECTORS[slug].description)}
               />
             ))
           ) : (
             <div className="text-white text-center mt-4">
-              No data connectors found.
+              {t("dataConnectors.noConnectorsFound")}
             </div>
           )}
         </div>

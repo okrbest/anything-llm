@@ -10,6 +10,7 @@ import Chartable from "./Chartable";
 import Workspace from "@/models/workspace";
 import { useParams } from "react-router-dom";
 import paths from "@/utils/paths";
+import { useTranslation } from "react-i18next";
 
 export default function ChatHistory({
   history = [],
@@ -18,6 +19,7 @@ export default function ChatHistory({
   updateHistory,
   regenerateAssistantMessage,
 }) {
+  const { t } = useTranslation();
   const { user } = useUser();
   const { threadSlug = null } = useParams();
   const { showing, showModal, hideModal } = useManageWorkspaceModal();
@@ -63,7 +65,6 @@ export default function ChatHistory({
       chatHistoryRef.current.scrollHeight -
       chatHistoryRef.current.scrollTop -
       chatHistoryRef.current.clientHeight;
-    // Fuzzy margin for what qualifies as "bottom". Stronger than straight comparison since that may change over time.
     const isBottom = diff <= 10;
     setIsAtBottom(isBottom);
   };
@@ -93,27 +94,20 @@ export default function ChatHistory({
   };
 
   const saveEditedMessage = async ({ editedMessage, chatId, role }) => {
-    if (!editedMessage) return; // Don't save empty edits.
+    if (!editedMessage) return;
 
-    // if the edit was a user message, we will auto-regenerate the response and delete all
-    // messages post modified message
     if (role === "user") {
-      // remove all messages after the edited message
-      // technically there are two chatIds per-message pair, this will split the first.
       const updatedHistory = history.slice(
         0,
         history.findIndex((msg) => msg.chatId === chatId) + 1
       );
 
-      // update last message in history to edited message
       updatedHistory[updatedHistory.length - 1].content = editedMessage;
-      // remove all edited messages after the edited message in backend
       await Workspace.deleteEditedChats(workspace.slug, threadSlug, chatId);
       sendCommand(editedMessage, true, updatedHistory);
       return;
     }
 
-    // If role is an assistant we simply want to update the comment and save on the backend as an edit.
     if (role === "assistant") {
       const updatedHistory = [...history];
       const targetIdx = history.findIndex(
@@ -149,22 +143,22 @@ export default function ChatHistory({
       <div className="flex flex-col h-full md:mt-0 pb-44 md:pb-40 w-full justify-end items-center">
         <div className="flex flex-col items-center md:items-start md:max-w-[600px] w-full px-4">
           <p className="text-white/60 text-lg font-base py-4">
-            Welcome to your new workspace.
+            {t("chatHistory.welcome")}
           </p>
           {!user || user.role !== "default" ? (
             <p className="w-full items-center text-white/60 text-lg font-base flex flex-col md:flex-row gap-x-1">
-              To get started either{" "}
+              {t("chatHistory.startChat")}{" "}
               <span
                 className="underline font-medium cursor-pointer"
                 onClick={showModal}
               >
-                upload a document
-              </span>
-              or <b className="font-medium italic">send a chat.</b>
+                {t("chatHistory.uploadDocument")}
+              </span>{" "}
+              {t("chatHistory.orSendChat")}
             </p>
           ) : (
             <p className="w-full items-center text-white/60 text-lg font-base flex flex-col md:flex-row gap-x-1">
-              To get started <b className="font-medium italic">send a chat.</b>
+              {t("chatHistory.justSendChat")}
             </p>
           )}
           <WorkspaceChatSuggestions
@@ -255,6 +249,7 @@ export default function ChatHistory({
 }
 
 function StatusResponse({ props }) {
+  const { t } = useTranslation();
   return (
     <div className="flex justify-center items-end w-full">
       <div className="py-2 px-4 w-full flex gap-x-5 md:max-w-[80%] flex-col">
@@ -262,7 +257,7 @@ function StatusResponse({ props }) {
           <span
             className={`text-xs inline-block p-2 rounded-lg text-white/60 font-mono whitespace-pre-line`}
           >
-            {props.content}
+            {t("chatHistory.statusResponse")}: {props.content}
           </span>
         </div>
       </div>
@@ -271,6 +266,7 @@ function StatusResponse({ props }) {
 }
 
 function WorkspaceChatSuggestions({ suggestions = [], sendSuggestion }) {
+  const { t } = useTranslation();
   if (suggestions.length === 0) return null;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-white/60 text-xs mt-10 w-full justify-center">

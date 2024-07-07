@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import System from "@/models/system";
 import showToast from "@/utils/toast";
 import { Warning } from "@phosphor-icons/react";
 import { Tooltip } from "react-tooltip";
 
 export default function ConfluenceOptions() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -13,14 +15,10 @@ export default function ConfluenceOptions() {
 
     try {
       setLoading(true);
-      showToast(
-        "Fetching all pages for Confluence space - this may take a while.",
-        "info",
-        {
-          clear: true,
-          autoClose: false,
-        }
-      );
+      showToast(t("confluence.scraping"), "info", {
+        clear: true,
+        autoClose: false,
+      });
       const { data, error } = await System.dataConnectors.confluence.collect({
         pageUrl: form.get("pageUrl"),
         username: form.get("username"),
@@ -34,7 +32,10 @@ export default function ConfluenceOptions() {
       }
 
       showToast(
-        `Pages collected from Confluence space ${data.spaceKey}. Output folder is ${data.destination}.`,
+        t("confluence.success", {
+          spaceKey: data.spaceKey,
+          destination: data.destination,
+        }),
         "success",
         { clear: true }
       );
@@ -56,10 +57,12 @@ export default function ConfluenceOptions() {
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
                   <label className="text-white text-sm font-bold flex gap-x-2 items-center">
-                    <p className="font-bold text-white">Confluence Page URL</p>
+                    <p className="font-bold text-white">
+                      {t("confluence.pageUrl.label")}
+                    </p>
                   </label>
                   <p className="text-xs font-normal text-white/50">
-                    URL of a page in the Confluence space.
+                    {t("confluence.pageUrl.description")}
                   </p>
                 </div>
                 <input
@@ -75,10 +78,10 @@ export default function ConfluenceOptions() {
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
                   <label className="text-white text-sm font-bold">
-                    Confluence Username
+                    {t("confluence.username.label")}
                   </label>
                   <p className="text-xs font-normal text-white/50">
-                    Your Confluence username.
+                    {t("confluence.username.description")}
                   </p>
                 </div>
                 <input
@@ -95,7 +98,7 @@ export default function ConfluenceOptions() {
                 <div className="flex flex-col gap-y-1 mb-4">
                   <label className="text-white text-sm font-bold flex gap-x-2 items-center">
                     <p className="font-bold text-white">
-                      Confluence Access Token
+                      {t("confluence.accessToken.label")}
                     </p>
                     <Warning
                       size={14}
@@ -110,8 +113,7 @@ export default function ConfluenceOptions() {
                       clickable={true}
                     >
                       <p className="text-sm">
-                        You need to provide an access token for authentication.
-                        You can generate an access token{" "}
+                        {t("confluence.accessToken.tooltip.text")}{" "}
                         <a
                           href="https://id.atlassian.com/manage-profile/security/api-tokens"
                           target="_blank"
@@ -119,14 +121,14 @@ export default function ConfluenceOptions() {
                           className="underline"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          here
+                          {t("confluence.accessToken.tooltip.linkText")}
                         </a>
                         .
                       </p>
                     </Tooltip>
                   </label>
                   <p className="text-xs font-normal text-white/50">
-                    Access token for authentication.
+                    {t("confluence.accessToken.description")}
                   </p>
                 </div>
                 <input
@@ -148,12 +150,13 @@ export default function ConfluenceOptions() {
               disabled={loading}
               className="mt-2 w-full justify-center border border-slate-200 px-4 py-2 rounded-lg text-dark-text text-sm font-bold items-center flex gap-x-2 bg-slate-200 hover:bg-slate-300 hover:text-slate-800 disabled:bg-slate-300 disabled:cursor-not-allowed"
             >
-              {loading ? "Collecting pages..." : "Submit"}
+              {loading
+                ? t("confluence.submit.loading")
+                : t("confluence.submit.default")}
             </button>
             {loading && (
               <p className="text-xs text-white/50">
-                Once complete, all pages will be available for embedding into
-                workspaces.
+                {t("confluence.submit.description")}
               </p>
             )}
           </div>

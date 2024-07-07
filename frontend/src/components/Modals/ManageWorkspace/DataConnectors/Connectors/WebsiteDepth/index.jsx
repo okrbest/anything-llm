@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import System from "@/models/system";
 import showToast from "@/utils/toast";
 import pluralize from "pluralize";
 
 export default function WebsiteDepthOptions() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -12,7 +14,7 @@ export default function WebsiteDepthOptions() {
 
     try {
       setLoading(true);
-      showToast("Scraping website - this may take a while.", "info", {
+      showToast(t("websiteScraper.scraping_website"), "info", {
         clear: true,
         autoClose: false,
       });
@@ -30,10 +32,10 @@ export default function WebsiteDepthOptions() {
       }
 
       showToast(
-        `Successfully scraped ${data.length} ${pluralize(
-          "page",
-          data.length
-        )}!`,
+        t("websiteScraper.scraping_success", {
+          count: data.length,
+          page: pluralize("page", data.length),
+        }),
         "success",
         { clear: true }
       );
@@ -55,10 +57,10 @@ export default function WebsiteDepthOptions() {
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
                   <label className="text-white text-sm font-bold">
-                    Website URL
+                    {t("websiteScraper.websiteUrl.label")}
                   </label>
                   <p className="text-xs font-normal text-white/50">
-                    URL of the website you want to scrape.
+                    {t("websiteScraper.websiteUrl.description")}
                   </p>
                 </div>
                 <input
@@ -73,10 +75,11 @@ export default function WebsiteDepthOptions() {
               </div>
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
-                  <label className="text-white text-sm font-bold">Depth</label>
+                  <label className="text-white text-sm font-bold">
+                    {t("websiteScraper.depth.label")}
+                  </label>
                   <p className="text-xs font-normal text-white/50">
-                    This is the number of child-links that the worker should
-                    follow from the origin URL.
+                    {t("websiteScraper.depth.description")}
                   </p>
                 </div>
                 <input
@@ -92,10 +95,10 @@ export default function WebsiteDepthOptions() {
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
                   <label className="text-white text-sm font-bold">
-                    Max Links
+                    {t("websiteScraper.maxLinks.label")}
                   </label>
                   <p className="text-xs font-normal text-white/50">
-                    Maximum number of links to scrape.
+                    {t("websiteScraper.maxLinks.description")}
                   </p>
                 </div>
                 <input
@@ -118,12 +121,13 @@ export default function WebsiteDepthOptions() {
                 loading ? "cursor-not-allowed animate-pulse" : ""
               } justify-center border border-slate-200 px-4 py-2 rounded-lg text-dark-text text-sm font-bold items-center flex gap-x-2 bg-slate-200 hover:bg-slate-300 hover:text-slate-800 disabled:bg-slate-300 disabled:cursor-not-allowed`}
             >
-              {loading ? "Scraping website..." : "Submit"}
+              {loading
+                ? t("websiteScraper.scraping_website_in_progress")
+                : t("websiteScraper.scraping_website_submit")}
             </button>
             {loading && (
               <p className="text-xs text-white/50">
-                Once complete, all scraped pages will be available for embedding
-                into workspaces in the document picker.
+                {t("websiteScraper.scraping_website_complete")}
               </p>
             )}
           </div>

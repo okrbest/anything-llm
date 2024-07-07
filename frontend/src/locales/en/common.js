@@ -96,6 +96,36 @@ const TRANSLATIONS = {
     showSidebar: "Show sidebar",
   },
 
+  threadContainer: {
+    loadingThreads: "Loading threads...",
+    startingThread: "Starting Thread...",
+    newThread: "New Thread",
+    deleteSelected: "Delete Selected",
+  },
+  threadItem: {
+    default: "default",
+    deletedThread: "deleted thread",
+    renameThread: "Rename",
+    deleteThread: "Delete Thread",
+    confirmDelete: "Are you sure you want to delete this thread? All of its chats will be deleted. You cannot undo this.",
+    threadRenamePrompt: "What would you like to rename this thread to?",
+    threadUpdateError: "Thread could not be updated! {{message}}",
+    threadDeleteError: "Thread could not be deleted!",
+    threadDeleteSuccess: "Thread deleted successfully!",
+  },
+
+  chatHistory: {
+    welcome: "Welcome to your new workspace.",
+    startChat: "To get started either",
+    uploadDocument: "upload a document",
+    orSendChat: "or send a chat.",
+    justSendChat: "To get started send a chat.",
+    statusResponse: "Status Response",
+    scrollToBottom: "Scroll to bottom",
+    startingThread: "Starting Thread...",
+    newThread: "New Thread",
+  },
+
   newWorkspaceModal: {
     title: "New Workspace",
     workspaceName: "Workspace Name",
@@ -1587,6 +1617,240 @@ const TRANSLATIONS = {
     },
     another_feature: {
       title: "Another Feature",
+    },
+  },
+
+  liveSyncToggle: {
+    updateFailed: "Failed to update status of feature.",
+    status: {
+      enabled: "Live document content sync has been enabled.",
+      disabled: "Live document content sync has been disabled.",
+    },
+    title: "Automatic Document Content Sync",
+    description1:
+      "Enable the ability to specify a document to be 'watched'. Watched document's content will be regularly fetched and updated in TeamplGPT.",
+    description2:
+      "Watched documents will automatically update in all workspaces they are referenced in at the same time of update.",
+    description3:
+      "This feature only applies to web-based content, such as websites, Confluence, YouTube, and GitHub files.",
+    docsLink: "Feature Documentation and Warnings",
+    manageLink: "Manage Watched Documents →",
+  },
+
+  liveDocumentSyncManager: {
+    title: "Watched documents",
+    description:
+      "These are all the documents that are currently being watched in your instance. The content of these documents will be periodically synced.",
+    documentName: "Document Name",
+    lastSynced: "Last Synced",
+    timeUntilNextRefresh: "Time until next refresh",
+    createdOn: "Created On",
+  },
+
+  uploadFile: {
+    scrapingLink: "Scraping link...",
+    errorUploadingLink: "Error uploading link: {{error}}",
+    linkUploaded: "Link uploaded successfully",
+    processorUnavailable: "Document Processor Unavailable",
+    tryAgainLater:
+      "We can't upload your files right now because the document processor is offline. Please try again later.",
+    clickOrDrag: "Click to upload or drag and drop",
+    supportedFormats:
+      "Supports text files, csv's, spreadsheets, audio files, and more!",
+    orSubmitLink: "or submit a link",
+    fetching: "Fetching...",
+    fetchWebsite: "Fetch website",
+    uploadInfo:
+      "These files will be uploaded to the document processor running on this TeamplGPT instance. These files are not sent or shared with a third party.",
+  },
+
+  documentSettings: {
+    updatingWorkspace: "Updating workspace...",
+    loadingMessage: "This may take a while for large documents",
+    error: "Error: {{message}}",
+    updateSuccess: "Workspace updated successfully.",
+    updateFailed: "Workspace update failed: {{error}}",
+  },
+  workspaceDirectory: {
+    name: "Name",
+    noDocuments: "No Documents",
+    estimatedCost: "Estimated Cost: {{cost}}",
+    oneTimeCost: "*One time cost for embeddings",
+    saveAndEmbed: "Save and Embed",
+    pinAlert: {
+      title: "What is document pinning?",
+      message1:
+        "When you pin a document in TeamplGPT we will inject the entire content of the document into your prompt window for your LLM to fully comprehend.",
+      message2:
+        "This works best with large-context models or small files that are critical to its knowledge-base.",
+      message3:
+        "If you are not getting the answers you desire from TeamplGPT by default then pinning is a great way to get higher quality answers in a click.",
+      button: "Okay, got it",
+    },
+    watchAlert: {
+      title: "What does watching a document do?",
+      message1:
+        "When you watch a document in TeamplGPT we will automatically sync your document content from its original source on regular intervals. This will automatically update the content in every workspace where this file is managed.",
+      message2:
+        "This feature currently supports online-based content and will not be available for manually uploaded documents.",
+      message3: {
+        part1: "You can manage what documents are watched from the",
+        link: "File manager",
+        part2: "admin view.",
+      },
+      button: "Okay, got it",
+    },
+  },
+  directory: {
+    deleteConfirmation:
+      "Are you sure you want to delete these files and folders?\nThis will remove the files from the system and remove them from any existing workspaces automatically.\nThis action is not reversible.",
+    removingFiles:
+      "Removing {{numDocuments}} documents and {{numFolders}} folders. Please wait.",
+    errorMovingFiles: "Error moving files: {{message}}",
+    successfullyMoved: "Successfully moved {{numDocuments}} documents.",
+    movingDocuments: "Moving {{numDocuments}} documents. Please wait.",
+    myDocuments: "My Documents",
+    searchPlaceholder: "Search for document",
+    newFolder: "New Folder",
+    name: "Name",
+    noDocuments: "No Documents",
+    moveToWorkspace: "Move to Workspace",
+  },
+
+  newFolderModal: {
+    createNewFolder: "Create New Folder",
+    folderName: "Folder Name",
+    folderNamePlaceholder: "Enter folder name",
+    createFolderError: "Failed to create folder",
+    cancel: "Cancel",
+    createFolder: "Create Folder",
+    error: "Error: {{error}}",
+  },
+
+  manageWorkspace: {
+    editing: "Editing",
+    editingNotAvailable:
+      "Editing these settings are only available on a desktop device. Please access this page on your desktop to continue.",
+    dismiss: "Dismiss",
+    documents: "Documents",
+    dataConnectors: "Data Connectors",
+  },
+
+  dataConnectors: {
+    searchPlaceholder: "Search data connectors",
+    noConnectorsFound: "No data connectors found.",
+    github: {
+      name: "GitHub Repo",
+      description:
+        "Import an entire public or private Github repository in a single click.",
+    },
+    youtubeTranscript: {
+      name: "YouTube Transcript",
+      description:
+        "Import the transcription of an entire YouTube video from a link.",
+    },
+    websiteDepth: {
+      name: "Bulk Link Scraper",
+      description: "Scrape a website and its sub-links up to a certain depth.",
+    },
+    confluence: {
+      name: "Confluence",
+      description: "Import an entire Confluence page in a single click.",
+    },
+  },
+
+  githubOptions: {
+    fetchingFiles: "Fetching all files for repo - this may take a while.",
+    filesCollected:
+      "{{files}} {{fileText}} collected from {{author}}/{{repo}}:{{branch}}. Output folder is {{destination}}.",
+    repoUrlLabel: "GitHub Repo URL",
+    repoUrlDescription: "URL of the GitHub repo you wish to collect.",
+    accessTokenLabel: "GitHub Access Token",
+    optional: "optional",
+    accessTokenDescription: "Access Token to prevent rate limiting.",
+    fileIgnoresLabel: "File Ignores",
+    fileIgnoresDescription:
+      "List in .gitignore format to ignore specific files during collection. Press enter after each entry you want to save.",
+    fileIgnoresPlaceholder: "!*.js, images/*, .DS_Store, bin/*",
+    collectingFiles: "Collecting files...",
+    submit: "Submit",
+    loadingMessage:
+      "Once complete, all files will be available for embedding into workspaces in the document picker.",
+    branchLabel: "Branch",
+    branchDescription: "Branch you wish to collect files from.",
+    loadingBranches: "-- loading available branches --",
+    patAlertMessage:
+      "Without filling out the GitHub Access Token, this data connector will only be able to collect the top-level files of the repo due to GitHub's public API rate-limits. ",
+    patLinkText: "Get a free Personal Access Token with a GitHub account here.",
+    patTooltipMessage: "Without a ",
+    patDocLinkText: "Personal Access Token",
+    patTooltipMessageContinued:
+      ", the GitHub API may limit the number of files that can be collected due to rate limits. You can ",
+    patCreateLinkText: "create a temporary Access Token",
+  },
+
+  youtubeOptions: {
+    title: "YouTube Video URL",
+    description: "URL of the YouTube video you wish to transcribe.",
+    placeholder: "https://youtube.com/watch?v=abc123",
+    submitButton: "Collect transcript",
+    loadingButton: "Collecting transcript...",
+    loadingMessage: "Fetching transcript for YouTube video.",
+    successMessage:
+      "{{title}} by {{author}} transcription completed. Output folder is {{destination}}.",
+    errorMessage: "Error: {{message}}",
+    transcriptionComplete:
+      "Once complete, the transcription will be available for embedding into workspaces in the document picker.",
+  },
+
+  websiteScraper: {
+    scraping_website: "Scraping website - this may take a while.",
+    scraping_success: "Successfully scraped {{count}} {{page}}!",
+    scraping_website_submit: "Submit",
+    scraping_website_in_progress: "Scraping website...",
+    scraping_website_complete:
+      "Once complete, all scraped pages will be available for embedding into workspaces in the document picker.",
+    websiteUrl: {
+      label: "Website URL",
+      description: "URL of the website you want to scrape.",
+    },
+    depth: {
+      label: "Depth",
+      description:
+        "This is the number of child-links that the worker should follow from the origin URL.",
+    },
+    maxLinks: {
+      label: "Max Links",
+      description: "Maximum number of links to scrape.",
+    },
+  },
+
+  confluence: {
+    scraping:
+      "Fetching all pages for Confluence space - this may take a while.",
+    success:
+      "Pages collected from Confluence space {{spaceKey}}. Output folder is {{destination}}.",
+    pageUrl: {
+      label: "Confluence Page URL",
+      description: "URL of a page in the Confluence space.",
+    },
+    username: {
+      label: "Confluence Username",
+      description: "Your Confluence username.",
+    },
+    accessToken: {
+      label: "Confluence Access Token",
+      description: "Access token for authentication.",
+      tooltip: {
+        text: "You need to provide an access token for authentication. You can generate an access token",
+        linkText: "here",
+      },
+    },
+    submit: {
+      loading: "Collecting pages...",
+      default: "Submit",
+      description:
+        "Once complete, all pages will be available for embedding into workspaces.",
     },
   },
 };

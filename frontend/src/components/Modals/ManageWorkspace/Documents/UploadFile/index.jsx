@@ -7,6 +7,7 @@ import { v4 } from "uuid";
 import FileUploadProgress from "./FileUploadProgress";
 import Workspace from "../../../../../models/workspace";
 import debounce from "lodash.debounce";
+import { useTranslation } from "react-i18next";
 
 export default function UploadFile({
   workspace,
@@ -14,6 +15,7 @@ export default function UploadFile({
   setLoading,
   setLoadingMessage,
 }) {
+  const { t } = useTranslation();
   const [ready, setReady] = useState(false);
   const [files, setFiles] = useState([]);
   const [fetchingUrl, setFetchingUrl] = useState(false);
@@ -21,7 +23,7 @@ export default function UploadFile({
   const handleSendLink = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setLoadingMessage("Scraping link...");
+    setLoadingMessage(t("uploadFile.scrapingLink"));
     setFetchingUrl(true);
     const formEl = e.target;
     const form = new FormData(formEl);
@@ -30,10 +32,13 @@ export default function UploadFile({
       form.get("link")
     );
     if (!response.ok) {
-      showToast(`Error uploading link: ${data.error}`, "error");
+      showToast(
+        t("uploadFile.errorUploadingLink", { error: data.error }),
+        "error"
+      );
     } else {
       fetchKeys(true);
-      showToast("Link uploaded successfully", "success");
+      showToast(t("uploadFile.linkUploaded"), "success");
       formEl.reset();
     }
     setLoading(false);
@@ -88,21 +93,20 @@ export default function UploadFile({
           <div className="flex flex-col items-center justify-center h-full">
             <CloudArrowUp className="w-8 h-8 text-white/80" />
             <div className="text-white text-opacity-80 text-sm font-semibold py-1">
-              Document Processor Unavailable
+              {t("uploadFile.processorUnavailable")}
             </div>
             <div className="text-white text-opacity-60 text-xs font-medium py-1 px-20 text-center">
-              We can't upload your files right now because the document
-              processor is offline. Please try again later.
+              {t("uploadFile.tryAgainLater")}
             </div>
           </div>
         ) : files.length === 0 ? (
           <div className="flex flex-col items-center justify-center">
             <CloudArrowUp className="w-8 h-8 text-white/80" />
             <div className="text-white text-opacity-80 text-sm font-semibold py-1">
-              Click to upload or drag and drop
+              {t("uploadFile.clickOrDrag")}
             </div>
             <div className="text-white text-opacity-60 text-xs font-medium py-1">
-              supports text files, csv's, spreadsheets, audio files, and more!
+              {t("uploadFile.supportedFormats")}
             </div>
           </div>
         ) : (
@@ -126,7 +130,7 @@ export default function UploadFile({
         )}
       </div>
       <div className="text-center text-white text-opacity-50 text-xs font-medium w-[560px] py-2">
-        or submit a link
+        {t("uploadFile.orSubmitLink")}
       </div>
       <form onSubmit={handleSendLink} className="flex gap-x-2">
         <input
@@ -142,13 +146,19 @@ export default function UploadFile({
           type="submit"
           className="disabled:bg-white/20 disabled:text-slate-300 disabled:border-slate-400 disabled:cursor-wait bg bg-transparent hover:bg-slate-200 hover:text-slate-800 w-auto border border-white text-sm text-white p-2.5 rounded-lg"
         >
-          {fetchingUrl ? "Fetching..." : "Fetch website"}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: fetchingUrl
+                ? t("uploadFile.fetching")
+                : t("uploadFile.fetchWebsite"),
+            }}
+          />
         </button>
       </form>
       <div className="mt-6 text-center text-white text-opacity-80 text-xs font-medium w-[560px]">
-        These files will be uploaded to the document processor running on this
-        TeamplGPT instance. These files are not sent or shared with a third
-        party.
+        <span
+          dangerouslySetInnerHTML={{ __html: t("uploadFile.uploadInfo") }}
+        />
       </div>
     </div>
   );

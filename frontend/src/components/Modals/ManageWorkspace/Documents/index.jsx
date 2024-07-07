@@ -1,13 +1,11 @@
 import { ArrowsDownUp } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Workspace from "../../../../models/workspace";
 import System from "../../../../models/system";
 import showToast from "../../../../utils/toast";
 import Directory from "./Directory";
 import WorkspaceDirectory from "./WorkspaceDirectory";
-
-// OpenAI Cost per token
-// ref: https://openai.com/pricing#:~:text=%C2%A0/%201K%20tokens-,Embedding%20models,-Build%20advanced%20search
 
 const MODEL_COSTS = {
   "text-embedding-ada-002": 0.0000001, // $0.0001 / 1K tokens
@@ -16,6 +14,7 @@ const MODEL_COSTS = {
 };
 
 export default function DocumentSettings({ workspace, systemSettings }) {
+  const { t } = useTranslation();
   const [highlightWorkspace, setHighlightWorkspace] = useState(false);
   const [availableDocs, setAvailableDocs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +35,6 @@ export default function DocumentSettings({ workspace, systemSettings }) {
     const documentsInWorkspace =
       currentWorkspace.documents.map((doc) => doc.docpath) || [];
 
-    // Documents that are not in the workspace
     const availableDocs = {
       ...localFiles,
       items: localFiles.items.map((folder) => {
@@ -55,7 +53,6 @@ export default function DocumentSettings({ workspace, systemSettings }) {
       }),
     };
 
-    // Documents that are already in the workspace
     const workspaceDocs = {
       ...localFiles,
       items: localFiles.items.map((folder) => {
@@ -86,8 +83,10 @@ export default function DocumentSettings({ workspace, systemSettings }) {
   const updateWorkspace = async (e) => {
     e.preventDefault();
     setLoading(true);
-    showToast("Updating workspace...", "info", { autoClose: false });
-    setLoadingMessage("This may take a while for large documents");
+    showToast(t("documentSettings.updatingWorkspace"), "info", {
+      autoClose: false,
+    });
+    setLoadingMessage(t("documentSettings.loadingMessage"));
 
     const changesToSend = {
       adds: movedItems.map((item) => `${item.folderName}/${item.name}`),
@@ -99,15 +98,19 @@ export default function DocumentSettings({ workspace, systemSettings }) {
     await Workspace.modifyEmbeddings(workspace.slug, changesToSend)
       .then((res) => {
         if (!!res.message) {
-          showToast(`Error: ${res.message}`, "error", { clear: true });
+          showToast(
+            t("documentSettings.error", { message: res.message }),
+            "error",
+            { clear: true }
+          );
           return;
         }
-        showToast("Workspace updated successfully.", "success", {
+        showToast(t("documentSettings.updateSuccess"), "success", {
           clear: true,
         });
       })
       .catch((error) => {
-        showToast(`Workspace update failed: ${error}`, "error", {
+        showToast(t("documentSettings.updateFailed", { error }), "error", {
           clear: true,
         });
       });
@@ -142,7 +145,6 @@ export default function DocumentSettings({ workspace, systemSettings }) {
       }
     });
 
-    // Do not do cost estimation unless the embedding engine is OpenAi.
     if (systemSettings?.EmbeddingEngine === "openai") {
       const COST_PER_TOKEN =
         MODEL_COSTS[

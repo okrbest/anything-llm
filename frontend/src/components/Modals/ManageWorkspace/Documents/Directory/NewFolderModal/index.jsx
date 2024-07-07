@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { X } from "@phosphor-icons/react";
 import Document from "@/models/document";
+import { useTranslation } from "react-i18next";
 
 export default function NewFolderModal({ closeModal, files, setFiles }) {
+  const { t } = useTranslation();
   const [error, setError] = useState(null);
   const [folderName, setFolderName] = useState("");
 
@@ -23,7 +25,7 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
         });
         closeModal();
       } else {
-        setError("Failed to create folder");
+        setError(t("newFolderModal.createFolderError"));
       }
     }
   };
@@ -33,7 +35,7 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
       <div className="relative bg-main-gradient rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
           <h3 className="text-xl font-semibold text-white">
-            Create New Folder
+            {t("newFolderModal.createNewFolder")}
           </h3>
           <button
             onClick={closeModal}
@@ -52,20 +54,24 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
                   htmlFor="folderName"
                   className="block mb-2 text-sm font-medium text-white"
                 >
-                  Folder Name
+                  {t("newFolderModal.folderName")}
                 </label>
                 <input
                   name="folderName"
                   type="text"
                   className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  placeholder="Enter folder name"
+                  placeholder={t("newFolderModal.folderNamePlaceholder")}
                   required={true}
                   autoComplete="off"
                   value={folderName}
                   onChange={(e) => setFolderName(e.target.value)}
                 />
               </div>
-              {error && <p className="text-red-400 text-sm">Error: {error}</p>}
+              {error && (
+                <p className="text-red-400 text-sm">
+                  {t("newFolderModal.error", { error })}
+                </p>
+              )}
             </div>
           </div>
           <div className="flex w-full justify-between items-center p-6 space-x-2 border-t rounded-b border-gray-500/50">
@@ -74,13 +80,13 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
               type="button"
               className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
             >
-              Cancel
+              {t("newFolderModal.cancel")}
             </button>
             <button
               type="submit"
               className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
             >
-              Create Folder
+              {t("newFolderModal.createFolder")}
             </button>
           </div>
         </form>

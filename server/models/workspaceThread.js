@@ -2,7 +2,7 @@ const prisma = require("../utils/prisma");
 const { v4: uuidv4 } = require("uuid");
 
 const WorkspaceThread = {
-  defaultName: "Thread",
+  defaultName: "New Chat",
   writable: ["name"],
 
   new: async function (workspace, userId = null) {

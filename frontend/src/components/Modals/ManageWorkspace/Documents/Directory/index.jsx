@@ -12,6 +12,7 @@ import { useModal } from "@/hooks/useModal";
 import NewFolderModal from "./NewFolderModal";
 import debounce from "lodash.debounce";
 import { filterFileSearchResults } from "./utils";
+import { useTranslation } from "react-i18next";
 
 function Directory({
   files,
@@ -27,6 +28,7 @@ function Directory({
   setLoadingMessage,
   loadingMessage,
 }) {
+  const { t } = useTranslation();
   const [amountSelected, setAmountSelected] = useState(0);
   const [showFolderSelection, setShowFolderSelection] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,11 +44,7 @@ function Directory({
 
   const deleteFiles = async (event) => {
     event.stopPropagation();
-    if (
-      !window.confirm(
-        "Are you sure you want to delete these files and folders?\nThis will remove the files from the system and remove them from any existing workspaces automatically.\nThis action is not reversible."
-      )
-    ) {
+    if (!window.confirm(t("directory.deleteConfirmation"))) {
       return false;
     }
 
@@ -75,7 +73,10 @@ function Directory({
 
       setLoading(true);
       setLoadingMessage(
-        `Removing ${toRemove.length} documents and ${foldersToRemove.length} folders. Please wait.`
+        t("directory.removingFiles", {
+          numDocuments: toRemove.length,
+          numFolders: foldersToRemove.length,
+        })
       );
       await System.deleteDocuments(toRemove);
       for (const folderName of foldersToRemove) {
@@ -143,13 +144,15 @@ function Directory({
       }
     }
     setLoading(true);
-    setLoadingMessage(`Moving ${toMove.length} documents. Please wait.`);
+    setLoadingMessage(
+      t("directory.movingDocuments", { numDocuments: toMove.length })
+    );
     const { success, message } = await Document.moveToFolder(
       toMove,
       folder.name
     );
     if (!success) {
-      showToast(`Error moving files: ${message}`, "error");
+      showToast(t("directory.errorMovingFiles", { message }), "error");
       setLoading(false);
       return;
     }
@@ -158,7 +161,10 @@ function Directory({
       // show info if some files were not moved due to being embedded
       showToast(message, "info");
     } else {
-      showToast(`Successfully moved ${toMove.length} documents.`, "success");
+      showToast(
+        t("directory.successfullyMoved", { numDocuments: toMove.length }),
+        "success"
+      );
     }
     await fetchKeys(true);
     setSelectedItems({});
@@ -175,11 +181,13 @@ function Directory({
     <div className="px-8 pb-8">
       <div className="flex flex-col gap-y-6">
         <div className="flex items-center justify-between w-[560px] px-5 relative">
-          <h3 className="text-white text-base font-bold">My Documents</h3>
+          <h3 className="text-white text-base font-bold">
+            {t("directory.myDocuments")}
+          </h3>
           <div className="relative">
             <input
               type="search"
-              placeholder="Search for document"
+              placeholder={t("directory.searchPlaceholder")}
               onChange={handleSearch}
               className="search-input bg-zinc-900 text-white placeholder-white/40 text-sm rounded-lg pl-9 pr-2.5 py-2 w-[250px] h-[32px]"
             />
@@ -195,14 +203,14 @@ function Directory({
           >
             <Plus size={18} weight="bold" color="#D3D4D4" />
             <div className="text-[#D3D4D4] text-xs font-bold leading-[18px]">
-              New Folder
+              {t("directory.newFolder")}
             </div>
           </button>
         </div>
 
         <div className="relative w-[560px] h-[310px] bg-zinc-900 rounded-2xl overflow-hidden">
           <div className="absolute top-0 left-0 right-0 z-10 rounded-t-2xl text-white/80 text-xs grid grid-cols-12 py-2 px-8 border-b border-white/20 shadow-lg bg-zinc-900">
-            <p className="col-span-6">Name</p>
+            <p className="col-span-6">{t("directory.name")}</p>
           </div>
 
           <div className="overflow-y-auto h-full pt-8">
@@ -234,7 +242,7 @@ function Directory({
             ) : (
               <div className="w-full h-full flex items-center justify-center">
                 <p className="text-white text-opacity-40 text-sm font-medium">
-                  No Documents
+                  {t("directory.noDocuments")}
                 </p>
               </div>
             )}
@@ -249,7 +257,7 @@ function Directory({
                     onMouseLeave={() => setHighlightWorkspace(false)}
                     className="border-none text-sm font-semibold bg-white h-[30px] px-2.5 rounded-lg hover:text-white hover:bg-neutral-800/80"
                   >
-                    Move to Workspace
+                    {t("directory.moveToWorkspace")}
                   </button>
                   <div className="relative">
                     <button
