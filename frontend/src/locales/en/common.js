@@ -43,6 +43,22 @@ const TRANSLATIONS = {
     experimental: "Experimental Features",
   },
 
+  settingsButton: {
+    home: "Home",
+    backToWorkspaces: "Back to workspaces",
+    settings: "Settings",
+    openSettings: "Open settings",
+  },
+
+  footer: {
+    githubAriaLabel: "Find us on Github",
+    githubTooltip: "View source code on Github",
+    docsAriaLabel: "Docs",
+    docsTooltip: "Open TeamplGPT help docs",
+    discordAriaLabel: "Join our Discord server",
+    discordTooltip: "Join the TeamplGPT Discord",
+  },
+
   // Page Definitions
   login: {
     "multi-user": {
@@ -926,6 +942,7 @@ const TRANSLATIONS = {
       "To use {{name}} as this workspace's LLM you need to set it up first.",
     cancel: "Cancel",
     saveSettings: "Save {{name}} settings",
+    saveError: "Failed to save {{name}} settings: {{error}}",
   },
 
   autoDiscovery: {

@@ -43,6 +43,22 @@ const TRANSLATIONS = {
     experimental: "실험적 기능",
   },
 
+  settingsButton: {
+    home: "홈",
+    backToWorkspaces: "워크스페이스로 돌아가기",
+    settings: "설정",
+    openSettings: "설정 열기",
+  },
+
+  footer: {
+    githubAriaLabel: "Github에서 찾기",
+    githubTooltip: "Github에서 소스 코드 보기",
+    docsAriaLabel: "문서",
+    docsTooltip: "TeamplGPT 도움말 문서 열기",
+    discordAriaLabel: "Discord 서버에 가입하세요",
+    discordTooltip: "TeamplGPT Discord 가입",
+  },
+
   // Page Definitions
   login: {
     "multi-user": {
@@ -384,9 +400,9 @@ const TRANSLATIONS = {
     history: {
       title: "채팅 기록",
       "desc-start": "응답의 단기 기억에 포함될 이전 채팅 수입니다.",
-      recommend: "추천: 20",
+      recommend: "추천: 20개 ",
       "desc-end":
-        "45개 이상은 메시지 크기에 따라 연속적인 채팅 오류를 초래할 수 있습니다.",
+        " 45개 이상은 메시지 크기에 따라 연속적인 채팅 오류를 초래할 수 있습니다.",
     },
     prompt: {
       title: "프롬프트",
@@ -923,6 +939,7 @@ const TRANSLATIONS = {
       "이 워크스페이스의 LLM으로 {{name}}을 사용하려면 먼저 설정해야 합니다.",
     cancel: "취소",
     saveSettings: "{{name}} 설정 저장",
+    saveError: "{{name}} 설정 저장 실패: {{error}}",
   },
 
   autoDiscovery: {
