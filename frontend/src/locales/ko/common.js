@@ -346,9 +346,9 @@ const TRANSLATIONS = {
         "이 워크스페이스와 모든 데이터를 삭제합니다. 이 작업은 모든 사용자에게 영향을 미칩니다.",
       delete: "워크스페이스 삭제",
       deleting: "워크스페이스 삭제 중...",
-      "confirm-start": "전체",
+      "confirm-start": "",
       "confirm-end":
-        "워크스페이스를 삭제하려고 합니다. 벡터 데이터베이스의 모든 벡터 임베딩이 제거됩니다.\n\n원본 소스 파일은 그대로 유지됩니다. 이 작업은 되돌릴 수 없습니다.",
+        "워크스페이스에 대한 전체를 삭제합니다. 벡터 데이터베이스의 모든 벡터 임베딩이 제거됩니다.\n\n원본 소스 파일은 그대로 유지됩니다. 이 작업은 되돌릴 수 없습니다.",
     },
   },
 
@@ -409,13 +409,27 @@ const TRANSLATIONS = {
     },
   },
 
+  chatPrompt: {
+    defaultPrompt:
+      "다음 대화, 관련 맥락 및 후속 질문을 고려하여 사용자가 묻는 현재 질문에 대한 답변을 제공하십시오. 필요한 경우 사용자의 지시에 따라 위 정보를 바탕으로 질문에 대한 응답만 반환하십시오.",
+    queryRefusal:
+      "이 워크스페이스에는 귀하의 질문에 답변할 수 있는 관련 정보가 없습니다.",
+  },
+
+  chatSettings: {
+    updating: "업데이트 중...",
+    updateWorkspace: "워크스페이스 업데이트",
+    workspaceUpdated: "워크스페이스가 업데이트되었습니다!",
+    updateError: "오류: {{message}}",
+  },
+
   // Vector Database
   "vector-workspace": {
     identifier: "벡터 데이터베이스 식별자",
     snippets: {
-      title: "최대 컨텍스트 스니펫",
+      title: "최대 문단",
       description:
-        "이 설정은 채팅 또는 쿼리당 LLM에 전송될 최대 컨텍스트 스니펫 수를 제어합니다.",
+        "이 설정은 채팅 또는 쿼리당 LLM에 전송될 최대 문단 수를 제어합니다.",
       recommend: "추천: 4",
     },
     doc: {
@@ -744,7 +758,8 @@ const TRANSLATIONS = {
     saveError: "LLM 설정을 저장하지 못했습니다: {{error}}",
     providers: {
       defaultName: "시스템 기본값",
-      defaultDescription: "이 워크스페이스에 시스템 기본 설정 LLM을 사용합니다.",
+      defaultDescription:
+        "이 워크스페이스에 시스템 기본 설정 LLM을 사용합니다.",
       apiKeyLabel: "{{provider}} API 키",
       apiKeyPlaceholder: "{{provider}} API 키",
       modelLabel: "채팅 모델 선택",
@@ -902,6 +917,74 @@ const TRANSLATIONS = {
     copiedApiKey: "API 키가 복사되었습니다",
   },
 
+  workspaceLLM: {
+    setup: "{{name}} 설정",
+    setupDescription:
+      "이 워크스페이스의 LLM으로 {{name}}을 사용하려면 먼저 설정해야 합니다.",
+    cancel: "취소",
+    saveSettings: "{{name}} 설정 저장",
+  },
+
+  autoDiscovery: {
+    endpointDiscovered: "제공자 엔드포인트가 자동으로 발견되었습니다.",
+    enterManually:
+      "제공자 엔드포인트를 자동으로 발견할 수 없습니다. 수동으로 입력해주세요.",
+    autoDetectFailed: "{{provider}} @ {{endpoint}}에서 해결되지 않았습니다.",
+  },
+
+  workspaceRow: {
+    deleteConfirmation:
+      "{{name}}을(를) 삭제하시겠습니까?\n이 작업을 수행하면 TeamplGPT의 이 인스턴스에서 사용할 수 없게 됩니다.\n\n이 작업은 되돌릴 수 없습니다.",
+    deleteButton: "삭제",
+    members: "구성원",
+    createdAt: "생성 날짜",
+  },
+
+  promptInput: {
+    placeholder: "메시지 보내기",
+    sendTooltip: "작업 공간에 프롬프트 메시지 보내기",
+    sendButton: "메시지 보내기",
+  },
+
+  textSizeButton: {
+    tooltip: "텍스트 크기 변경",
+    small: "작게",
+    normal: "보통",
+    large: "크게",
+  },
+
+  availableAgentsButton: {
+    tooltip: "사용할 수 있는 모든 에이전트를 확인하세요.",
+    agent: "이 작업 공간의 기본 에이전트입니다.",
+    customAgentsComingSoon: "맞춤형 에이전트가 곧 출시됩니다!",
+    firstTimeModal: {
+      title: "에이전트를 발견했습니다!",
+      description:
+        "에이전트는 문서와 채팅하는 것 이상의 특별한 능력을 가진 LLM입니다. 이제 에이전트를 사용하여 실시간 웹 검색 및 스크래핑, 문서를 브라우저에 저장, 문서 요약 등을 할 수 있습니다.",
+      earlyAccess:
+        "이 기능은 현재 초기 액세스 상태이며, 사용자 정의 통합 및 코드 실행을 포함한 완전한 맞춤형 에이전트는 향후 업데이트에서 제공될 예정입니다.",
+      continueButton: "계속",
+    },
+  },
+  abilities: {
+    ragSearch: "rag-검색",
+    webScraping: "웹 스크래핑",
+    webBrowsing: "웹 브라우징",
+    saveFileToBrowser: "파일을 브라우저에 저장",
+    listDocuments: "문서 목록",
+    summarizeDocument: "문서 요약",
+    chartGeneration: "차트 생성",
+  },
+
+  slashCommandsButton: {
+    tooltip: "채팅에 사용할 수 있는 모든 슬래시 명령을 확인하세요.",
+  },
+
+  resetCommand: {
+    command: "/reset",
+    description: "채팅 기록을 지우고 새 채팅을 시작합니다",
+  },
+
   supportEmail: {
     title: "지원 이메일",
     description:
@@ -943,6 +1026,9 @@ const TRANSLATIONS = {
         noConfiguration: "이 제공자일 때는 구성할 내용이 없습니다.",
       },
     },
+    tooltip: "말로 대화하세요",
+    noMicAccess:
+      "TeamplGPT가 마이크에 접근할 수 없습니다. 이 기능을 사용하려면 이 사이트에 대한 권한을 허용하세요.",
   },
 
   textToSpeech: {

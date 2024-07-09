@@ -1,7 +1,7 @@
 import { THREAD_RENAME_EVENT } from "@/components/Sidebar/ActiveWorkspaces/ThreadContainer";
+import { useTranslation } from "react-i18next";
 export const ABORT_STREAM_EVENT = "abort-chat-stream";
 
-// For handling of chat responses in the frontend by their various types.
 export default function handleChat(
   chatResult,
   setLoadingResponse,
@@ -10,6 +10,7 @@ export default function handleChat(
   _chatHistory,
   setWebsocket
 ) {
+  const { t } = useTranslation();
   const {
     uuid,
     textResponse,
@@ -155,15 +156,11 @@ export default function handleChat(
 }
 
 export function chatPrompt(workspace) {
-  return (
-    workspace?.openAiPrompt ??
-    "Given the following conversation, relevant context, and a follow up question, reply with an answer to the current question the user is asking. Return only your response to the question given the above information following the users instructions as needed."
-  );
+  const { t } = useTranslation();
+  return workspace?.openAiPrompt ?? t("chatPrompt.defaultPrompt");
 }
 
 export function chatQueryRefusalResponse(workspace) {
-  return (
-    workspace?.queryRefusalResponse ??
-    "There is no relevant information in this workspace to answer your query."
-  );
+  const { t } = useTranslation();
+  return workspace?.queryRefusalResponse ?? t("chatPrompt.queryRefusal");
 }

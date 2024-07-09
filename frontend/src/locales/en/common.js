@@ -107,7 +107,8 @@ const TRANSLATIONS = {
     deletedThread: "deleted thread",
     renameThread: "Rename",
     deleteThread: "Delete Thread",
-    confirmDelete: "Are you sure you want to delete this thread? All of its chats will be deleted. You cannot undo this.",
+    confirmDelete:
+      "Are you sure you want to delete this thread? All of its chats will be deleted. You cannot undo this.",
     threadRenamePrompt: "What would you like to rename this thread to?",
     threadUpdateError: "Thread could not be updated! {{message}}",
     threadDeleteError: "Thread could not be deleted!",
@@ -409,6 +410,20 @@ const TRANSLATIONS = {
         "The higher the number the more creative. For some models this can lead to incoherent responses when set too high.",
       hint: "Most LLMs have various acceptable ranges of valid values. Consult your LLM provider for that information.",
     },
+  },
+
+  chatPrompt: {
+    defaultPrompt:
+      "Given the following conversation, relevant context, and a follow up question, reply with an answer to the current question the user is asking. Return only your response to the question given the above information following the users instructions as needed.",
+    queryRefusal:
+      "There is no relevant information in this workspace to answer your query.",
+  },
+
+  chatSettings: {
+    updating: "Updating...",
+    updateWorkspace: "Update workspace",
+    workspaceUpdated: "Workspace updated!",
+    updateError: "Error: {{message}}",
   },
 
   // Vector Database
@@ -905,6 +920,74 @@ const TRANSLATIONS = {
     copiedApiKey: "Copied API key",
   },
 
+  workspaceLLM: {
+    setup: "Setup {{name}}",
+    setupDescription:
+      "To use {{name}} as this workspace's LLM you need to set it up first.",
+    cancel: "Cancel",
+    saveSettings: "Save {{name}} settings",
+  },
+
+  autoDiscovery: {
+    endpointDiscovered: "Provider endpoint discovered automatically.",
+    enterManually:
+      "Couldn't automatically discover the provider endpoint. Please enter it manually.",
+    autoDetectFailed: "{{provider}} @ {{endpoint}} did not resolve.",
+  },
+
+  workspaceRow: {
+    deleteConfirmation:
+      "Are you sure you want to delete {{name}}?\nAfter you do this it will be unavailable in this instance of TeamplGPT.\n\nThis action is irreversible.",
+    deleteButton: "Delete",
+    members: "Members",
+    createdAt: "Created At",
+  },
+
+  promptInput: {
+    placeholder: "Send a message",
+    sendTooltip: "Send prompt message to workspace",
+    sendButton: "Send message",
+  },
+
+  textSizeButton: {
+    tooltip: "Change text size",
+    small: "Small",
+    normal: "Normal",
+    large: "Large",
+  },
+
+  availableAgentsButton: {
+    tooltip: "View all available agents you can use for chatting.",
+    agent: "the default agent for this workspace.",
+    customAgentsComingSoon: "custom agents are coming soon!",
+    firstTimeModal: {
+      title: "You just discovered Agents!",
+      description:
+        "Agents are your LLM, but with special abilities that do something beyond chatting with your documents. Now you can use agents for real-time web search and scraping, saving documents to your browser, summarizing documents, and more.",
+      earlyAccess:
+        "This feature is currently early access and fully custom agents with custom integrations & code execution will be in a future update.",
+      continueButton: "Continue",
+    },
+  },
+  abilities: {
+    ragSearch: "rag-search",
+    webScraping: "web-scraping",
+    webBrowsing: "web-browsing",
+    saveFileToBrowser: "save-file-to-browser",
+    listDocuments: "list-documents",
+    summarizeDocument: "summarize-document",
+    chartGeneration: "chart-generation",
+  },
+
+  slashCommandsButton: {
+    tooltip: "View all available slash commands for chatting.",
+  },
+
+  resetCommand: {
+    command: "/reset",
+    description: "Clear your chat history and begin a new chat",
+  },
+
   supportEmail: {
     title: "Support Email",
     description:
@@ -947,6 +1030,9 @@ const TRANSLATIONS = {
         noConfiguration: "There is no configuration needed for this provider.",
       },
     },
+    tooltip: "Speak your prompt",
+    noMicAccess:
+      "TeamplGPT does not have access to microphone. Please enable for this site to use this feature.",
   },
 
   textToSpeech: {

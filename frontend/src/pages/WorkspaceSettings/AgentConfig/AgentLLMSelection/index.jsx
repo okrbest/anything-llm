@@ -64,7 +64,7 @@ export default function AgentLLMSelection({
 
   const LLMS = [
     LLM_DEFAULT,
-    ...AVAILABLE_LLM_PROVIDERS.filter((llm) =>
+    ...AVAILABLE_LLM_PROVIDERS(t).filter((llm) =>
       ENABLED_PROVIDERS.includes(llm.value)
     ),
   ];

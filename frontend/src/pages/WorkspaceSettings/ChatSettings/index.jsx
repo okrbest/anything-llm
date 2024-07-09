@@ -3,6 +3,7 @@ import Workspace from "@/models/workspace";
 import showToast from "@/utils/toast";
 import { castToType } from "@/utils/types";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import ChatHistorySettings from "./ChatHistorySettings";
 import ChatPromptSettings from "./ChatPromptSettings";
 import ChatTemperatureSettings from "./ChatTemperatureSettings";
@@ -11,6 +12,7 @@ import WorkspaceLLMSelection from "./WorkspaceLLMSelection";
 import ChatQueryRefusalResponse from "./ChatQueryRefusalResponse";
 
 export default function ChatSettings({ workspace }) {
+  const { t } = useTranslation();
   const [settings, setSettings] = useState({});
   const [hasChanges, setHasChanges] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -35,9 +37,11 @@ export default function ChatSettings({ workspace }) {
       data
     );
     if (!!updatedWorkspace) {
-      showToast("Workspace updated!", "success", { clear: true });
+      showToast(t("chatSettings.workspaceUpdated"), "success", { clear: true });
     } else {
-      showToast(`Error: ${message}`, "error", { clear: true });
+      showToast(t("chatSettings.updateError", { message }), "error", {
+        clear: true,
+      });
     }
     setSaving(false);
     setHasChanges(false);
@@ -84,7 +88,9 @@ export default function ChatSettings({ workspace }) {
             form="chat-settings-form"
             className="w-fit transition-all duration-300 border border-slate-200 px-5 py-2.5 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
           >
-            {saving ? "Updating..." : "Update workspace"}
+            {saving
+              ? t("chatSettings.updating")
+              : t("chatSettings.updateWorkspace")}
           </button>
         )}
       </form>
